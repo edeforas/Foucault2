@@ -24,18 +24,17 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: ".\Foucault2.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\*.h"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.cpp"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
-Source: "..\Util\*.*"; DestDir: "{app}\src\Util"; Flags: ignoreversion
+Source: ".\Util\*.*"; DestDir: "{app}\src\Util"; Flags: ignoreversion
 Source: ".\*.pro"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
-Source: ".\*.txt"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.ui"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.ico"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.iss"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.qrc"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.rc"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.ts"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
-Source: ".\*.qm"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\samples\*.foucault2"; DestDir: "{app}\samples"; Flags: ignoreversion
 Source: ".\samples\*.mir"; DestDir: "{app}\samples"; Flags: ignoreversion
 

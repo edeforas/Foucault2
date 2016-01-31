@@ -227,14 +227,14 @@
     </message>
     <message>
         <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="169"/>
+        <location filename="MainWindow.cpp" line="170"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="72"/>
         <location filename="MainWindow.cpp" line="115"/>
-        <location filename="MainWindow.cpp" line="169"/>
+        <location filename="MainWindow.cpp" line="170"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
@@ -251,27 +251,27 @@ mail: etienne.deforas@gmail.com</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="203"/>
+        <location filename="MainWindow.cpp" line="204"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="242"/>
+        <location filename="MainWindow.cpp" line="243"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="333"/>
+        <location filename="MainWindow.cpp" line="334"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="333"/>
+        <location filename="MainWindow.cpp" line="334"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="345"/>
+        <location filename="MainWindow.cpp" line="346"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>
@@ -569,32 +569,32 @@ mail: etienne.deforas@gmail.com</source>
         <translation>Lambda sur l&apos;onde=</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="24"/>
+        <location filename="TaskItemNewMirror.cpp" line="29"/>
         <source>Diameter: </source>
         <translation>Diamètre: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="28"/>
+        <location filename="TaskItemNewMirror.cpp" line="33"/>
         <source>Hole Diameter: </source>
         <translation>Diamètre du trou central: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="33"/>
+        <location filename="TaskItemNewMirror.cpp" line="38"/>
         <source>Focal: </source>
         <translation>Focale: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="37"/>
+        <location filename="TaskItemNewMirror.cpp" line="42"/>
         <source>Conical: </source>
         <translation>Constante conique: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="46"/>
+        <location filename="TaskItemNewMirror.cpp" line="51"/>
         <source>LigthSlit: Moving</source>
         <translation>Fente: mobile</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="46"/>
+        <location filename="TaskItemNewMirror.cpp" line="51"/>
         <source>LightSlit: Still</source>
         <translation>Fente: immobile</translation>
     </message>
