@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Foucault2" >
+        <file>Foucault2.ico</file>
+    </qresource>
+</RCC>

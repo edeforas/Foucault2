@@ -1,0 +1,26 @@
+0.Measure=0.86 2.5 5.32 7.71
+0.Measure.Aspect=
+0.Type=MirrorCouderMeasure
+1.Type=MirrorWork
+1.Work=pressage tiede poix trop chaude m/o 1/3 20mn t26
+2.Measure=0.32 2.14 5.03 7.92
+2.Measure.Aspect=
+2.Type=MirrorCouderMeasure
+3.Type=MirrorWork
+3.Work=o/m w largeur=finzone2 10mn poix molle  t25
+4.Measure=5.29 6.4 8.38 10.52
+4.Measure.Aspect=
+4.Type=MirrorCouderMeasure
+5.Comment=Leger mamelonage , legere diffusion , fin.
+5.Type=MirrorComment
+Conical=-1
+Diameter=310
+DisplayMode=1
+Focal=1738.5
+HoleDiameter=0
+Hx=55 95 130 155
+MovingLight=0
+Name=eti 310 4 zones
+ShowBothSides=1
+ShowColors=1
+SmoothCurves=0

@@ -1,0 +1,5 @@
+Pageup/down must work
+smooth curves
+More zoom at start
+Test english version
+push on GitHub
