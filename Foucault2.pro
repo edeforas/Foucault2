@@ -64,8 +64,8 @@ FORMS += mainwindow.ui \
     DialogNewMeasure.ui \
     DialogNewComment.ui \
     DialogNewWork.ui
-INCLUDEPATH += ../Util
-SOURCES += ../Util/Properties.cpp
-HEADERS += ../Util/Properties.h
+INCLUDEPATH += Util
+SOURCES += Util/Properties.cpp
+HEADERS += Util/Properties.h
 
 TRANSLATIONS = Foucault2_fr.ts
