@@ -17,7 +17,7 @@ Mirror::Mirror()
     _bShowBothSide=true;
     _bSmoothCurves=false;
 
-    _bShowColors=false;
+    _bShowColors=true;
     _iDisplayMode=1; //0=compact 1=normal 2=details
 }
 //////////////////////////////////////////////////////////////////////////////

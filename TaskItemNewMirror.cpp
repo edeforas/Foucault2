@@ -21,6 +21,11 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     add_item(ptiTitle); //todo center and in bold
     iLine+=iBlockSize*2;
 
+    QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem("*");
+    ptiTitleTab->setPos(pos().x()+iBlockSize*59,iLine);
+    add_item(ptiTitleTab);
+    iLine+=iBlockSize*2;
+
     QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter()));
     ptiDiameter->setPos(pos().x(),iLine);
     add_item(ptiDiameter);

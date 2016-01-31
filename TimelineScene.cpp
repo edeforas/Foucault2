@@ -61,7 +61,7 @@ void TimelineScene::wheelEvent(QGraphicsSceneWheelEvent* wheelEvent)
 void TimelineScene::keyPressEvent(QKeyEvent * keyEvent)
 {
     // todo: does not work: use setFocus() ?
-/*
+    /*
     if(keyEvent->key()==Qt::Key_PageUp)
     {
         QGraphicsView* v=views()[0];
@@ -74,7 +74,7 @@ void TimelineScene::keyPressEvent(QKeyEvent * keyEvent)
     }
     else
     */
-        QGraphicsScene::keyPressEvent(keyEvent);
+    QGraphicsScene::keyPressEvent(keyEvent);
 }
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::set_mirror(Mirror* pM)
@@ -151,9 +151,27 @@ TaskItem* TimelineScene::create_item(MirrorItem* rmi)
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::ensure_visible(int iItem)
 {
-    assert(iItem>=0);
-    assert(iItem+1<(int)_vti.size());
+    QGraphicsView* pView=views()[0];
+    if(iItem>=0)
+    {
+        assert(iItem+1<(int)_vti.size());
+        TaskItem* pItem=_vti[iItem+1];
+        pView->ensureVisible(pItem);
+    }
+    else
+    {
+        QRectF rectTotal=itemsBoundingRect();
+        QRect rectWidget=pView->rect();
 
-    views()[0]->ensureVisible(_vti[iItem+1]);
+        if(rectWidget.width()!=0)
+        {
+            double dRatio=rectWidget.height()/(double)rectWidget.width();
+            double newWidth=rectTotal.width()*1.25;
+            double newHeight=rectTotal.width()*dRatio*1.25;
+            QRectF finalRect(rectTotal.topLeft(),QPointF(newWidth,newHeight));
+            pView->fitInView(finalRect,Qt::KeepAspectRatioByExpanding);
+            pView->centerOn(rectTotal.topLeft());
+        }
+    }
 }
 ///////////////////////////////////////////////////////////////////////////////

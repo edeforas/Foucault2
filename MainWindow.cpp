@@ -142,10 +142,11 @@ void MainWindow::on_actionNew_triggered()
 
         _pMirror->initialize();
 
-        _ts->update_items(-1);
         _bMustSave=true;
 
         device_changed(true);
+        _ts->update_items(-1);
+        ensure_visible(-1);
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -210,6 +211,7 @@ bool MainWindow::load_file(string sFile)
 
     _sFileName=sFile;
     device_changed(false);
+    ensure_visible(-1);
     return true;
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -352,6 +354,7 @@ void MainWindow::on_actionImport_triggered()
 
         _sFileName=sFile+".foucault2";//TODO remove old extention?
         device_changed(true);
+        ensure_visible(-1);
     }
 }
 ///////////////////////////////////////////////////////////////////////////////

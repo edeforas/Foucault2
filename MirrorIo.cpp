@@ -232,7 +232,7 @@ Mirror* MirrorIo::import(string sFile)
     else
         pm->set_smooth_curves(false);
 
-    pm->set_show_colors(false);
+    pm->set_show_colors(true);
     pm->set_display_mode(1);
 
     // lit les hx
