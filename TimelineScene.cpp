@@ -131,8 +131,8 @@ void TimelineScene::ensure_visible(int iItem)
         if(rectWidget.width()!=0)
         {
             double dRatio=rectWidget.height()/(double)rectWidget.width();
-            double newWidth=rectTotal.width();//*1.25;
-            double newHeight=rectTotal.width()*dRatio;//*1.25;
+            double newWidth=rectTotal.width();
+            double newHeight=rectTotal.width()*dRatio;
             QRectF finalRect(rectTotal.topLeft(),QPointF(newWidth,newHeight));
             pView->fitInView(finalRect,Qt::KeepAspectRatioByExpanding);
             pView->centerOn(rectTotal.topLeft());

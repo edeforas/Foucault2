@@ -32,16 +32,10 @@ HEADERS += \
     MirrorItem.h \
     MirrorComment.h \
     MirrorCouderMeasure.h \
-    MirrorCouderScreen.h \
-    MirrorHartmannScreen.h \
-    MirrorHartmannMeasure.h \
     TimelineScene.h \
     TaskItem.h \
     TaskItemComment.h \
-    TaskItemHartmannScreen.h \
-    TaskItemCouderScreen.h \
     TaskItemCouderMeasure.h \
-    TaskItemHartmannMeasure.h \
     DialogNewMeasure.h \
     DialogNewMirror.h \
     DialogNewComment.h \
