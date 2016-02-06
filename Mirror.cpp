@@ -194,7 +194,7 @@ void Mirror::initialize()
     }
     for(int i=0;i<iNbZone;i++)
     {
-        _vdRelativeSurface[i]=_vdRelativeSurface[i]/dSum*iNbZone;
+        _vdRelativeSurface[i]=_vdRelativeSurface[i]/dSum/**iNbZone*/;
     }
 }
 //////////////////////////////////////////////////////////////////////////////

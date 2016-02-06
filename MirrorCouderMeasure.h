@@ -20,7 +20,7 @@ public:
     double get_lfro() const;
     double get_lambda_wave() const;
 
-    double get_RMS() const;
+    double get_lambda_RMS() const;
     double get_strehl() const;
 
     string get_aspect() const;

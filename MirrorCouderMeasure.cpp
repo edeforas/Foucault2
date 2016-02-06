@@ -225,17 +225,17 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
 
     //calcule la moyenne
     double dM=0.;
-    for(int i=0;i<iNbZone+1;i++)
-        dM+=pMes->_surf[i];
+    for(int i=0;i<iNbZone;i++)
+        dM+=(pMes->_surf[i]+pMes->_surf[i+1])/2.*pMirror->relative_surface()[i];
 
-    dM/=(iNbZone+1);
+ //   dM/=(iNbZone+1);
 
     //calcule la variance et l'ecart type
     double dVar=0.;
-    for(int i=0;i<iNbZone+1;i++)
-        dVar+=sqr(pMes->_surf[i]-dM)*pMirror->relative_surface()[i];
+    for(int i=0;i<iNbZone;i++)
+        dVar+=sqr((pMes->_surf[i]+pMes->_surf[i+1])/2.-dM)*pMirror->relative_surface()[i];
 
-    dVar/=(iNbZone+1);
+  //  dVar/=(iNbZone+1);
     double dStd=sqrt(dVar);
 
     pMes->_dStd=dStd;
@@ -272,7 +272,7 @@ double MirrorCouderMeasure::get_lambda_wave() const
     return _dLambda;
 }
 ////////////////////////////////////////////////////////////////////////////////
-double MirrorCouderMeasure::get_RMS() const
+double MirrorCouderMeasure::get_lambda_RMS() const
 {
     return _dWeightedLambdaRms;
 }

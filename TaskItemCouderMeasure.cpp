@@ -50,7 +50,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         iLine+=iBlockSize;
     }
 
-    QString qsLambdaWave=QObject::tr("LambdaWave=")+QString::number(mci->get_lambda_wave(),'g',2);
+    QString qsLambdaWave=QObject::tr("LambdaWave=")+QString::number(mci->get_lambda_wave(),'g',3);
     QGraphicsTextItem* ptiLambdaWave=new QGraphicsTextItem(qsLambdaWave);
     ptiLambdaWave->setPos(pos().x(),iLine);
     add_item(ptiLambdaWave);
@@ -60,7 +60,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     ptiLFRO->setPos(pos().x()+iBlockSize*16,iLine);
     add_item(ptiLFRO);
 
-    QString qsRMS="RMS="+QString::number(mci->get_RMS(),'g',2);
+    QString qsRMS="LambdaRMS="+QString::number(mci->get_lambda_RMS(),'g',3);
     QGraphicsTextItem* ptiRMS=new QGraphicsTextItem(qsRMS);
     ptiRMS->setPos(pos().x()+iBlockSize*31,iLine);
     add_item(ptiRMS);
