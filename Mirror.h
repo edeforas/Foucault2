@@ -4,7 +4,6 @@
 // copyright Etienne de Foras ( the author )
 // mailto: etienne.deforas@gmail.com
 
-
 #ifndef _Mirror_
 #define _Mirror_
 

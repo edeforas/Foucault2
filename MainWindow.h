@@ -56,21 +56,13 @@ private slots:
     void on_actionClose_triggered();
     void on_actionAbout_triggered();
     void on_actionQuit_triggered();
-
     void on_actionShow_mirror_both_side_triggered();
-
     void on_actionWork_triggered();
-
     void ensureVisibleSlot();
-
     void on_actionShow_Colors_triggered();
-
     void on_actionDisplay_Compact_triggered();
-
     void on_actionDisplay_Normal_triggered();
-
     void on_actionDisplay_Details_triggered();
-
     void on_actionShow_smooth_curves_triggered();
 
 private:

@@ -15,11 +15,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     int iBlockSize=block_size();
     int iLine=pos().y();
     bool bShowBothSide=pM->get_show_both_side();
-/*
-    QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
-    ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
-    add_item(ptiTitleTab);
-*/
+
     MirrorCouderMeasure* mci=static_cast<MirrorCouderMeasure*>(pItem);
     if(iDisplayMode>=1)
     {

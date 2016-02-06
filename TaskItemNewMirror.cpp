@@ -24,7 +24,6 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
- //   iLine+=iBlockSize*2;
 
     QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter()));
     ptiDiameter->setPos(pos().x(),iLine);

@@ -30,19 +30,12 @@ public:
 private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
-
     void on_radioButton_2_clicked();
-
     void on_radioButton_3_clicked();
-
     void on_radioButton_clicked();
-
     void on_btnComputeNbOfzone_clicked();
-
     void on_btnComputeNbMillimetersByZone_clicked();
-
     void on_btnComputeMinZoneSize_clicked();
-
     void on_radioButton_4_clicked();
 
 private:

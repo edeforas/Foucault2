@@ -4,8 +4,6 @@
 #include <string>
 using namespace std;
 
-#include "MirrorSurface.h"
-
 class Mirror;
 
 class MirrorItem
@@ -16,14 +14,10 @@ public:
 
     void set_mirror(Mirror* pMirror);
     Mirror* mirror();
-
-    const MirrorSurface& surface() const;
-
     string type() const;
 
 protected:
     string _sType;
-    MirrorSurface _surface;
     Mirror* _pParent;
 };
 

@@ -17,7 +17,6 @@ SOURCES += main.cpp \
     TaskItem.cpp \
     TaskItemComment.cpp \
     TaskItemCouderMeasure.cpp \
-    MirrorSurface.cpp \
     DialogNewMeasure.cpp \
     DialogNewMirror.cpp \
     DialogNewComment.cpp \
@@ -43,7 +42,6 @@ HEADERS += \
     TaskItemCouderScreen.h \
     TaskItemCouderMeasure.h \
     TaskItemHartmannMeasure.h \
-    MirrorSurface.h \
     DialogNewMeasure.h \
     DialogNewMirror.h \
     DialogNewComment.h \

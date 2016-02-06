@@ -2,7 +2,6 @@
 #include "TaskItem.h"
 
 #include <QGraphicsView>
-#include <QGraphicsEllipseItem>
 #include <QGraphicsSceneWheelEvent>
 #include <QKeyEvent>
 #include <QTimer>
@@ -47,8 +46,6 @@ void TimelineScene::wheelEvent(QGraphicsSceneWheelEvent* wheelEvent)
     if((wheelEvent->modifiers().testFlag(Qt::ControlModifier)))
     {
         QGraphicsView* v=views()[0];
-        //    v->setTransformationAnchor(QGraphicsView::AnchorViewCenter);  //:AnchorUnderMouse);
-
         if (wheelEvent->delta()>0)
             v->scale(1.25,1.25);
         else
@@ -58,25 +55,6 @@ void TimelineScene::wheelEvent(QGraphicsSceneWheelEvent* wheelEvent)
     }
     else
         QGraphicsScene::wheelEvent(wheelEvent);
-}
-///////////////////////////////////////////////////////////////////////////////
-void TimelineScene::keyPressEvent(QKeyEvent * keyEvent)
-{
-    // todo: does not work: use setFocus() ?
-    /*
-    if(keyEvent->key()==Qt::Key_PageUp)
-    {
-        QGraphicsView* v=views()[0];
-        v->scale(1.25,1.25);
-    }
-    else if(keyEvent->key()==Qt::Key_PageDown)
-    {
-        QGraphicsView* v=views()[0];
-        v->scale(0.8,0.8);
-    }
-    else
-    */
-    QGraphicsScene::keyPressEvent(keyEvent);
 }
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::set_mirror(Mirror* pM)

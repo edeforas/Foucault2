@@ -21,14 +21,12 @@ public:
 
 protected:
     virtual void wheelEvent(QGraphicsSceneWheelEvent* wheelEvent);
-    virtual void keyPressEvent(QKeyEvent * keyEvent);
 
 private:
     void add_item(TaskItem* pi);
     TaskItem* create_item(MirrorItem* rmi);
 
     Mirror *_pM;
-
     vector<TaskItem*> _vti;
 };
 

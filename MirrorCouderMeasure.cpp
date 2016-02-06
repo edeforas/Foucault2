@@ -228,14 +228,11 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
     for(int i=0;i<iNbZone;i++)
         dM+=(pMes->_surf[i]+pMes->_surf[i+1])/2.*pMirror->relative_surface()[i];
 
- //   dM/=(iNbZone+1);
-
     //calcule la variance et l'ecart type
     double dVar=0.;
     for(int i=0;i<iNbZone;i++)
         dVar+=sqr((pMes->_surf[i]+pMes->_surf[i+1])/2.-dM)*pMirror->relative_surface()[i];
 
-  //  dVar/=(iNbZone+1);
     double dStd=sqrt(dVar);
 
     pMes->_dStd=dStd;

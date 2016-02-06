@@ -12,6 +12,7 @@ public:
 
     vector<double>& hx();
     bool& is_moving_light();
+
 private:
     vector<double> _hx;
     bool _bIsMovingLight;
