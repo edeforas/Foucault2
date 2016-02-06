@@ -22,6 +22,8 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void set_background_color(QColor color);
 
+    int block_size();
+
 protected:
     MirrorItem *_pItem;
 

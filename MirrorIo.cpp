@@ -13,7 +13,6 @@
 
 #include "MirrorComment.h"
 #include "MirrorWork.h"
-#include "MirrorCouderScreen.h"
 #include "MirrorCouderMeasure.h"
 
 #include <sstream>
@@ -90,16 +89,6 @@ Mirror* MirrorIo::load(string sFile)
             pm->add_item(mw);
         }
 
-        if(sType=="MirrorCouderScreen")
-        {
-            MirrorCouderScreen* mcs=new MirrorCouderScreen;
-            vector<double> vd=p.get_vector_double(sIndex+".Hx");
-            mcs->hx()=vd;
-            mcs->is_moving_light()=p.get_bool(sIndex+"IsMovingLight");
-
-            pm->add_item(mcs);
-        }
-
         if(sType=="MirrorCouderMeasure")
         {
             MirrorCouderMeasure* tgs=new MirrorCouderMeasure(pm);
@@ -156,13 +145,6 @@ bool MirrorIo::save(Mirror* pm,string sFile)
         {
             MirrorWork* tc=dynamic_cast<MirrorWork*>(mi);
             p.set(sIndex+".Work",tc->work());
-        }
-
-        if(sType=="MirrorCouderScreen")
-        {
-            MirrorCouderScreen* mcs=dynamic_cast<MirrorCouderScreen*>(mi);
-            p.set(sIndex+".Hx",mcs->hx());
-            p.set(sIndex+".IsMovingLight",mcs->is_moving_light());
         }
 
         if(sType=="MirrorCouderMeasure")

@@ -12,12 +12,10 @@ SOURCES += main.cpp \
     MirrorIo.cpp \
     MirrorComment.cpp \
     MirrorCouderMeasure.cpp \
-    MirrorCouderScreen.cpp \
     MirrorItem.cpp \
     TimelineScene.cpp \
     TaskItem.cpp \
     TaskItemComment.cpp \
-    TaskItemCouderScreen.cpp \
     TaskItemCouderMeasure.cpp \
     MirrorSurface.cpp \
     DialogNewMeasure.cpp \

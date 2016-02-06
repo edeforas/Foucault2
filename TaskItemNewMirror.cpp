@@ -9,7 +9,7 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////
 TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
 {
-    int iBlockSize=12;
+    int iBlockSize=block_size();
     Mirror* pM=pItem->mirror();
     int iLine=pos().y();
     int iDisplayMode=pM->get_display_mode();
@@ -24,7 +24,7 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
-    iLine+=iBlockSize*2;
+ //   iLine+=iBlockSize*2;
 
     QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter()));
     ptiDiameter->setPos(pos().x(),iLine);

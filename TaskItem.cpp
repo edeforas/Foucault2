@@ -12,7 +12,7 @@ void TaskItem::add_item(QGraphicsItem * pItem)
 {
     assert(pItem);
     pItem->setParentItem(this);
-    _boundingRect=childrenBoundingRect();
+    _boundingRect=childrenBoundingRect();    
 }
 ///////////////////////////////////////////////////////////////////////
 QRectF TaskItem::boundingRect() const
@@ -47,5 +47,10 @@ void TaskItem::add_line_tab(string sTitle,vector<double> val,float x,float y, fl
         item->setPos(fCellStart,y);
         add_item(item);
     }
+}
+///////////////////////////////////////////////////////////////////////
+int TaskItem::block_size()
+{
+    return 12;
 }
 ///////////////////////////////////////////////////////////////////////

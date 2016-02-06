@@ -12,14 +12,14 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         set_background_color(QColor(230,239,244));
 
     int iDisplayMode=pM->get_display_mode();
-    int iBlockSize=12;
+    int iBlockSize=block_size();
     int iLine=pos().y();
     bool bShowBothSide=pM->get_show_both_side();
-
+/*
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
-
+*/
     MirrorCouderMeasure* mci=static_cast<MirrorCouderMeasure*>(pItem);
     if(iDisplayMode>=1)
     {
@@ -82,6 +82,13 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         iLine+=5*iBlockSize;
     else
         iLine+=8*iBlockSize;
+
+
+    QGraphicsTextItem* ptiTitleTab2=new QGraphicsTextItem(" ");
+    ptiTitleTab2->setPos(pos().x()+iBlockSize*61,iLine-iBlockSize/2);
+    add_item(ptiTitleTab2);
+
+
 
     double dSurfY2=iLine;
 
@@ -178,7 +185,5 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         ptiSurfaceHeight->setPos(dBorder1,dSurfYM);
         add_item(ptiSurfaceHeight);
     }
-
-    //todo finalize item size to page width
 }
 ////////////////////////////////////////////////////////////////////////////

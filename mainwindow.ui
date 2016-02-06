@@ -61,7 +61,6 @@
     <property name="title">
      <string>New task</string>
     </property>
-    <addaction name="actionGlobal_settings"/>
     <addaction name="actionWork"/>
     <addaction name="actionAdd_comment"/>
     <addaction name="separator"/>

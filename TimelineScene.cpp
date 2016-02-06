@@ -14,7 +14,6 @@
 #include "TaskItemComment.h"
 #include "TaskItemWork.h"
 #include "TaskItemCouderMeasure.h"
-#include "TaskItemCouderScreen.h"
 
 #include <cassert>
 ///////////////////////////////////////////////////////////////////////////////
@@ -36,6 +35,11 @@ void TimelineScene::add_item(TaskItem* pi)
     pi->setPos(0,dOldY);
     _vti.push_back(pi);
     addItem(pi);
+
+    //todo update scene rect to add borders
+    QRectF qr=itemsBoundingRect();
+    QRectF qrWithBorder(qr.left()-100,qr.top(),qr.width()+200,qr.height());
+    setSceneRect(qrWithBorder);
 }
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::wheelEvent(QGraphicsSceneWheelEvent* wheelEvent)
@@ -124,11 +128,6 @@ TaskItem* TimelineScene::create_item(MirrorItem* rmi)
         return new TaskItemWork(rmi);
     }
 
-    if(rmi->type()=="MirrorCouderScreen")
-    {
-        return new TaskItemCouderScreen(rmi);
-    }
-
     if(rmi->type()=="MirrorCouderMeasure")
     {
         return new TaskItemCouderMeasure(rmi);
@@ -148,14 +147,14 @@ void TimelineScene::ensure_visible(int iItem)
     }
     else
     {
-        QRectF rectTotal=itemsBoundingRect();
+        QRectF rectTotal=sceneRect();
         QRect rectWidget=pView->rect();
 
         if(rectWidget.width()!=0)
         {
             double dRatio=rectWidget.height()/(double)rectWidget.width();
-            double newWidth=rectTotal.width()*1.25;
-            double newHeight=rectTotal.width()*dRatio*1.25;
+            double newWidth=rectTotal.width();//*1.25;
+            double newHeight=rectTotal.width()*dRatio;//*1.25;
             QRectF finalRect(rectTotal.topLeft(),QPointF(newWidth,newHeight));
             pView->fitInView(finalRect,Qt::KeepAspectRatioByExpanding);
             pView->centerOn(rectTotal.topLeft());
