@@ -15,8 +15,6 @@
 #include "TaskItemWork.h"
 #include "TaskItemCouderMeasure.h"
 #include "TaskItemCouderScreen.h"
-#include "TaskItemHartmannScreen.h"
-#include "TaskItemHartmannMeasure.h"
 
 #include <cassert>
 ///////////////////////////////////////////////////////////////////////////////
@@ -134,16 +132,6 @@ TaskItem* TimelineScene::create_item(MirrorItem* rmi)
     if(rmi->type()=="MirrorCouderMeasure")
     {
         return new TaskItemCouderMeasure(rmi);
-    }
-
-    if(rmi->type()=="MirrorHartmannScreen")
-    {
-        return new TaskItemHartmannScreen(rmi);
-    }
-
-    if(rmi->type()=="MirrorHartmannMeasure")
-    {
-        return new TaskItemHartmannMeasure(rmi);
     }
 
     return 0;

@@ -13,16 +13,12 @@ SOURCES += main.cpp \
     MirrorComment.cpp \
     MirrorCouderMeasure.cpp \
     MirrorCouderScreen.cpp \
-    MirrorHartmannScreen.cpp \
-    MirrorHartmannMeasure.cpp \
     MirrorItem.cpp \
     TimelineScene.cpp \
     TaskItem.cpp \
     TaskItemComment.cpp \
-    TaskItemHartmannScreen.cpp \
     TaskItemCouderScreen.cpp \
     TaskItemCouderMeasure.cpp \
-    TaskItemHartmannMeasure.cpp \
     MirrorSurface.cpp \
     DialogNewMeasure.cpp \
     DialogNewMirror.cpp \

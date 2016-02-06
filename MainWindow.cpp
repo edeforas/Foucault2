@@ -25,8 +25,6 @@
 #include "MirrorWork.h"
 #include "MirrorCouderMeasure.h"
 #include "MirrorCouderScreen.h"
-#include "MirrorHartmannScreen.h"
-#include "MirrorHartmannMeasure.h"
 
 #include "TimelineScene.h"
 ///////////////////////////////////////////////////////////////////////////////
@@ -288,23 +286,10 @@ void MainWindow::on_actionNew_Couder_Screen_triggered()
 }
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionNew_Hartmann_Screen_triggered()
-{
-    MirrorHartmannScreen* t=new MirrorHartmannScreen;
-    _pMirror->add_item(t);
-    _ts->update_items(_pMirror->nb_item()-1);
-    _bMustSave=true;
-    update_title();
-}
+{ }
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionAdd_Hartmann_Measure_triggered()
-{
-    MirrorHartmannMeasure* t=new MirrorHartmannMeasure;
-    _pMirror->add_item(t);
-    _ts->update_items(_pMirror->nb_item()-1);
-    ensure_visible(_pMirror->nb_item()-1);
-    _bMustSave=true;
-    update_title();
-}
+{ }
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionGlobal_settings_triggered()
 {}

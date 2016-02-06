@@ -15,8 +15,6 @@
 #include "MirrorWork.h"
 #include "MirrorCouderScreen.h"
 #include "MirrorCouderMeasure.h"
-#include "MirrorHartmannScreen.h"
-#include "MirrorHartmannMeasure.h"
 
 #include <sstream>
 #include <cassert>
@@ -112,18 +110,6 @@ Mirror* MirrorIo::load(string sFile)
             tgs->set_measure(vd,sAspect);
             pm->add_item(tgs);
         }
-
-        if(sType=="MirrorHartmannScreen")
-        {
-            MirrorHartmannScreen* tgs=new MirrorHartmannScreen;
-            pm->add_item(tgs);
-        }
-
-        if(sType=="MirrorHartmannMeasure")
-        {
-            MirrorHartmannMeasure* tgs=new MirrorHartmannMeasure;
-            pm->add_item(tgs);
-        }
     }
 
     pm->initialize();
@@ -184,20 +170,6 @@ bool MirrorIo::save(Mirror* pm,string sFile)
             MirrorCouderMeasure* mcm=dynamic_cast<MirrorCouderMeasure*>(mi);
             p.set(sIndex+".Measure",mcm->measures());
             p.set(sIndex+".Measure.Aspect",mcm->get_aspect());
-        }
-
-        if(sType=="MirrorHartmannScreen")
-        {
-            MirrorHartmannScreen* mhs=dynamic_cast<MirrorHartmannScreen*>(mi);
-            (void)mhs;
-            //TODO
-        }
-
-        if(sType=="MirrorHartmannMeasure")
-        {
-            MirrorHartmannMeasure* mhm=dynamic_cast<MirrorHartmannMeasure*>(mi);
-            (void)mhm;
-            //TODO
         }
     }
 
