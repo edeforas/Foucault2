@@ -1,9 +1,9 @@
 #include "MirrorWork.h"
 
-MirrorWork::MirrorWork(string sWork)
+MirrorWork::MirrorWork(string sWork):
+    _sWork(sWork)
 {
     _sType="MirrorWork";
-    _sWork=sWork;
 }
 
 string& MirrorWork::work()

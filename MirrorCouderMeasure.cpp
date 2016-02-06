@@ -129,13 +129,12 @@ const vector<double>& MirrorCouderMeasure::surface() const
 ////////////////////////////////////////////////////////////////////////////////
 double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)(void* self,double h))
 {
-    double m1,fm1,b,fb,m2,fm2;
-
-    b=(a+c)/2.;
-    fb=fcn(this,b);
+    double b=(a+c)/2.;
+    double fb=fcn(this,b);
     while (fabs(a-c)>res)   //dichotomie 1.5
-    {  m1=(a+b)/2.;
-        fm1=fcn(this,m1);
+    {  
+	double m1=(a+b)/2.;
+        double fm1=fcn(this,m1);
         if (fabs(fm1)<fabs(fb))
         {
             c=b;
@@ -144,8 +143,8 @@ double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)
         }
         else
         {
-            m2=(b+c)/2.;
-            fm2=fcn(this,m2);
+            double m2=(b+c)/2.;
+            double fm2=fcn(this,m2);
             if (fabs(fm2)<fabs(fb))
             {
                 a=b;

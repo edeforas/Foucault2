@@ -9,7 +9,7 @@ using namespace std;
 
 TaskItemComment::TaskItemComment(MirrorItem* pItem):TaskItem(pItem)
 {
-    MirrorComment* pMC=(MirrorComment*)pItem;
+    MirrorComment* pMC=static_cast<MirrorComment*>(pItem);
     Mirror* pM=pItem->mirror();
     QGraphicsTextItem* pti=new QGraphicsTextItem(QString(QObject::tr("Comment: "))+pMC->comment().c_str());
 
