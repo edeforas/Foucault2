@@ -9,14 +9,19 @@
         <translation>Nouveau commentaire</translation>
     </message>
     <message>
-        <location filename="DialogNewComment.ui" line="39"/>
+        <location filename="DialogNewComment.ui" line="42"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="DialogNewComment.ui" line="46"/>
+        <location filename="DialogNewComment.ui" line="49"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="DialogNewComment.ui" line="60"/>
+        <source>When</source>
+        <translation>Quand</translation>
     </message>
 </context>
 <context>
@@ -27,27 +32,32 @@
         <translation>Nouvelle mesure</translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="64"/>
+        <location filename="DialogNewMeasure.ui" line="22"/>
+        <source>When</source>
+        <translation>Quand</translation>
+    </message>
+    <message>
+        <location filename="DialogNewMeasure.ui" line="95"/>
         <source>Aspect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="91"/>
+        <location filename="DialogNewMeasure.ui" line="122"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="98"/>
+        <location filename="DialogNewMeasure.ui" line="129"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.cpp" line="61"/>
+        <location filename="DialogNewMeasure.cpp" line="64"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.cpp" line="61"/>
+        <location filename="DialogNewMeasure.cpp" line="64"/>
         <source>Please, enter a valid number at measure #</source>
         <translation>Entrez une mesure valide à la position #</translation>
     </message>
@@ -212,66 +222,71 @@
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="63"/>
+        <source>When</source>
+        <translation>Quand</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="MainWindow.cpp" line="66"/>
+        <location filename="MainWindow.cpp" line="63"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="66"/>
+        <location filename="MainWindow.cpp" line="63"/>
         <source>Save?</source>
         <translation>Sauver?</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="170"/>
+        <location filename="MainWindow.cpp" line="69"/>
+        <location filename="MainWindow.cpp" line="167"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="115"/>
-        <location filename="MainWindow.cpp" line="170"/>
+        <location filename="MainWindow.cpp" line="69"/>
+        <location filename="MainWindow.cpp" line="112"/>
+        <location filename="MainWindow.cpp" line="167"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="105"/>
+        <location filename="MainWindow.cpp" line="102"/>
         <source> by Etienne de Foras
 
 mail: etienne.deforas@gmail.com</source>
         <translation>par Etienne de Foras mail:etienne.deforas@gmail.com</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="115"/>
+        <location filename="MainWindow.cpp" line="112"/>
         <source>Open Foucault2 File</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="204"/>
+        <location filename="MainWindow.cpp" line="201"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="243"/>
+        <location filename="MainWindow.cpp" line="240"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="334"/>
+        <location filename="MainWindow.cpp" line="313"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="334"/>
+        <location filename="MainWindow.cpp" line="313"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="346"/>
+        <location filename="MainWindow.cpp" line="325"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>
@@ -294,129 +309,129 @@ mail: etienne.deforas@gmail.com</source>
         <translation>Nouvelle tache</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="78"/>
+        <location filename="mainwindow.ui" line="77"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="84"/>
+        <location filename="mainwindow.ui" line="83"/>
         <source>View</source>
         <translation>Vue</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="101"/>
+        <location filename="mainwindow.ui" line="100"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="106"/>
+        <location filename="mainwindow.ui" line="105"/>
         <source>About...</source>
         <translation>A propos...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="111"/>
+        <location filename="mainwindow.ui" line="110"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="116"/>
+        <location filename="mainwindow.ui" line="115"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="121"/>
+        <location filename="mainwindow.ui" line="120"/>
         <source>Save as...</source>
         <translation>Sauver comme...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="126"/>
+        <location filename="mainwindow.ui" line="125"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="130"/>
         <source>New...</source>
         <translation>Nouveau...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="139"/>
+        <location filename="mainwindow.ui" line="138"/>
         <source>Comment</source>
         <translation>Commentaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="147"/>
+        <location filename="mainwindow.ui" line="146"/>
         <source>Global Settings</source>
         <translation>Propriétés globales</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="154"/>
         <source>Foucault Screen</source>
         <oldsource>Couder Screen</oldsource>
         <translation>Ecran de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="163"/>
+        <location filename="mainwindow.ui" line="162"/>
         <source>Foucault Measure</source>
         <oldsource>Couder Measure</oldsource>
         <translation>Mesure de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="171"/>
+        <location filename="mainwindow.ui" line="170"/>
         <source>Hartmann Screen</source>
         <translation>Ecran de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="178"/>
         <source>Hartmann Measure</source>
         <translation>Mesure de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="187"/>
+        <location filename="mainwindow.ui" line="186"/>
         <source>Bath Measure</source>
         <translation>Mesure de Bath</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="191"/>
         <source>Print...</source>
         <translation>Imprimer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
+        <location filename="mainwindow.ui" line="196"/>
         <source>Import...</source>
         <translation>Importer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="208"/>
+        <location filename="mainwindow.ui" line="207"/>
         <source>Show mirror both side</source>
         <translation>Montrer les deux cotés du miroir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="216"/>
+        <location filename="mainwindow.ui" line="215"/>
         <source>Work</source>
         <translation>Travail</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="224"/>
+        <location filename="mainwindow.ui" line="223"/>
         <source>Show Colors</source>
         <translation>Affichage en couleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="232"/>
+        <location filename="mainwindow.ui" line="231"/>
         <source>Display Compact</source>
         <translation>Affichage compact</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="243"/>
+        <location filename="mainwindow.ui" line="242"/>
         <source>Display Normal</source>
         <translation>Affichage normal</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="251"/>
+        <location filename="mainwindow.ui" line="250"/>
         <source>Display Details</source>
         <translation>Affichage détaillé</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="262"/>
+        <location filename="mainwindow.ui" line="261"/>
         <source>Show smooth curves</source>
         <translation>Montrer des surfaces lisses</translation>
     </message>
@@ -549,7 +564,7 @@ mail: etienne.deforas@gmail.com</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="TaskItemComment.cpp" line="14"/>
+        <location filename="TaskItemComment.cpp" line="17"/>
         <source>Comment: </source>
         <translation>Commentaire: </translation>
     </message>
@@ -569,37 +584,37 @@ mail: etienne.deforas@gmail.com</source>
         <translation>Lambda sur l&apos;onde=</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="29"/>
+        <location filename="TaskItemNewMirror.cpp" line="28"/>
         <source>Diameter: </source>
         <translation>Diamètre: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="33"/>
+        <location filename="TaskItemNewMirror.cpp" line="32"/>
         <source>Hole Diameter: </source>
         <translation>Diamètre du trou central: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="38"/>
+        <location filename="TaskItemNewMirror.cpp" line="37"/>
         <source>Focal: </source>
         <translation>Focale: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="42"/>
+        <location filename="TaskItemNewMirror.cpp" line="41"/>
         <source>Conical: </source>
         <translation>Constante conique: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="51"/>
+        <location filename="TaskItemNewMirror.cpp" line="50"/>
         <source>LigthSlit: Moving</source>
         <translation>Fente: mobile</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="51"/>
+        <location filename="TaskItemNewMirror.cpp" line="50"/>
         <source>LightSlit: Still</source>
         <translation>Fente: immobile</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="17"/>
+        <location filename="TaskItemWork.cpp" line="24"/>
         <source>Work: </source>
         <translation>Travail: </translation>
     </message>
