@@ -17,6 +17,14 @@ void Properties::set(string sKey, int iValue)
     _pairs[sKey]=ss.str();
 }
 ///////////////////////////////////////////////////////////////////////////////
+void Properties::set(string sKey, unsigned int uiValue)
+{
+    stringstream ss;
+    ss << uiValue;
+
+    _pairs[sKey]=ss.str();
+}
+///////////////////////////////////////////////////////////////////////////////
 void Properties::set(string sKey, bool bValue)
 {
     _pairs[sKey]=bValue?"1":"0";
@@ -78,6 +86,20 @@ int Properties::get_int(string sKey)
         ss << (*it).second; //.str((*it).second);
         ss >> iTmp;
         return iTmp;
+    } else
+        return 0;
+}
+///////////////////////////////////////////////////////////////////////////////
+unsigned int Properties::get_unsigned_int(string sKey)
+{
+    map<string,string>::iterator it=_pairs.find(sKey);
+    if(it!=_pairs.end())
+    {
+        stringstream ss;
+        unsigned int uiTmp;
+        ss << (*it).second; //.str((*it).second);
+        ss >> uiTmp;
+        return uiTmp;
     } else
         return 0;
 }

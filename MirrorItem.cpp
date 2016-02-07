@@ -6,6 +6,7 @@
 MirrorItem::MirrorItem()
 {
     _pParent=0;
+    _uiWhen=0;
 }
 
 MirrorItem::~MirrorItem()
@@ -24,4 +25,17 @@ Mirror* MirrorItem::mirror()
 void MirrorItem::set_mirror(Mirror* pMirror)
 {
     _pParent=pMirror;
+}
+
+
+void MirrorItem::set_when(unsigned int uiWhen)
+{
+    _uiWhen=uiWhen;
+}
+
+
+unsigned int MirrorItem::when()
+{
+    return _uiWhen;
+
 }

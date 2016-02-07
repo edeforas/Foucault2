@@ -79,6 +79,7 @@ Mirror* MirrorIo::load(string sFile)
         {
             string sComment=p.get(sIndex+".Comment");
             MirrorComment* mc=new MirrorComment(sComment);
+            mc->set_when(p.get_unsigned_int(sIndex+".When"));
             pm->add_item(mc);
         }
 
@@ -86,18 +87,20 @@ Mirror* MirrorIo::load(string sFile)
         {
             string sWork=p.get(sIndex+".Work");
             MirrorWork* mw=new MirrorWork(sWork);
+            mw->set_when(p.get_unsigned_int(sIndex+".When"));
             pm->add_item(mw);
         }
 
         if(sType=="MirrorCouderMeasure")
         {
-            MirrorCouderMeasure* tgs=new MirrorCouderMeasure(pm);
+            MirrorCouderMeasure* mcm=new MirrorCouderMeasure(pm);
             vector<double> vd=p.get_vector_double(sIndex+".Measure");
             string sAspect;
             if(p.exist(sIndex+".Measure.Aspect"))
                 sAspect=p.get(sIndex+".Measure.Aspect");
-            tgs->set_measure(vd,sAspect);
-            pm->add_item(tgs);
+            mcm->set_measure(vd,sAspect);
+            mcm->set_when(p.get_unsigned_int(sIndex+".When"));
+            pm->add_item(mcm);
         }
     }
 
@@ -134,6 +137,7 @@ bool MirrorIo::save(Mirror* pm,string sFile)
         string sType=mi->type();
 
         p.set(sIndex+".Type",sType);
+        p.set(sIndex+".When",mi->when());
 
         if(sType=="MirrorComment")
         {

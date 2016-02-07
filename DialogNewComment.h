@@ -20,6 +20,7 @@ public:
     ~DialogNewComment();
 
     string get_comment();
+    unsigned int get_when();
 
 private slots:
     void on_pushButton_clicked();

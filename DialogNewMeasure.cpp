@@ -25,6 +25,9 @@ DialogNewMeasure::DialogNewMeasure(Mirror* pMirror,QWidget *parent):
         ui->twZones->setItem(0,i,new QTableWidgetItem());
 
     ui->twZones->item(0,0)->setSelected(true);
+
+    ui->dteWhen->setDate(QDate::currentDate());
+    ui->dteWhen->setTime(QTime::currentTime());
 }
 
 DialogNewMeasure::~DialogNewMeasure()
@@ -81,4 +84,9 @@ vector<double> DialogNewMeasure::get_measure()
 string DialogNewMeasure::get_aspect()
 {
     return ui->leAspect->text().toStdString();
+}
+
+unsigned int DialogNewMeasure::get_when()
+{
+    return ui->dteWhen->dateTime().toTime_t();
 }

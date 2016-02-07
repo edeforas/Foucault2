@@ -20,6 +20,7 @@ public:
     ~DialogNewWork();
 
     string get_work();
+    unsigned int get_when();
 
 private slots:
     void on_pushButton_clicked();

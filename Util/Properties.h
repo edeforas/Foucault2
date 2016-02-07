@@ -27,6 +27,7 @@ public:
     void set(string sKey, string sValue);
   //  void set(string sKey, char* sValue);
     void set(string sKey, int iValue);
+    void set(string sKey, unsigned int uiValue);
     void set(string sKey, bool bValue);
     void set(string sKey, double dValue);
     void set(string sKey, const vector<double>& vdValue);
@@ -36,6 +37,7 @@ public:
 
     string get(string sKey);
     int get_int(string sKey);
+    unsigned int get_unsigned_int(string sKey);
     bool get_bool(string sKey);
     double get_double(string sKey);
     vector<double> get_vector_double(string sKey);

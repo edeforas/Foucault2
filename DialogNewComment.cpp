@@ -7,6 +7,9 @@ DialogNewComment::DialogNewComment(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->pleComment->setFocus();
+
+    ui->dteWhen->setDate(QDate::currentDate());
+    ui->dteWhen->setTime(QTime::currentTime());
 }
 
 DialogNewComment::~DialogNewComment()
@@ -27,4 +30,9 @@ void DialogNewComment::on_pushButton_2_clicked()
 string DialogNewComment::get_comment()
 {
     return ui->pleComment->toPlainText().toStdString();
+}
+
+unsigned int DialogNewComment::get_when()
+{
+    return ui->dteWhen->dateTime().toTime_t();
 }

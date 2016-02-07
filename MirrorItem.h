@@ -16,9 +16,13 @@ public:
     Mirror* mirror();
     string type() const;
 
+    void set_when(unsigned int uiWhen);
+    unsigned int when();
+
 protected:
     string _sType;
     Mirror* _pParent;
+    unsigned int _uiWhen;
 };
 
 #endif

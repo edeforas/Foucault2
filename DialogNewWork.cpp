@@ -7,6 +7,9 @@ DialogNewWork::DialogNewWork(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->pleWork->setFocus();
+
+    ui->dteWhen->setDate(QDate::currentDate());
+    ui->dteWhen->setTime(QTime::currentTime());
 }
 
 DialogNewWork::~DialogNewWork()
@@ -27,4 +30,9 @@ void DialogNewWork::on_pushButton_2_clicked()
 string DialogNewWork::get_work()
 {
     return ui->pleWork->toPlainText().toStdString();
+}
+
+unsigned int DialogNewWork::get_when()
+{
+    return ui->dteWhen->dateTime().toTime_t();
 }

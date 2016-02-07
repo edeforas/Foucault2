@@ -251,6 +251,7 @@ void MainWindow::on_actionAdd_comment_triggered()
     if(nm.exec())
     {
         MirrorComment* t=new MirrorComment(nm.get_comment());
+        t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
         ensure_visible(_pMirror->nb_item()-1);
@@ -266,6 +267,7 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
     {
         MirrorCouderMeasure* t=new MirrorCouderMeasure(_pMirror);
         t->set_measure(nm.get_measure(),nm.get_aspect());
+        t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
         ensure_visible(_pMirror->nb_item()-1);
@@ -348,6 +350,7 @@ void MainWindow::on_actionWork_triggered()
     if(nm.exec())
     {
         MirrorWork* t=new MirrorWork(nm.get_work());
+        t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
 

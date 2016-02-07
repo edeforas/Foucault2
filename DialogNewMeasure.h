@@ -23,6 +23,7 @@ public:
 
     vector<double> get_measure();
     string get_aspect();
+    unsigned int get_when();
 
 private slots:
     void on_pushButton_2_clicked();
