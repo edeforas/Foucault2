@@ -1,5 +1,5 @@
-#ifndef _Propertiess_
-#define _Propertiess_
+#ifndef _Properties_
+#define _Properties_
 
 #include <map>
 #include <string>
@@ -13,7 +13,7 @@ Simple association (dictionnary key-values ) class
 Handle creation, loading and saving from files, adding and testing keys.
 
 @author Etienne de Foras
-@version 1.00
+@version 1.01
 */
 class Properties
 {
@@ -25,7 +25,6 @@ public:
     bool load(string sFileName);
 
     void set(string sKey, string sValue);
-  //  void set(string sKey, char* sValue);
     void set(string sKey, int iValue);
     void set(string sKey, unsigned int uiValue);
     void set(string sKey, bool bValue);

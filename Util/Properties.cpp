@@ -38,11 +38,6 @@ void Properties::set(string sKey, double dValue)
     _pairs[sKey]=ss.str();
 }
 ///////////////////////////////////////////////////////////////////////////////
-//void Properties::set(string sKey, char* sValue)
-//{
-//    set(sKey,string(sValue));
-//}
-///////////////////////////////////////////////////////////////////////////////
 void Properties::set(string sKey, string sValue)
 {
     _pairs[sKey]=sValue;
@@ -83,7 +78,7 @@ int Properties::get_int(string sKey)
     {
         stringstream ss;
         int iTmp;
-        ss << (*it).second; //.str((*it).second);
+        ss << (*it).second;
         ss >> iTmp;
         return iTmp;
     } else
@@ -97,7 +92,7 @@ unsigned int Properties::get_unsigned_int(string sKey)
     {
         stringstream ss;
         unsigned int uiTmp;
-        ss << (*it).second; //.str((*it).second);
+        ss << (*it).second;
         ss >> uiTmp;
         return uiTmp;
     } else
@@ -198,9 +193,9 @@ bool Properties::load(string sFileName)
 
         int iPosEgal=sLine.find_first_of("=");
         if(iPosEgal==-1)
-            continue; //pas de clef!
+            continue; //no key!
 
-        //suprime le charactere 13 eventuel a la fin TODO: proprifier
+        //delete eventually the 13 character at the end
         if((int)(sLine[sLine.size()-1])==13)
             sLine=sLine.substr(0,sLine.size()-1);
 

@@ -19,6 +19,9 @@ public:
     void update_items(int iFirstItem=-1);
     void ensure_visible(int iItem);
 
+    void zoom_in();
+    void zoom_out();
+
 protected:
     virtual void wheelEvent(QGraphicsSceneWheelEvent* wheelEvent);
 

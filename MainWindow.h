@@ -65,6 +65,10 @@ private slots:
     void on_actionDisplay_Details_triggered();
     void on_actionShow_smooth_curves_triggered();
 
+    void on_actionZoom_in_triggered();
+
+    void on_actionZoom_out_triggered();
+
 private:
     void update_title();
     void ensure_visible(int iItem);

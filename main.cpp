@@ -3,15 +3,15 @@
 // copyright Etienne de Foras ( the author )  mailto: etienne.deforas@gmail.com
 
 #include <QApplication>
-#include "MainWindow.h"
 #include <QLocale>
 #include <QTranslator>
 #include <QLibraryInfo>
 
+#include "MainWindow.h"
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
 
     QString sPath=QCoreApplication::applicationDirPath();
 
