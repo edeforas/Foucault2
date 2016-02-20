@@ -164,7 +164,7 @@ double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)
 ////////////////////////////////////////////////////////////////////////////////
 double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
 {
-    MirrorCouderMeasure* pMes=(MirrorCouderMeasure*)self;
+    MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
     int iNbZone=pMirror->nb_zones();
@@ -200,7 +200,7 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
 ////////////////////////////////////////////////////////////////////////////////
 double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
 {
-    MirrorCouderMeasure* pMes=(MirrorCouderMeasure*)self;
+    MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
     int iNbZone=pMirror->nb_zones();
@@ -242,7 +242,7 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
 ////////////////////////////////////////////////////////////////////////////////
 double MirrorCouderMeasure::calc_lf1000(void* self,double h)
 {
-    MirrorCouderMeasure* pMes=(MirrorCouderMeasure*)self;
+    MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
     int iNbZone=pMirror->nb_zones();

@@ -12,7 +12,7 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
     int iBlockSize=block_size();
     int iLine=pos().y();
 
-    MirrorWork* pMC=(MirrorWork*)pItem;
+    MirrorWork* pMC=static_cast<MirrorWork*>(pItem);
     Mirror* pM=pItem->mirror();
     if(pM->get_show_colors())
         set_background_color(QColor(247,247,192));

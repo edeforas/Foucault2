@@ -98,7 +98,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
 
     const vector<double>& hz=pM->hz();
     double dRadius=pM->diameter()/2.;
-    MirrorCouderMeasure* pMeasure=(MirrorCouderMeasure*)pItem;
+    MirrorCouderMeasure* pMeasure=static_cast<MirrorCouderMeasure*>(pItem);
     const vector<double>&  surf=pMeasure->surface();
 
     //compute surface MaxHeight
