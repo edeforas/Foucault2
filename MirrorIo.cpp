@@ -88,7 +88,9 @@ Mirror* MirrorIo::load(string sFile)
             string sWork=p.get(sIndex+".Work");
             MirrorWork* mw=new MirrorWork(sWork);
             mw->set_when(p.get_unsigned_int(sIndex+".When"));
-            mw->set_duration(p.get_unsigned_int(sIndex+".Duration"));
+            if(p.exist(sIndex+".Duration"))
+                mw->set_duration(p.get_unsigned_int(sIndex+".Duration"));
+
             pm->add_item(mw);
         }
 

@@ -39,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
     _ts->set_mirror(_pMirror);
     ui->viewTimelines->setScene(_ts);
     _iqgi=0;
+
+    ui->viewTimelines->setRenderHint(QPainter::Antialiasing,true);
 }
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::~MainWindow()
