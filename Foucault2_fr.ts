@@ -227,6 +227,16 @@
         <source>When</source>
         <translation>Quand</translation>
     </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="90"/>
+        <source>Duration</source>
+        <translation>Durée</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="100"/>
+        <source>HH:mm:ss</source>
+        <translation>HH:mm:ss</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
