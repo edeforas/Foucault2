@@ -36,3 +36,9 @@ unsigned int DialogNewWork::get_when()
 {
     return ui->dteWhen->dateTime().toTime_t();
 }
+
+unsigned int DialogNewWork::get_duration()
+{
+    const QTime& qtm=ui->teDuration->time();
+    return qtm.hour()*3600+qtm.minute()*60+qtm.second();
+}

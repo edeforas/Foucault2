@@ -27,15 +27,12 @@ void MirrorItem::set_mirror(Mirror* pMirror)
     _pParent=pMirror;
 }
 
-
 void MirrorItem::set_when(unsigned int uiWhen)
 {
     _uiWhen=uiWhen;
 }
 
-
 unsigned int MirrorItem::when()
 {
     return _uiWhen;
-
 }

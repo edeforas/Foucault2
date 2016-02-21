@@ -12,8 +12,12 @@ public:
 
     string& work();
 
+    void set_duration(unsigned int uiDuration);
+    unsigned int duration();
+
 private:
     string _sWork;
+    unsigned int _uiDuration;
 };
 
 #endif

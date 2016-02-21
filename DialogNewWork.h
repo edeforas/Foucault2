@@ -21,6 +21,7 @@ public:
 
     string get_work();
     unsigned int get_when();
+    unsigned int get_duration();
 
 private slots:
     void on_pushButton_clicked();

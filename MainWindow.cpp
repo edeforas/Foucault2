@@ -351,6 +351,7 @@ void MainWindow::on_actionWork_triggered()
     {
         MirrorWork* t=new MirrorWork(nm.get_work());
         t->set_when(nm.get_when());
+        t->set_duration(nm.get_duration());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
 

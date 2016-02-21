@@ -149,6 +149,7 @@ bool MirrorIo::save(Mirror* pm,string sFile)
         {
             MirrorWork* tc=dynamic_cast<MirrorWork*>(mi);
             p.set(sIndex+".Work",tc->work());
+            p.set(sIndex+".Duration",tc->duration());
         }
 
         if(sType=="MirrorCouderMeasure")
