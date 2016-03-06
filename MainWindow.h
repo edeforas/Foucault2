@@ -73,6 +73,7 @@ private:
     void update_title();
     void ensure_visible(int iItem);
     Mirror* _pMirror;
+    int _iLastWorkType;
 
     bool _bMustSave;
     string _sFileName;

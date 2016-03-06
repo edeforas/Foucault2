@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     _pMirror=new Mirror;
+    _iLastWorkType=WORK_TYPE_UNDEFINED;
 
     _bMustSave=false;
 
@@ -143,6 +144,7 @@ void MainWindow::on_actionNew_triggered()
 
         _bMustSave=true;
 
+        _iLastWorkType=WORK_TYPE_UNDEFINED;
         device_changed(true);
         _ts->update_items(-1);
         ensure_visible(-1);
@@ -158,7 +160,7 @@ void MainWindow::on_actionSave_triggered()
         MirrorIo::save(_pMirror,_sFileName);
 
         _bMustSave=false;
-        device_changed(false);
+        device_changed(false); // TODO: do not scroll to the start
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -217,7 +219,7 @@ bool MainWindow::load_file(string sFile)
 void MainWindow::device_changed(bool bMustSave)
 {
     if (bMustSave)
-        _bMustSave=true; //todo remove?
+        _bMustSave=true;
 
     _ts->set_mirror(_pMirror);
 
@@ -233,6 +235,18 @@ void MainWindow::device_changed(bool bMustSave)
     ui->actionDisplay_Details->setChecked(_pMirror->get_display_mode()==2);
 
     update_title();
+
+    //compute last work type
+    _iLastWorkType=WORK_TYPE_UNDEFINED;
+    for(int i=_pMirror->nb_item()-1;i>=0;i--)
+    {
+        MirrorItem* mi=_pMirror->get_item(i);
+        if(mi->type()=="MirrorWork")
+        {
+            _iLastWorkType=static_cast<MirrorWork*>(mi)->work_type();
+            break;
+        }
+    }
 }
 //////////////////////////////////////////////////////////////////////////////
 void MainWindow::update_title()
@@ -333,7 +347,13 @@ void MainWindow::on_actionImport_triggered()
         delete _pMirror;
         _pMirror=pMirror;
 
-        _sFileName=sFile+".foucault2";//TODO remove old extention?
+        //TODO check the file doesn't exist with new extention, ask to overwrite on save
+
+        if(sFile.substr(sFile.size()-4)==".mir")
+            _sFileName=sFile.substr(0,sFile.size()-4)+".foucault2";
+        else
+            _sFileName=sFile+".foucault2";
+
         device_changed(true);
         ensure_visible(-1);
     }
@@ -349,14 +369,18 @@ void MainWindow::on_actionShow_mirror_both_side_triggered()
 void MainWindow::on_actionWork_triggered()
 {
     DialogNewWork nm;
+    nm.set_work_type(_iLastWorkType);
     if(nm.exec())
     {
         MirrorWork* t=new MirrorWork(nm.get_work());
         t->set_when(nm.get_when());
         t->set_duration(nm.get_duration());
+        t->set_work_type(nm.get_work_type());
+
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
 
+        _iLastWorkType=nm.get_work_type();
         ensure_visible(_pMirror->nb_item()-1);
 
         _bMustSave=true;

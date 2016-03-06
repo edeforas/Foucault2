@@ -213,90 +213,139 @@
         <translation>Nouveau travail</translation>
     </message>
     <message>
+        <location filename="DialogNewWork.ui" line="29"/>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="37"/>
+        <source>Undefined</source>
+        <translation>Indéfini</translation>
+    </message>
+    <message>
         <location filename="DialogNewWork.ui" line="42"/>
+        <source>Rough Grinding</source>
+        <translation>Ebauchage</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="47"/>
+        <source>Fine Grinding</source>
+        <translation>Doucissage</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="52"/>
+        <source>Polishing</source>
+        <translation>Polissage</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="57"/>
+        <source>Figuring</source>
+        <translation>Asphérisation</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="95"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="DialogNewWork.ui" line="49"/>
+        <location filename="DialogNewWork.ui" line="102"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="DialogNewWork.ui" line="63"/>
-        <source>When</source>
-        <translation>Quand</translation>
+        <location filename="DialogNewWork.ui" line="116"/>
+        <source>Date</source>
+        <translation>Date</translation>
     </message>
     <message>
-        <location filename="DialogNewWork.ui" line="90"/>
+        <source>When</source>
+        <translation type="vanished">Quand</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="147"/>
         <source>Duration</source>
         <translation>Durée</translation>
     </message>
     <message>
-        <location filename="DialogNewWork.ui" line="100"/>
+        <location filename="DialogNewWork.ui" line="157"/>
+        <source>h</source>
+        <translation>h</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="167"/>
+        <source>min</source>
+        <oldsource>m</oldsource>
+        <translation>min</translation>
+    </message>
+    <message>
+        <location filename="DialogNewWork.ui" line="177"/>
+        <source>s</source>
+        <translation>s</translation>
+    </message>
+    <message>
         <source>HH:mm:ss</source>
-        <translation>HH:mm:ss</translation>
+        <translation type="vanished">HH:mm:ss</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="MainWindow.cpp" line="63"/>
+        <location filename="MainWindow.cpp" line="66"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="63"/>
+        <location filename="MainWindow.cpp" line="66"/>
         <source>Save?</source>
         <translation>Sauver?</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="69"/>
-        <location filename="MainWindow.cpp" line="167"/>
+        <location filename="MainWindow.cpp" line="72"/>
+        <location filename="MainWindow.cpp" line="171"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="69"/>
-        <location filename="MainWindow.cpp" line="112"/>
-        <location filename="MainWindow.cpp" line="167"/>
+        <location filename="MainWindow.cpp" line="72"/>
+        <location filename="MainWindow.cpp" line="115"/>
+        <location filename="MainWindow.cpp" line="171"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="102"/>
+        <location filename="MainWindow.cpp" line="105"/>
         <source> by Etienne de Foras
 
 mail: etienne.deforas@gmail.com</source>
         <translation>par Etienne de Foras mail:etienne.deforas@gmail.com</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="112"/>
+        <location filename="MainWindow.cpp" line="115"/>
         <source>Open Foucault2 File</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="201"/>
+        <location filename="MainWindow.cpp" line="205"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="240"/>
+        <location filename="MainWindow.cpp" line="256"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="313"/>
+        <location filename="MainWindow.cpp" line="329"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="313"/>
+        <location filename="MainWindow.cpp" line="329"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="325"/>
+        <location filename="MainWindow.cpp" line="341"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>
@@ -644,9 +693,38 @@ mail: etienne.deforas@gmail.com</source>
         <translation>Fente: immobile</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="24"/>
         <source>Work: </source>
-        <translation>Travail: </translation>
+        <translation type="vanished">Travail: </translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="31"/>
+        <source>Rough Grinding</source>
+        <translation>Ebauchage</translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="34"/>
+        <source>Fine Grinding</source>
+        <translation>Doucissage</translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="37"/>
+        <source>Polishing</source>
+        <translation>Polissage</translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="40"/>
+        <source>Figuring</source>
+        <translation>Asphérisation</translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="51"/>
+        <source>during</source>
+        <translation>durée</translation>
+    </message>
+    <message>
+        <location filename="TaskItemWork.cpp" line="28"/>
+        <source>Work</source>
+        <translation>Travail</translation>
     </message>
 </context>
 </TS>

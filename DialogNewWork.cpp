@@ -1,6 +1,8 @@
 #include "DialogNewWork.h"
 #include "ui_DialogNewWork.h"
 
+#include "MirrorWork.h"
+
 DialogNewWork::DialogNewWork(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogNewWork)
@@ -10,6 +12,8 @@ DialogNewWork::DialogNewWork(QWidget *parent) :
 
     ui->dteWhen->setDate(QDate::currentDate());
     ui->dteWhen->setTime(QTime::currentTime());
+
+    ui->cbWorkType->setCurrentIndex(WORK_TYPE_UNDEFINED);
 }
 
 DialogNewWork::~DialogNewWork()
@@ -39,6 +43,15 @@ unsigned int DialogNewWork::get_when()
 
 unsigned int DialogNewWork::get_duration()
 {
-    const QTime& qtm=ui->teDuration->time();
-    return qtm.hour()*3600+qtm.minute()*60+qtm.second();
+    return ui->sbHour->value()*3600+ui->sbMinute->value()*60+ui->sbSecond->value();
+}
+
+void DialogNewWork::set_work_type(int iWorkType)
+{
+    ui->cbWorkType->setCurrentIndex(iWorkType);
+}
+
+int DialogNewWork::get_work_type()
+{
+    return ui->cbWorkType->currentIndex();
 }

@@ -1,8 +1,7 @@
-#ifndef DIALOGNEWWork_H
-#define DIALOGNEWWork_H
+#ifndef DialogNewWork_
+#define DialogNewWork_
 
 #include <QDialog>
-
 
 #include <string>
 using namespace std;
@@ -22,6 +21,8 @@ public:
     string get_work();
     unsigned int get_when();
     unsigned int get_duration();
+    void set_work_type(int iWorkType);
+    int get_work_type();
 
 private slots:
     void on_pushButton_clicked();
@@ -31,4 +32,4 @@ private:
     Ui::DialogNewWork *ui;
 };
 
-#endif // DIALOGNEWWork_H
+#endif

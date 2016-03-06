@@ -35,7 +35,7 @@ void TimelineScene::add_item(TaskItem* pi)
     _vti.push_back(pi);
     addItem(pi);
 
-    //todo update scene rect to add borders
+    //TODO update scene rect to add borders
     QRectF qr=itemsBoundingRect();
     QRectF qrWithBorder(qr.left()-100,qr.top(),qr.width()+200,qr.height());
     setSceneRect(qrWithBorder);

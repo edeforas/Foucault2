@@ -91,6 +91,9 @@ Mirror* MirrorIo::load(string sFile)
             if(p.exist(sIndex+".Duration"))
                 mw->set_duration(p.get_unsigned_int(sIndex+".Duration"));
 
+            if(p.exist(sIndex+".WorkType"))
+                mw->set_work_type(p.get_int(sIndex+".WorkType"));
+
             pm->add_item(mw);
         }
 
@@ -153,6 +156,7 @@ bool MirrorIo::save(Mirror* pm,string sFile)
             MirrorWork* tc=dynamic_cast<MirrorWork*>(mi);
             p.set(sIndex+".Work",tc->work());
             p.set(sIndex+".Duration",tc->duration());
+            p.set(sIndex+".WorkType",tc->work_type());
         }
 
         if(sType=="MirrorCouderMeasure")

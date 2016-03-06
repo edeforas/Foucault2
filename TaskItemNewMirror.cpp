@@ -18,7 +18,7 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
 
     QGraphicsTextItem* ptiTitle=new QGraphicsTextItem(pM->name().c_str());
     ptiTitle->setPos(pos().x(),iLine);
-    add_item(ptiTitle); //todo center and in bold
+    add_item(ptiTitle); //TODO center and in bold
     iLine+=iBlockSize*2;
 
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");

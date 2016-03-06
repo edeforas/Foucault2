@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>148</height>
+    <width>467</width>
+    <height>221</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,60 @@
     <normaloff>:/Foucault2/Foucault2.ico</normaloff>:/Foucault2/Foucault2.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="6" column="0">
+   <item row="2" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Type</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cbWorkType">
+       <item>
+        <property name="text">
+         <string>Undefined</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Rough Grinding</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Fine Grinding</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Polishing</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Figuring</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="8" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <spacer name="horizontalSpacer">
@@ -52,7 +105,7 @@
      </item>
     </layout>
    </item>
-   <item row="5" column="0">
+   <item row="7" column="0">
     <widget class="QPlainTextEdit" name="pleWork"/>
    </item>
    <item row="0" column="0">
@@ -60,7 +113,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>When</string>
+        <string>Date</string>
        </property>
       </widget>
      </item>
@@ -84,6 +137,10 @@
        </property>
       </spacer>
      </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -92,14 +149,47 @@
       </widget>
      </item>
      <item>
-      <widget class="QTimeEdit" name="teDuration">
-       <property name="currentSection">
-        <enum>QDateTimeEdit::HourSection</enum>
-       </property>
-       <property name="displayFormat">
-        <string>HH:mm:ss</string>
+      <widget class="QSpinBox" name="sbHour"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>h</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="sbMinute"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>min</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="sbSecond"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>s</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
