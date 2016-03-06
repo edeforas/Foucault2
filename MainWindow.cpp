@@ -102,7 +102,14 @@ void MainWindow::on_actionQuit_triggered()
 void MainWindow::on_actionAbout_triggered()
 {
     QMessageBox mb;
-    mb.setText((QString("Foucault2 ")+FOUCAULT2_VERSION+ tr(" by Etienne de Foras\n\nmail: etienne.deforas@gmail.com")));
+    QString qsText=QString("Foucault2 ");
+    qsText+=FOUCAULT2_VERSION;
+    qsText+= tr(" by Etienne de Foras");
+    qsText+="\nemail: etienne.deforas@gmail.com";
+    qsText+= "\n\n";
+    qsText+= tr("Thanks to Jean-Jacques Jourdanneau for his help");
+
+    mb.setText(qsText);
     mb.setIconPixmap(QPixmap(":/Foucault2/Foucault2.ico"));
     mb.exec();
 }

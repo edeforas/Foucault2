@@ -301,51 +301,65 @@
     </message>
     <message>
         <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="171"/>
+        <location filename="MainWindow.cpp" line="178"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="115"/>
-        <location filename="MainWindow.cpp" line="171"/>
+        <location filename="MainWindow.cpp" line="122"/>
+        <location filename="MainWindow.cpp" line="178"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="105"/>
-        <source> by Etienne de Foras
+        <location filename="MainWindow.cpp" line="107"/>
+        <source> by Etienne de Foras</source>
+        <oldsource> by Etienne de Foras
 
-mail: etienne.deforas@gmail.com</source>
-        <translation>par Etienne de Foras mail:etienne.deforas@gmail.com</translation>
+email: etienne.deforas@gmail.com</oldsource>
+        <translation> par Etienne de Foras</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="115"/>
+        <source>
+
+Thanks to Jean-Jacques Jourdanneau for his help</source>
+        <oldsource>
+ Thanks to Jean-Jacques Jourdanneau for his help</oldsource>
+        <translation type="obsolete">Merci à Jean-Jacques Jourdanneau pour son aide</translation>
+    </message>
+    <message>
+        <location filename="MainWindow.cpp" line="110"/>
+        <source>Thanks to Jean-Jacques Jourdanneau for his help</source>
+        <translation>Merci à Jean-Jacques Jourdanneau pour son aide</translation>
+    </message>
+    <message>
+        <location filename="MainWindow.cpp" line="122"/>
         <source>Open Foucault2 File</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="205"/>
+        <location filename="MainWindow.cpp" line="212"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="256"/>
+        <location filename="MainWindow.cpp" line="263"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="329"/>
+        <location filename="MainWindow.cpp" line="336"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="329"/>
+        <location filename="MainWindow.cpp" line="336"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="341"/>
+        <location filename="MainWindow.cpp" line="348"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>
