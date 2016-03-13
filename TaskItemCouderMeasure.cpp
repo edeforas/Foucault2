@@ -15,6 +15,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     int iBlockSize=block_size();
     int iLine=pos().y();
     bool bShowBothSide=pM->get_show_both_side();
+    bool bSmoothCurves=pM->get_smooth_curves();
 
     MirrorCouderMeasure* mci=static_cast<MirrorCouderMeasure*>(pItem);
     if(iDisplayMode>=1)
@@ -85,9 +86,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     add_item(ptiTitleTab2);
 
 
-
     double dSurfY2=iLine;
-
     double dSurfY12=dSurfY2-dSurfY1;
     double dSurfYM=(dSurfY1+dSurfY2)/2.;
 
@@ -100,6 +99,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     double dRadius=pM->diameter()/2.;
     MirrorCouderMeasure* pMeasure=static_cast<MirrorCouderMeasure*>(pItem);
     const vector<double>&  surf=pMeasure->surface();
+    assert(hz.size()==surf.size());
 
     //compute surface MaxHeight
     double dSurfMax=0.;
@@ -110,44 +110,122 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     if(dSurfMax==0.)
         dSurfMax=1.;
 
-    //plot surface right as a polygon1
-    assert(hz.size()==surf.size());
-    QPolygonF qpf1;
-    for(unsigned int iZ=0;iZ<hz.size();iZ++)
+    if(bSmoothCurves)
     {
-        double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
-        double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
+        //plot right surface as a smoothcurve
+        QPainterPath qpp;
+        for(unsigned int iZ=1;iZ<hz.size()-1;iZ++)
+        {
+            double X1= hz[iZ-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
+            double X2= hz[iZ]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
+            double X3= hz[iZ+1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
 
-        if(iZ==0)
-            qpf1.append(QPointF(dSurfXM+dPosX,dSurfY2));
+            double X12=(X1+X2)/2.;
+            double X23=(X2+X3)/2.;
 
-        qpf1.append(QPointF(dSurfXM+dPosX,dSurfY1+dPosY));
+            double Y1=dSurfY2-dSurfY12*(surf[iZ-1]/dSurfMax);
+            double Y2=dSurfY2-dSurfY12*(surf[iZ]/dSurfMax);
+            double Y3=dSurfY2-dSurfY12*(surf[iZ+1]/dSurfMax);
+
+            double Y12=(Y1+Y2)/2.;
+            double Y23=(Y2+Y3)/2.;
+
+            if(iZ==1)
+            {
+                double Y=Y1;//todo
+                qpp.moveTo(X1,dSurfY2);
+                qpp.lineTo(X1,Y);
+               //TODO
+                qpp.lineTo(X12,Y12);
+            }
+
+            qpp.quadTo(X2,Y2,X23,Y23);
+
+            if(iZ==hz.size()-2)
+            {
+                qpp.lineTo(X3,Y3);
+                qpp.lineTo(X3,dSurfY2);
+            }
+        }
+
+        QGraphicsPathItem* qgpi=new QGraphicsPathItem(qpp);
+        qgpi->setPen(QPen(Qt::blue));
+        qgpi->setBrush(Qt::green);
+        add_item(qgpi);
+
+        if(bShowBothSide)
+        {
+            //plot surface left as a polygon2
+            QPolygonF qpf2;
+            for(unsigned int iZ=0;iZ<hz.size();iZ++)
+            {
+                double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
+                double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
+                if(iZ==0)
+                    qpf2.append(QPointF(dSurfXM-dPosX,dSurfY2));
+
+                qpf2.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
+            }
+            qpf2.append(QPointF(dSurfX1,dSurfY2));
+            QGraphicsPolygonItem* polysurf2=new QGraphicsPolygonItem(qpf2);
+            polysurf2->setBrush(QColor(127,127,127));
+            add_item(polysurf2);
+
+        }
+
     }
-    qpf1.append(QPointF(dSurfX2,dSurfY2));
-
-    QGraphicsPolygonItem* polysurf1=new QGraphicsPolygonItem(qpf1);
-    polysurf1->setBrush(QColor(127,127,127));
-    add_item(polysurf1);
-
-    if(bShowBothSide)
+    else
     {
-        //plot surface left as a polygon2
-        QPolygonF qpf2;
+        //plot right surface as a polygon1
+        assert(hz.size()==surf.size());
+        QPolygonF qpf1;
         for(unsigned int iZ=0;iZ<hz.size();iZ++)
         {
             double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
             double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
+
             if(iZ==0)
-                qpf2.append(QPointF(dSurfXM-dPosX,dSurfY2));
+                qpf1.append(QPointF(dSurfXM+dPosX,dSurfY2));
 
-            qpf2.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
+            qpf1.append(QPointF(dSurfXM+dPosX,dSurfY1+dPosY));
         }
-        qpf2.append(QPointF(dSurfX1,dSurfY2));
-        QGraphicsPolygonItem* polysurf2=new QGraphicsPolygonItem(qpf2);
-        polysurf2->setBrush(QColor(127,127,127));
-        add_item(polysurf2);
 
+        qpf1.append(QPointF(dSurfX2,dSurfY2));
+        QGraphicsPolygonItem* polysurf1=new QGraphicsPolygonItem(qpf1);
+        polysurf1->setBrush(QColor(127,127,127));
+        add_item(polysurf1);
+
+        if(bShowBothSide)
+        {
+            //plot surface left as a polygon2
+            QPolygonF qpf2;
+            for(unsigned int iZ=0;iZ<hz.size();iZ++)
+            {
+                double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
+                double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
+                if(iZ==0)
+                    qpf2.append(QPointF(dSurfXM-dPosX,dSurfY2));
+
+                qpf2.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
+            }
+            qpf2.append(QPointF(dSurfX1,dSurfY2));
+            QGraphicsPolygonItem* polysurf2=new QGraphicsPolygonItem(qpf2);
+            polysurf2->setBrush(QColor(127,127,127));
+            add_item(polysurf2);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
     //add vertical zonal mask border
     for(unsigned int iZ=0;iZ<hz.size();iZ++)
     {

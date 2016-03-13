@@ -368,8 +368,7 @@ void MainWindow::on_actionImport_triggered()
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionShow_mirror_both_side_triggered()
 {
-    bool bShowBothSide=ui->actionShow_mirror_both_side->isChecked();
-    _pMirror->set_show_both_side(bShowBothSide);
+    _pMirror->set_show_both_side(ui->actionShow_mirror_both_side->isChecked());
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////
