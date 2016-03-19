@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Foucault2
-AppVerName=Foucault2 2.03
+AppVerName=Foucault2 2.04
 AppPublisher=Etienne de Foras
 AppPublisherURL=http://edeforas.free.fr
 AppSupportURL=http://edeforas.free.fr
@@ -38,17 +38,17 @@ Source: ".\*.ts"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\samples\*.foucault2"; DestDir: "{app}\samples"; Flags: ignoreversion
 Source: ".\samples\*.mir"; DestDir: "{app}\samples"; Flags: ignoreversion
 
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\Qt5Core.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\Qt5Gui.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\Qt5Widgets.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\Qt5PrintSupport.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\icuin54.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\icuuc54.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\icudt54.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\libstdc++-6.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\bin\libwinpthread-1.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.5.0\5.5\mingw492_32\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5Core.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5Gui.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5Widgets.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5PrintSupport.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\icuin54.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\icuuc54.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\icudt54.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\libstdc++-6.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\libwinpthread-1.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"
 
 [INI]
 Filename: "{app}\Foucault2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://edeforas.free.fr"

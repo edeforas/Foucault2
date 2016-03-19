@@ -113,7 +113,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     if(bSmoothCurves)
     {
         //plot right surface as a smoothcurve
-        QPainterPath qpp;
+        QPainterPath qpathR,qpathL;
         for(unsigned int iZ=1;iZ<hz.size()-1;iZ++)
         {
             double X1= hz[iZ-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
@@ -132,99 +132,94 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
 
             if(iZ==1)
             {
-                double Y=Y1;//todo
-                qpp.moveTo(X1,dSurfY2);
-                qpp.lineTo(X1,Y);
-               //TODO
-                qpp.lineTo(X12,Y12);
+                //fit a parabolic y=Ax*x+B, that link and slope to X12,Y12
+                assert(X2!=X1); assert(X12!=0.);
+                double dSlope12=(Y2-Y1)/(X2-X1);
+                double dA=dSlope12/2./(X12-dSurfXM);
+                double dB=Y12-dA*(X12-dSurfXM)*(X12-dSurfXM);
+
+                //find end point and control point
+                double Y1Parab=dA*(X1-dSurfXM)*(X1-dSurfXM)+dB;
+                double XM=(X1+X12)/2.;
+                double YM=dA*(XM-dSurfXM)*(XM-dSurfXM)+dB;
+                double XC=2*XM-(X1+X12)/2.;
+                double YC=2*YM-(Y1Parab+Y12)/2.;
+
+                //draw
+                qpathR.moveTo(X1,dSurfY2);
+                qpathR.lineTo(X1,Y1Parab);
+                qpathR.quadTo(XC,YC,X12,Y12);
+
+                if(bShowBothSide)
+                {
+                    qpathL.moveTo(2.*dSurfXM-X1,dSurfY2);
+                    qpathL.lineTo(2.*dSurfXM-X1,Y1Parab);
+                    qpathL.quadTo(2.*dSurfXM-XC,YC,2.*dSurfXM-X12,Y12);
+                }
             }
 
-            qpp.quadTo(X2,Y2,X23,Y23);
-
+            qpathR.quadTo(X2,Y2,X23,Y23);
+            if(bShowBothSide)
+            {
+                qpathL.quadTo(2.*dSurfXM-X2,Y2,2.*dSurfXM-X23,Y23);
+            }
             if(iZ==hz.size()-2)
             {
-                qpp.lineTo(X3,Y3);
-                qpp.lineTo(X3,dSurfY2);
+                qpathR.lineTo(X3,Y3);
+                qpathR.lineTo(X3,dSurfY2);
+
+                if(bShowBothSide)
+                {
+                    qpathL.lineTo(2.*dSurfXM-X3,Y3);
+                    qpathL.lineTo(2.*dSurfXM-X3,dSurfY2);
+                }
             }
         }
 
-        QGraphicsPathItem* qgpi=new QGraphicsPathItem(qpp);
-        qgpi->setPen(QPen(Qt::blue));
-        qgpi->setBrush(Qt::green);
-        add_item(qgpi);
+        QGraphicsPathItem* qgpiR=new QGraphicsPathItem(qpathR);
+        qgpiR->setBrush(QColor(127,127,127));
+        add_item(qgpiR);
 
         if(bShowBothSide)
         {
-            //plot surface left as a polygon2
-            QPolygonF qpf2;
-            for(unsigned int iZ=0;iZ<hz.size();iZ++)
-            {
-                double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
-                double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
-                if(iZ==0)
-                    qpf2.append(QPointF(dSurfXM-dPosX,dSurfY2));
-
-                qpf2.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
-            }
-            qpf2.append(QPointF(dSurfX1,dSurfY2));
-            QGraphicsPolygonItem* polysurf2=new QGraphicsPolygonItem(qpf2);
-            polysurf2->setBrush(QColor(127,127,127));
-            add_item(polysurf2);
-
+            QGraphicsPathItem* qgpiL=new QGraphicsPathItem(qpathL);
+            qgpiL->setBrush(QColor(127,127,127));
+            add_item(qgpiL);
         }
-
     }
     else
     {
         //plot right surface as a polygon1
         assert(hz.size()==surf.size());
-        QPolygonF qpf1;
+        QPolygonF qpolyR,qpolyL;
         for(unsigned int iZ=0;iZ<hz.size();iZ++)
         {
             double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
             double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
 
             if(iZ==0)
-                qpf1.append(QPointF(dSurfXM+dPosX,dSurfY2));
-
-            qpf1.append(QPointF(dSurfXM+dPosX,dSurfY1+dPosY));
+            {
+                qpolyR.append(QPointF(dSurfXM+dPosX,dSurfY2));
+                if(bShowBothSide)
+                    qpolyL.append(QPointF(dSurfXM-dPosX,dSurfY2));
+            }
+            qpolyR.append(QPointF(dSurfXM+dPosX,dSurfY1+dPosY));
+            if(bShowBothSide)
+                qpolyL.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
         }
 
-        qpf1.append(QPointF(dSurfX2,dSurfY2));
-        QGraphicsPolygonItem* polysurf1=new QGraphicsPolygonItem(qpf1);
-        polysurf1->setBrush(QColor(127,127,127));
-        add_item(polysurf1);
-
+        qpolyR.append(QPointF(dSurfX2,dSurfY2));
+        QGraphicsPolygonItem* polysurfR=new QGraphicsPolygonItem(qpolyR);
+        polysurfR->setBrush(QColor(127,127,127));
+        add_item(polysurfR);
         if(bShowBothSide)
         {
-            //plot surface left as a polygon2
-            QPolygonF qpf2;
-            for(unsigned int iZ=0;iZ<hz.size();iZ++)
-            {
-                double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
-                double dPosY=dSurfY12-dSurfY12*(surf[iZ]/dSurfMax);
-                if(iZ==0)
-                    qpf2.append(QPointF(dSurfXM-dPosX,dSurfY2));
-
-                qpf2.append(QPointF(dSurfXM-dPosX,dSurfY1+dPosY));
-            }
-            qpf2.append(QPointF(dSurfX1,dSurfY2));
-            QGraphicsPolygonItem* polysurf2=new QGraphicsPolygonItem(qpf2);
-            polysurf2->setBrush(QColor(127,127,127));
-            add_item(polysurf2);
+            qpolyL.append(QPointF(dSurfXM*2-dSurfX2,dSurfY2));
+            QGraphicsPolygonItem* polysurfL=new QGraphicsPolygonItem(qpolyL);
+            polysurfL->setBrush(QColor(127,127,127));
+            add_item(polysurfL);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
 
     //add vertical zonal mask border
     for(unsigned int iZ=0;iZ<hz.size();iZ++)
