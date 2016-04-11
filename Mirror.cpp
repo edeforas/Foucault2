@@ -78,7 +78,7 @@ void Mirror::set_diameter(double dDiameter)
     _dDiameter=dDiameter;
 }
 //////////////////////////////////////////////////////////////////////////////
-double Mirror::hole_diameter()
+double Mirror::hole_diameter() const
 {
     return _dHoleDiameter;
 }
@@ -247,7 +247,7 @@ void Mirror::set_show_both_side(bool bShowBothSide)
     _bShowBothSide=bShowBothSide;
 }
 //////////////////////////////////////////////////////////////////////////////
-bool Mirror::get_show_both_side()
+bool Mirror::get_show_both_side() const
 {
     return _bShowBothSide;
 }
@@ -257,7 +257,7 @@ void Mirror::set_smooth_curves(bool bSmoothCurves)
     _bSmoothCurves=bSmoothCurves;
 }
 //////////////////////////////////////////////////////////////////////////////
-bool Mirror::get_smooth_curves()
+bool Mirror::get_smooth_curves() const
 {
     return _bSmoothCurves;
 }
@@ -267,7 +267,7 @@ void Mirror::set_show_colors(bool bShowColors)
     _bShowColors=bShowColors;
 }
 //////////////////////////////////////////////////////////////////////////////
-bool Mirror::get_show_colors()
+bool Mirror::get_show_colors() const
 {
     return _bShowColors;
 }
@@ -277,7 +277,7 @@ void Mirror::set_display_mode(int iDisplayMode) //0=compact 1=normal 2=details
     _iDisplayMode=iDisplayMode;
 }
 //////////////////////////////////////////////////////////////////////////////
-int Mirror::get_display_mode()
+int Mirror::get_display_mode() const
 {
     return _iDisplayMode;
 }

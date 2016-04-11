@@ -13,7 +13,7 @@ TaskItemComment::TaskItemComment(MirrorItem* pItem):TaskItem(pItem)
     int iLine=pos().y();
 
     MirrorComment* pMC=static_cast<MirrorComment*>(pItem);
-    Mirror* pM=pItem->mirror();
+    const Mirror* pM=pItem->mirror();
     QGraphicsTextItem* pti=new QGraphicsTextItem(QString(QObject::tr("Comment: "))+pMC->comment().c_str());
 
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");

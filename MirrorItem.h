@@ -13,7 +13,7 @@ public:
     virtual ~MirrorItem();
 
     void set_mirror(Mirror* pMirror);
-    Mirror* mirror();
+    const Mirror* mirror() const;
     string type() const;
 
     void set_when(unsigned int uiWhen);

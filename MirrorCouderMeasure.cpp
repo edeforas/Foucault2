@@ -132,8 +132,8 @@ double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)
     double b=(a+c)/2.;
     double fb=fcn(this,b);
     while (fabs(a-c)>res)   //dichotomie 1.5
-    {  
-	double m1=(a+b)/2.;
+    {
+        double m1=(a+b)/2.;
         double fm1=fcn(this,m1);
         if (fabs(fm1)<fabs(fb))
         {
@@ -284,5 +284,70 @@ string MirrorCouderMeasure::get_aspect() const
     return _sAspect;
 }
 ////////////////////////////////////////////////////////////////////////////////
+void MirrorCouderMeasure::get_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const
+{
+    const vector<double>& hz=mirror()->hz();
+    const vector<double>&  surf=surface();
+    assert(hz.size()==surf.size());
+    int iNbPoints=hz.size();
 
+    pointsX.resize(iNbPoints+iNbPoints+1); //iNbPoints+1 (iNbPoints) control points
+    pointsY.resize(iNbPoints+iNbPoints+1);
 
+    for(int iZ=1;iZ<iNbPoints-1;iZ++)
+    {
+        double X1= hz[iZ-1];
+        double X2= hz[iZ];
+        double X3= hz[iZ+1];
+
+        double X12=(X1+X2)/2.;
+        double X23=(X2+X3)/2.;
+
+        double Y1=surf[iZ-1];
+        double Y2=surf[iZ];
+        double Y3=surf[iZ+1];
+
+        double Y12=(Y1+Y2)/2.;
+        double Y23=(Y2+Y3)/2.;
+
+        if(iZ==1)
+        {
+            //fit a parabolic y=Ax*x+B, that link and slope to X12,Y12
+            assert(X2!=X1);
+            assert(X12!=0.);
+            double dSlope12=(Y2-Y1)/(X2-X1);
+            double dA=dSlope12/2./(X12);
+            double dB=Y12-dA*(X12)*(X12);
+
+            //find end point and control point
+            double Y1Parab=dA*(X1)*(X1)+dB;
+            double XM=(X1+X12)/2.;
+            double YM=dA*(XM)*(XM)+dB;
+            double XC=2*XM-(X1+X12)/2.;
+            double YC=2*YM-(Y1Parab+Y12)/2.;
+
+            //draw
+            pointsX[0]=X1;
+            pointsY[0]=Y1Parab;//  qpathR.moveTo(X1,Y1Parab);
+            pointsX[1]=XC;
+            pointsY[1]=YC;
+            pointsX[2]=X12;
+            pointsY[2]=Y12; //qpathR.quadTo(XC,YC,X12,Y12);
+        }
+
+        pointsX[2*iZ+1]=X2;
+        pointsY[2*iZ+1]=Y2;
+
+        pointsX[2*iZ+2]=X23;
+        pointsY[2*iZ+2]=Y23; //qpathR.quadTo(X2,Y2,X23,Y23);
+
+        if((unsigned int)iZ==hz.size()-2) //last point
+        {
+            pointsX[2*iZ+3]=(X23+X3)/2.;
+            pointsY[2*iZ+3]=(Y23+Y3)/2.;
+            pointsX[2*iZ+4]=X3;
+            pointsY[2*iZ+4]=Y3; //qpathR.quadTo(X3,Y3,X3,Y3);
+        }
+    }
+}
+////////////////////////////////////////////////////////////////////////////////

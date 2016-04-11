@@ -30,7 +30,7 @@ public:
     double diameter() const;
     void set_diameter(double dDiameter);
 
-    double hole_diameter();
+    double hole_diameter() const;
     void set_hole_diameter(double dHoleDiameter);
 
     double conical() const;
@@ -62,16 +62,16 @@ public:
 
     // ui settings
     void set_show_both_side(bool bShowBothSide);
-    bool get_show_both_side();
+    bool get_show_both_side() const;
 
     void set_smooth_curves(bool bSmoothCurves);
-    bool get_smooth_curves();
+    bool get_smooth_curves() const;
 
     void set_show_colors(bool bShowColors);
-    bool get_show_colors();
+    bool get_show_colors() const;
 
     void set_display_mode(int iDisplayMode); //0=compact 1=normal 2=details
-    int get_display_mode();
+    int get_display_mode() const;
 
 private:
     vector<MirrorItem*> _allItem;

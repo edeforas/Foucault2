@@ -10,7 +10,7 @@ using namespace std;
 TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
 {
     int iBlockSize=block_size();
-    Mirror* pM=pItem->mirror();
+    const Mirror* pM=pItem->mirror();
     int iLine=pos().y();
     int iDisplayMode=pM->get_display_mode();
     if(pM->get_show_colors())

@@ -26,6 +26,10 @@ public:
     string get_aspect() const;
     const vector<double>& surface() const;
 
+    // get the surface as a set of quad splines
+    // each control points[i] is beetwen points[i-1] and points[i+1]
+    void get_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const;
+
 private:
     double dichotomy(double a,double c,double res,double (*fcn)(void *self,double h));
 

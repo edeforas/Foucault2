@@ -6,7 +6,7 @@
 
 TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
 {
-    Mirror* pM=pItem->mirror();
+    const Mirror* pM=pItem->mirror();
 
     if(pM->get_show_colors())
         set_background_color(QColor(230,239,244));
@@ -112,67 +112,54 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
 
     if(bSmoothCurves)
     {
+        vector<double> pointsX,pointsY;
+        pMeasure->get_surface_smooth(pointsX,pointsY);
+        assert(pointsX.size()==hz.size()+hz.size()+1);
+        assert(pointsY.size()==hz.size()+hz.size()+1);
+
         //plot right surface as a smoothcurve
         QPainterPath qpathR,qpathL;
-        for(unsigned int iZ=1;iZ<hz.size()-1;iZ++)
+        qpathR.moveTo( pointsX[0]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,dSurfY2);
+
+        qpathR.lineTo(
+                pointsX[0]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
+                dSurfY2-dSurfY12*(pointsY[0]/dSurfMax)
+                );
+
+        if(bShowBothSide)
         {
-            double X1= hz[iZ-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
-            double X2= hz[iZ]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
-            double X3= hz[iZ+1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM;
+            qpathL.moveTo(pointsX[0]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,dSurfY2);
 
-            double X12=(X1+X2)/2.;
-            double X23=(X2+X3)/2.;
+            qpathL.lineTo(
+                    pointsX[0]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
+                    dSurfY2-dSurfY12*(pointsY[0]/dSurfMax)
+                         );
+        }
 
-            double Y1=dSurfY2-dSurfY12*(surf[iZ-1]/dSurfMax);
-            double Y2=dSurfY2-dSurfY12*(surf[iZ]/dSurfMax);
-            double Y3=dSurfY2-dSurfY12*(surf[iZ+1]/dSurfMax);
+        for(unsigned int iZ=1;iZ<hz.size()+1;iZ++)
+        {
+            qpathR.quadTo(
+                    pointsX[iZ*2-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
+                    dSurfY2-dSurfY12*(pointsY[iZ*2-1]/dSurfMax),
+                    pointsX[iZ*2]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
+                    dSurfY2-dSurfY12*(pointsY[iZ*2]/dSurfMax)
+                    );
 
-            double Y12=(Y1+Y2)/2.;
-            double Y23=(Y2+Y3)/2.;
-
-            if(iZ==1)
-            {
-                //fit a parabolic y=Ax*x+B, that link and slope to X12,Y12
-                assert(X2!=X1); assert(X12!=0.);
-                double dSlope12=(Y2-Y1)/(X2-X1);
-                double dA=dSlope12/2./(X12-dSurfXM);
-                double dB=Y12-dA*(X12-dSurfXM)*(X12-dSurfXM);
-
-                //find end point and control point
-                double Y1Parab=dA*(X1-dSurfXM)*(X1-dSurfXM)+dB;
-                double XM=(X1+X12)/2.;
-                double YM=dA*(XM-dSurfXM)*(XM-dSurfXM)+dB;
-                double XC=2*XM-(X1+X12)/2.;
-                double YC=2*YM-(Y1Parab+Y12)/2.;
-
-                //draw
-                qpathR.moveTo(X1,dSurfY2);
-                qpathR.lineTo(X1,Y1Parab);
-                qpathR.quadTo(XC,YC,X12,Y12);
-
-                if(bShowBothSide)
-                {
-                    qpathL.moveTo(2.*dSurfXM-X1,dSurfY2);
-                    qpathL.lineTo(2.*dSurfXM-X1,Y1Parab);
-                    qpathL.quadTo(2.*dSurfXM-XC,YC,2.*dSurfXM-X12,Y12);
-                }
-            }
-
-            qpathR.quadTo(X2,Y2,X23,Y23);
             if(bShowBothSide)
             {
-                qpathL.quadTo(2.*dSurfXM-X2,Y2,2.*dSurfXM-X23,Y23);
+                qpathL.quadTo(
+                        pointsX[iZ*2-1]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
+                        dSurfY2-dSurfY12*(pointsY[iZ*2-1]/dSurfMax),
+                        pointsX[iZ*2]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
+                        dSurfY2-dSurfY12*(pointsY[iZ*2]/dSurfMax)
+                        );
             }
-            if(iZ==hz.size()-2)
-            {
-                qpathR.lineTo(X3,Y3);
-                qpathR.lineTo(X3,dSurfY2);
 
+            if(iZ==hz.size())
+            {
+                qpathR.lineTo(pointsX[iZ*2]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,dSurfY2);
                 if(bShowBothSide)
-                {
-                    qpathL.lineTo(2.*dSurfXM-X3,Y3);
-                    qpathL.lineTo(2.*dSurfXM-X3,dSurfY2);
-                }
+                    qpathL.lineTo(pointsX[iZ*2]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,dSurfY2);
             }
         }
 
@@ -189,7 +176,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     }
     else
     {
-        //plot right surface as a polygon1
+        //plot right surface as a polygon1 (set of lines)
         assert(hz.size()==surf.size());
         QPolygonF qpolyR,qpolyL;
         for(unsigned int iZ=0;iZ<hz.size();iZ++)
