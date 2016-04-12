@@ -69,8 +69,6 @@
     <addaction name="separator"/>
     <addaction name="actionNew_Hartmann_Screen"/>
     <addaction name="actionAdd_Hartmann_Measure"/>
-    <addaction name="separator"/>
-    <addaction name="actionAdd_Bath_Measure"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">

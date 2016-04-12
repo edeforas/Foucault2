@@ -25,16 +25,16 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
 
-    QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter()));
+    QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter())+QString(" mm"));
     ptiDiameter->setPos(pos().x(),iLine);
     add_item(ptiDiameter);
 
-    QGraphicsTextItem* ptiHoleDiameter=new QGraphicsTextItem(QObject::tr("Hole Diameter: ")+QString::number(pM->hole_diameter()));
+    QGraphicsTextItem* ptiHoleDiameter=new QGraphicsTextItem(QObject::tr("Hole Diameter: ")+QString::number(pM->hole_diameter())+ QString(" mm"));
     ptiHoleDiameter->setPos(pos().x()+iBlockSize*16,iLine);
     add_item(ptiHoleDiameter);
     iLine+=iBlockSize;
 
-    QGraphicsTextItem* ptiFocal=new QGraphicsTextItem(QObject::tr("Focal: ")+QString::number(pM->focal()));
+    QGraphicsTextItem* ptiFocal=new QGraphicsTextItem(QObject::tr("Focal Length: ")+QString::number(pM->focal())+QString(" mm"));
     ptiFocal->setPos(pos().x(),iLine);
     add_item(ptiFocal);
 
@@ -53,7 +53,16 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     iLine+=iBlockSize;
 
     if(iDisplayMode==2)
-         iLine+=iBlockSize;
+        iLine+=iBlockSize;
+
+    if(iDisplayMode>=1)
+    {
+        vector<double> vdZone;
+        for(unsigned int i=0;i<pM->hx().size();i++)
+            vdZone.push_back(i+1);
+        add_line_tab("Zone:",vdZone,pos().x(),iLine,iBlockSize*50);
+        iLine+=iBlockSize;
+    }
 
     add_line_tab("Hx:",pM->hx(),pos().x(),iLine,iBlockSize*50);
     iLine+=iBlockSize;

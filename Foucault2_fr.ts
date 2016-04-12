@@ -37,17 +37,22 @@
         <translation>Quand</translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="95"/>
+        <location filename="DialogNewMeasure.ui" line="51"/>
+        <source>Measures (mm):</source>
+        <translation>Mesures (mm):</translation>
+    </message>
+    <message>
+        <location filename="DialogNewMeasure.ui" line="102"/>
         <source>Aspect</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="122"/>
+        <location filename="DialogNewMeasure.ui" line="129"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DialogNewMeasure.ui" line="129"/>
+        <location filename="DialogNewMeasure.ui" line="136"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -382,149 +387,149 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation>Nouvelle tache</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="77"/>
+        <location filename="mainwindow.ui" line="75"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="83"/>
+        <location filename="mainwindow.ui" line="81"/>
         <source>View</source>
         <translation>Vue</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="101"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="108"/>
+        <location filename="mainwindow.ui" line="106"/>
         <source>About...</source>
         <translation>A propos...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="113"/>
+        <location filename="mainwindow.ui" line="111"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="118"/>
+        <location filename="mainwindow.ui" line="116"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="123"/>
+        <location filename="mainwindow.ui" line="121"/>
         <source>Save as...</source>
         <translation>Sauver comme...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="128"/>
+        <location filename="mainwindow.ui" line="126"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="133"/>
+        <location filename="mainwindow.ui" line="131"/>
         <source>New...</source>
         <translation>Nouveau...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="141"/>
+        <location filename="mainwindow.ui" line="139"/>
         <source>Comment</source>
         <translation>Commentaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="149"/>
+        <location filename="mainwindow.ui" line="147"/>
         <source>Global Settings</source>
         <translation>Propriétés globales</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="157"/>
+        <location filename="mainwindow.ui" line="155"/>
         <source>Foucault Screen</source>
         <oldsource>Couder Screen</oldsource>
         <translation>Ecran de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="165"/>
+        <location filename="mainwindow.ui" line="163"/>
         <source>Foucault Measure</source>
         <oldsource>Couder Measure</oldsource>
         <translation>Mesure de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="173"/>
+        <location filename="mainwindow.ui" line="171"/>
         <source>Hartmann Screen</source>
         <translation>Ecran de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="181"/>
+        <location filename="mainwindow.ui" line="179"/>
         <source>Hartmann Measure</source>
         <translation>Mesure de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="189"/>
+        <location filename="mainwindow.ui" line="187"/>
         <source>Bath Measure</source>
         <translation>Mesure de Bath</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="194"/>
+        <location filename="mainwindow.ui" line="192"/>
         <source>Print...</source>
         <translation>Imprimer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="199"/>
+        <location filename="mainwindow.ui" line="197"/>
         <source>Import...</source>
         <translation>Importer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="210"/>
+        <location filename="mainwindow.ui" line="208"/>
         <source>Show mirror both side</source>
         <translation>Montrer les deux cotés du miroir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="218"/>
+        <location filename="mainwindow.ui" line="216"/>
         <source>Work</source>
         <translation>Travail</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="224"/>
         <source>Show Colors</source>
         <translation>Affichage en couleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="232"/>
         <source>Display Compact</source>
         <translation>Affichage compact</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="245"/>
+        <location filename="mainwindow.ui" line="243"/>
         <source>Display Normal</source>
         <translation>Affichage normal</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="253"/>
+        <location filename="mainwindow.ui" line="251"/>
         <source>Display Details</source>
         <translation>Affichage détaillé</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="262"/>
         <source>Show smooth curves</source>
         <translation>Montrer des surfaces lisses</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="267"/>
         <source>Zoom in</source>
         <translation>Agrandir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="272"/>
+        <location filename="mainwindow.ui" line="270"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="277"/>
+        <location filename="mainwindow.ui" line="275"/>
         <source>Zoom out</source>
         <translation>Réduire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="280"/>
+        <location filename="mainwindow.ui" line="278"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
@@ -538,8 +543,9 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="26"/>
-        <source>Optical Diameter</source>
-        <translation>Diamètre optique</translation>
+        <source>Optical Diameter (mm)</source>
+        <oldsource>Optical Diameter</oldsource>
+        <translation>Diamètre optique (mm)</translation>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="36"/>
@@ -548,8 +554,9 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="43"/>
-        <source>Focal</source>
-        <translation>Focale</translation>
+        <source>Focal Length (mm)</source>
+        <oldsource>Focal Length</oldsource>
+        <translation>Focale (mm)</translation>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="53"/>
@@ -563,8 +570,9 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="70"/>
-        <source>Hole diameter</source>
-        <translation>Diamètre du trou central</translation>
+        <source>Hole diameter (mm)</source>
+        <oldsource>Hole diameter</oldsource>
+        <translation>Diamètre du trou central (mm)</translation>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="77"/>
@@ -598,8 +606,9 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="135"/>
-        <source>Hx :</source>
-        <translation>Hx:</translation>
+        <source>Hx (mm):</source>
+        <oldsource>Hx :</oldsource>
+        <translation>Hx (mm):</translation>
     </message>
     <message>
         <location filename="DialogNewMirror.ui" line="172"/>
@@ -662,17 +671,18 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation>Commentaire: </translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="22"/>
-        <source>Measures:</source>
-        <translation>Mesures: </translation>
+        <location filename="TaskItemCouderMeasure.cpp" line="23"/>
+        <source>Measures (mm):</source>
+        <oldsource>Measures:</oldsource>
+        <translation>Mesures (mm):</translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="43"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="44"/>
         <source>Aspect: </source>
         <translation>Aspect: </translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="49"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="50"/>
         <source>LambdaWave=</source>
         <translation>Lambda sur l&apos;onde=</translation>
     </message>
@@ -688,7 +698,8 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="TaskItemNewMirror.cpp" line="37"/>
-        <source>Focal: </source>
+        <source>Focal Length: </source>
+        <oldsource>Focal: </oldsource>
         <translation>Focale: </translation>
     </message>
     <message>
@@ -732,7 +743,8 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="TaskItemWork.cpp" line="51"/>
-        <source>during</source>
+        <source>duration</source>
+        <oldsource>during</oldsource>
         <translation>durée</translation>
     </message>
     <message>

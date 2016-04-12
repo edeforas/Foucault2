@@ -20,7 +20,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     MirrorCouderMeasure* mci=static_cast<MirrorCouderMeasure*>(pItem);
     if(iDisplayMode>=1)
     {
-        add_line_tab(QObject::tr("Measures:").toStdString(),mci->measures(),pos().x(),iLine,iBlockSize*50);
+        add_line_tab(QObject::tr("Measures (mm):").toStdString(),mci->measures(),pos().x(),iLine,iBlockSize*50);
         iLine+=iBlockSize;
 
         if(iDisplayMode==2)
@@ -209,6 +209,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     }
 
     //add vertical zonal mask border
+    QString sSurfUnit=iDisplayMode>=2?" nm":"";
     for(unsigned int iZ=0;iZ<hz.size();iZ++)
     {
         double dPosX= hz[iZ]/dRadius*(dSurfX2-dSurfXM);
@@ -237,7 +238,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
             QGraphicsLineItem* li2=new QGraphicsLineItem(dBorder2,dSurfY1,dBorder2,dSurfY2);
             add_item(li2);
         }
-        QGraphicsTextItem* ptiSurfaceHeight=new QGraphicsTextItem(QString::number(surf[iZ],'f',0));
+        QGraphicsTextItem* ptiSurfaceHeight=new QGraphicsTextItem(QString::number(surf[iZ],'f',0)+sSurfUnit);
         ptiSurfaceHeight->setPos(dBorder1,dSurfYM);
         add_item(ptiSurfaceHeight);
     }

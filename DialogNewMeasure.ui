@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>653</width>
-    <height>174</height>
+    <height>182</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,13 @@
       </spacer>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Measures (mm):</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTableWidget" name="twZones">

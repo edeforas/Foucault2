@@ -70,7 +70,8 @@ public:
     void set_show_colors(bool bShowColors);
     bool get_show_colors() const;
 
-    void set_display_mode(int iDisplayMode); //0=compact 1=normal 2=details
+    //0=compact 1=normal 2=details
+    void set_display_mode(int iDisplayMode);
     int get_display_mode() const;
 
 private:

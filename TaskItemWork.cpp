@@ -48,7 +48,7 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
         int iMinute=(iDuration %3600)/60;
         int iSecond=(iDuration %60);
 
-        qsDuration=" ("+QObject::tr("during")+" ";
+        qsDuration=" ("+QObject::tr("duration")+" ";
         if(iHour!=0)
             qsDuration+=QString::number(iHour)+"h";
 
