@@ -36,7 +36,6 @@ Source: ".\*.qrc"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.rc"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.ts"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\samples\*.foucault2"; DestDir: "{app}\samples"; Flags: ignoreversion
-Source: ".\samples\*.mir"; DestDir: "{app}\samples"; Flags: ignoreversion
 
 Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5Core.dll"; DestDir: "{app}"
 Source: "C:\Qt\Qt5.6.0\5.6\mingw49_32\bin\Qt5Gui.dll"; DestDir: "{app}"
