@@ -107,7 +107,12 @@ void MainWindow::on_actionAbout_triggered()
     qsText+= tr(" by Etienne de Foras");
     qsText+="\nemail: etienne.deforas@gmail.com";
     qsText+= "\n\n";
-    qsText+= tr("Thanks to Jean-Jacques Jourdanneau for his help");
+    qsText+= tr("Thanks to:");
+    qsText+= "\n";
+    qsText+= tr(" Jean-Jacques Jourdanneau for his help");
+    qsText+= "\n";
+    qsText+= tr(" Ken Slater for the translations fixes");
+
 
     mb.setText(qsText);
     mb.setIconPixmap(QPixmap(":/Foucault2/Foucault2.ico"));
