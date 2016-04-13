@@ -35,9 +35,10 @@ void TimelineScene::add_item(TaskItem* pi)
     _vti.push_back(pi);
     addItem(pi);
 
-    //TODO update scene rect to add borders
+    //update scene rect to add borders
+    int iBoundaries=60;
     QRectF qr=itemsBoundingRect();
-    QRectF qrWithBorder(qr.left()-100,qr.top(),qr.width()+200,qr.height());
+    QRectF qrWithBorder(qr.left()-iBoundaries,qr.top()-iBoundaries,qr.width()+2*iBoundaries,qr.height()+iBoundaries);
     setSceneRect(qrWithBorder);
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,7 @@ void TimelineScene::wheelEvent(QGraphicsSceneWheelEvent* wheelEvent)
 void TimelineScene::set_mirror(Mirror* pM)
 {
     _pM=pM;
+    clear(); //todo check
     update_items(-1);
 }
 ///////////////////////////////////////////////////////////////////////////////

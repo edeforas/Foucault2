@@ -70,7 +70,7 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
     a/=pMirror->hx()[iNbZone-1];
     b/=pMirror->hx()[iNbZone-1];
 
-    a*=2.; //essai
+    a*=2.;
     b*=2.;
 
     double dReso=1./(pMirror->hx()[iNbZone-1]*pMirror->hx()[iNbZone-1]);
@@ -89,11 +89,10 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
 
     _dGlassMax=dMax;
 
-    //calcul de la meilleur parabole au sens RMS
-
+    //compute best parabola (vs RMS)
     _dWeightedLambdaRms=YELLOW/2./_dStd; //   1./(ecart type de la surface en unite lambda)
 
-    //calcul de l'ecart type rms
+    //compute stddev rms
     _dWeightedStrehl=exp(-sqr(2.*M_PI*1./_dWeightedLambdaRms));
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +130,7 @@ double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)
 {
     double b=(a+c)/2.;
     double fb=fcn(this,b);
-    while (fabs(a-c)>res)   //dichotomie 1.5
+    while (fabs(a-c)>res)   //dichotomy 1.5
     {
         double m1=(a+b)/2.;
         double fm1=fcn(this,m1);
@@ -169,13 +168,10 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
     assert(pMirror!=0);
     int iNbZone=pMirror->nb_zones();
 
-    double dtemp;
-
-    //on calcule la surface
-
-    double min;
+    //compute surface
     for (int i=0;i<iNbZone+1;i++)
     {
+        double dtemp;
         double denom= 1.-(pMirror->conical()+1.)*sqr(curv*pMirror->hz()[i]);
 
         if (denom>=0.)
@@ -190,7 +186,7 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
         pMes->_surf[i]=(pMes->_profil[i]-dtemp)/2.;
     }
     //on la decale entre 0 et max-min
-    min=*min_element(pMes->_surf.begin(),pMes->_surf.end());
+    double min=*min_element(pMes->_surf.begin(),pMes->_surf.end());
     for (int i=0;i<iNbZone+1;i++)
         pMes->_surf[i]-=min;
 
@@ -206,7 +202,7 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
     int iNbZone=pMirror->nb_zones();
     double dtemp;
 
-    //on calcule la surface
+    //compute surface
     for (int i=0;i<iNbZone+1;i++)
     {
         double denom= 1.-(pMirror->conical()+1.)*sqr(curv*pMirror->hz()[i]);
@@ -223,12 +219,12 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
         pMes->_surf[i]=(pMes->_profil[i]-dtemp)/2.;
     }
 
-    //calcule la moyenne
+    //compute mean
     double dM=0.;
     for(int i=0;i<iNbZone;i++)
         dM+=(pMes->_surf[i]+pMes->_surf[i+1])/2.*pMirror->relative_surface()[i];
 
-    //calcule la variance et l'ecart type
+    //compute var and stddev
     double dVar=0.;
     for(int i=0;i<iNbZone;i++)
         dVar+=sqr((pMes->_surf[i]+pMes->_surf[i+1])/2.-dM)*pMirror->relative_surface()[i];
@@ -291,7 +287,7 @@ void MirrorCouderMeasure::get_surface_smooth(vector<double>& pointsX,vector<doub
     assert(hz.size()==surf.size());
     int iNbPoints=hz.size();
 
-    pointsX.resize(iNbPoints+iNbPoints+1); //iNbPoints+1 (iNbPoints) control points
+    pointsX.resize(iNbPoints+iNbPoints+1); //iNbPoints+1 points and iNbPoints control points
     pointsY.resize(iNbPoints+iNbPoints+1);
 
     for(int iZ=1;iZ<iNbPoints-1;iZ++)
@@ -328,25 +324,25 @@ void MirrorCouderMeasure::get_surface_smooth(vector<double>& pointsX,vector<doub
 
             //draw
             pointsX[0]=X1;
-            pointsY[0]=Y1Parab;//  qpathR.moveTo(X1,Y1Parab);
+            pointsY[0]=Y1Parab;
             pointsX[1]=XC;
             pointsY[1]=YC;
             pointsX[2]=X12;
-            pointsY[2]=Y12; //qpathR.quadTo(XC,YC,X12,Y12);
+            pointsY[2]=Y12;
         }
 
         pointsX[2*iZ+1]=X2;
         pointsY[2*iZ+1]=Y2;
 
         pointsX[2*iZ+2]=X23;
-        pointsY[2*iZ+2]=Y23; //qpathR.quadTo(X2,Y2,X23,Y23);
+        pointsY[2*iZ+2]=Y23;
 
-        if((unsigned int)iZ==hz.size()-2) //last point
+        if((unsigned int)iZ==hz.size()-2) //last point : fit a line in a quad
         {
             pointsX[2*iZ+3]=(X23+X3)/2.;
             pointsY[2*iZ+3]=(Y23+Y3)/2.;
             pointsX[2*iZ+4]=X3;
-            pointsY[2*iZ+4]=Y3; //qpathR.quadTo(X3,Y3,X3,Y3);
+            pointsY[2*iZ+4]=Y3;
         }
     }
 }

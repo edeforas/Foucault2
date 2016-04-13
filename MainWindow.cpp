@@ -18,6 +18,7 @@
 #include "DialogNewWork.h"
 
 #include <cassert>
+#include <cmath>
 
 #include "Mirror.h"
 #include "MirrorIo.h"
@@ -318,18 +319,48 @@ void MainWindow::on_actionGlobal_settings_triggered()
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionPrint_triggered()
 {
+    //TODO do not cut widget in two beewten printer pages
+
+    //TODO move code in Timeline scene
+
     QPrinter printer;
+    QRectF qrf=_ts->sceneRect();
+    int iNbPages=ceil(qrf.height()/qrf.width()/1.414213562373095); // use A4 portrait paper size
+
+    QRectF qrViewFull(qrf.left(),qrf.top(),qrf.width(),iNbPages*qrf.width()*1.414213562373095);// qrf.height());
+
+    printer.setFromTo(1,iNbPages);
+
     if (QPrintDialog(&printer).exec() == QDialog::Accepted)
     {
+        int iFirstPage=printer.fromPage();
+        int iLastPage=printer.toPage();
+
+        if(iFirstPage==0)
+        {
+            iFirstPage=1;
+            iLastPage=iNbPages;
+        }
+
         QPainter painter(&printer);
         painter.fillRect(painter.window(), QColor(255, 255, 255, 0)); // to fix a QPainter Bug with alpha channel
-
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setRenderHint(QPainter::TextAntialiasing);
         painter.setRenderHint(QPainter::HighQualityAntialiasing);
         painter.setRenderHint(QPainter::SmoothPixmapTransform);
+        for(int iPage=iFirstPage;iPage<=iLastPage;iPage++)
+        {
+            double pageStart=qrViewFull.top()+qrViewFull.height()*(iPage-iFirstPage)/(iLastPage-iFirstPage+1);
+            double pageHeight=qrViewFull.height()/(iLastPage-iFirstPage+1);
+            QRectF qr(qrViewFull.left(),pageStart,qrViewFull.width(),pageHeight);
 
-        _ts->render(&painter);
+            _ts->render(&painter,printer.pageRect(),qr);
+
+            if (iPage != iLastPage)
+                printer.newPage();
+        }
+
+        painter.end();
     }
 }
 ///////////////////////////////////////////////////////////////////////////////
