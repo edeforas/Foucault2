@@ -63,6 +63,8 @@ void TimelineScene::set_mirror(Mirror* pM)
     _pM=pM;
     clear(); //todo check
     update_items(-1);
+
+    //todo clear viewport
 }
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::update_items(int iFirstItem)

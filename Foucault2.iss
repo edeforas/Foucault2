@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Foucault2
-AppVerName=Foucault2 2.05
+AppVerName=Foucault2 2.06
 AppPublisher=Etienne de Foras
 AppPublisherURL=http://edeforas.free.fr
 AppSupportURL=http://edeforas.free.fr
