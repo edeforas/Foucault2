@@ -199,6 +199,7 @@ void MainWindow::on_actionClose_triggered()
     if (ask_save_and_action()==false)
         return;
 
+    _sFileName="";
     clear_mirror();
     device_changed(false);
 }
@@ -244,6 +245,7 @@ void MainWindow::device_changed(bool bMustSave)
     ui->actionShow_mirror_both_side->setChecked(_pMirror->get_show_both_side());
     ui->actionShow_Colors->setChecked(_pMirror->get_show_colors());
     ui->actionShow_smooth_curves->setChecked(_pMirror->get_smooth_curves());
+    ui->actionDiscard_last_task->setEnabled(_pMirror->nb_zones()!=0);
 
     ui->actionDisplay_Compact->setChecked(_pMirror->get_display_mode()==0);
     ui->actionDisplay_Normal->setChecked(_pMirror->get_display_mode()==1);
@@ -286,7 +288,7 @@ void MainWindow::on_actionAdd_comment_triggered()
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
         //ensure_visible(_pMirror->nb_item()-1);
-                _ts->ensure_last_visible();
+        _ts->ensure_last_visible();
         _bMustSave=true;
         update_title();
     }
@@ -427,7 +429,7 @@ void MainWindow::on_actionWork_triggered()
         _ts->update_items(_pMirror->nb_item()-1);
 
         _iLastWorkType=nm.get_work_type();
-//        ensure_visible(_pMirror->nb_item()-1);
+        //        ensure_visible(_pMirror->nb_item()-1);
         _ts->ensure_last_visible();//_pMirror->nb_item()-1);
 
         _bMustSave=true;

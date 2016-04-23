@@ -281,6 +281,9 @@
    </property>
   </action>
   <action name="actionDiscard_last_task">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Delete last task</string>
    </property>

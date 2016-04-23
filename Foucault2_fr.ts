@@ -296,6 +296,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="MainWindow.cpp" line="67"/>
+        <location filename="MainWindow.cpp" line="493"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
@@ -306,19 +307,19 @@
     </message>
     <message>
         <location filename="MainWindow.cpp" line="73"/>
-        <location filename="MainWindow.cpp" line="184"/>
+        <location filename="MainWindow.cpp" line="186"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
         <location filename="MainWindow.cpp" line="73"/>
-        <location filename="MainWindow.cpp" line="128"/>
-        <location filename="MainWindow.cpp" line="184"/>
+        <location filename="MainWindow.cpp" line="129"/>
+        <location filename="MainWindow.cpp" line="186"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="108"/>
+        <location filename="MainWindow.cpp" line="109"/>
         <source> by Etienne de Foras</source>
         <oldsource> by Etienne de Foras
 
@@ -338,51 +339,56 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation type="vanished">Merci à Jean-Jacques Jourdanneau pour son aide</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="111"/>
+        <location filename="MainWindow.cpp" line="112"/>
         <source>Thanks to:</source>
         <oldsource>Thanks to:
 </oldsource>
         <translation>Merci à:</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="113"/>
+        <location filename="MainWindow.cpp" line="114"/>
         <source> Jean-Jacques Jourdanneau for his help</source>
         <translation>Jean-Jacques Jourdanneau pour son aide</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="115"/>
+        <location filename="MainWindow.cpp" line="116"/>
         <source> Ken Slater for the translations fixes</source>
         <translation>Ken Slater pour les améliorations de traduction</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="128"/>
+        <location filename="MainWindow.cpp" line="129"/>
         <source>Open Foucault2 File</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="218"/>
+        <location filename="MainWindow.cpp" line="221"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="269"/>
+        <location filename="MainWindow.cpp" line="272"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="372"/>
+        <location filename="MainWindow.cpp" line="377"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="372"/>
+        <location filename="MainWindow.cpp" line="377"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="384"/>
+        <location filename="MainWindow.cpp" line="389"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
+    </message>
+    <message>
+        <location filename="MainWindow.cpp" line="493"/>
+        <source>Delete last task?</source>
+        <translation>Supprimer la dernière tache?</translation>
     </message>
 </context>
 <context>
@@ -399,155 +405,161 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     </message>
     <message>
         <location filename="mainwindow.ui" line="62"/>
-        <source>New task</source>
-        <translation>Nouvelle tache</translation>
+        <source>Tasks</source>
+        <oldsource>New task</oldsource>
+        <translation>Tache</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="75"/>
+        <location filename="mainwindow.ui" line="77"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="81"/>
+        <location filename="mainwindow.ui" line="83"/>
         <source>View</source>
         <translation>Vue</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="101"/>
+        <location filename="mainwindow.ui" line="103"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="106"/>
+        <location filename="mainwindow.ui" line="108"/>
         <source>About...</source>
         <translation>A propos...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="111"/>
+        <location filename="mainwindow.ui" line="113"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="116"/>
+        <location filename="mainwindow.ui" line="118"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="121"/>
+        <location filename="mainwindow.ui" line="123"/>
         <source>Save as...</source>
         <translation>Sauver comme...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="126"/>
+        <location filename="mainwindow.ui" line="128"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="131"/>
+        <location filename="mainwindow.ui" line="133"/>
         <source>New...</source>
         <translation>Nouveau...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="139"/>
+        <location filename="mainwindow.ui" line="141"/>
         <source>Comment</source>
         <translation>Commentaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="147"/>
+        <location filename="mainwindow.ui" line="149"/>
         <source>Global Settings</source>
         <translation>Propriétés globales</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="157"/>
         <source>Foucault Screen</source>
         <oldsource>Couder Screen</oldsource>
         <translation>Ecran de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="163"/>
+        <location filename="mainwindow.ui" line="165"/>
         <source>Foucault Measure</source>
         <oldsource>Couder Measure</oldsource>
         <translation>Mesure de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="171"/>
+        <location filename="mainwindow.ui" line="173"/>
         <source>Hartmann Screen</source>
         <translation>Ecran de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="179"/>
+        <location filename="mainwindow.ui" line="181"/>
         <source>Hartmann Measure</source>
         <translation>Mesure de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="187"/>
+        <location filename="mainwindow.ui" line="189"/>
         <source>Bath Measure</source>
         <translation>Mesure de Bath</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="192"/>
+        <location filename="mainwindow.ui" line="194"/>
         <source>Print...</source>
         <translation>Imprimer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="197"/>
+        <location filename="mainwindow.ui" line="199"/>
         <source>Import...</source>
         <translation>Importer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="208"/>
+        <location filename="mainwindow.ui" line="210"/>
         <source>Show mirror both side</source>
         <translation>Montrer les deux cotés du miroir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="216"/>
+        <location filename="mainwindow.ui" line="218"/>
         <source>Work</source>
         <translation>Travail</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="224"/>
+        <location filename="mainwindow.ui" line="226"/>
         <source>Show Colors</source>
         <translation>Affichage en couleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="232"/>
+        <location filename="mainwindow.ui" line="234"/>
         <source>Display Compact</source>
         <translation>Affichage compact</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="243"/>
+        <location filename="mainwindow.ui" line="245"/>
         <source>Display Normal</source>
         <translation>Affichage normal</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="251"/>
+        <location filename="mainwindow.ui" line="253"/>
         <source>Display Details</source>
         <translation>Affichage détaillé</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="262"/>
+        <location filename="mainwindow.ui" line="264"/>
         <source>Show smooth curves</source>
         <translation>Montrer des surfaces lisses</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="267"/>
+        <location filename="mainwindow.ui" line="269"/>
         <source>Zoom in</source>
         <translation>Agrandir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="270"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="275"/>
+        <location filename="mainwindow.ui" line="277"/>
         <source>Zoom out</source>
         <translation>Réduire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="278"/>
+        <location filename="mainwindow.ui" line="280"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="285"/>
+        <source>Delete last task</source>
+        <translation>Supprimer dernière tache</translation>
     </message>
 </context>
 <context>
