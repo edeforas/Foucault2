@@ -282,3 +282,13 @@ int Mirror::get_display_mode() const
     return _iDisplayMode;
 }
 //////////////////////////////////////////////////////////////////////////////
+void Mirror::remove_last_item()
+{
+    if(!_allItem.empty())
+    {
+        MirrorItem* pI=_allItem.back();
+        delete pI;
+        _allItem.pop_back(); //todo check delete is not called
+    }
+}
+//////////////////////////////////////////////////////////////////////////////

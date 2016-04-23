@@ -53,6 +53,7 @@ public:
     void add_item(MirrorItem* pItem);
     MirrorItem* get_item(int iPos);
     int nb_item() const;
+    void remove_last_item();
 
     double ro_dif() const;
 

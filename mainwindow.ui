@@ -59,7 +59,7 @@
    </widget>
    <widget class="QMenu" name="menuAdd_Task">
     <property name="title">
-     <string>New task</string>
+     <string>Tasks</string>
     </property>
     <addaction name="actionWork"/>
     <addaction name="actionAdd_comment"/>
@@ -69,6 +69,8 @@
     <addaction name="separator"/>
     <addaction name="actionNew_Hartmann_Screen"/>
     <addaction name="actionAdd_Hartmann_Measure"/>
+    <addaction name="separator"/>
+    <addaction name="actionDiscard_last_task"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -276,6 +278,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionDiscard_last_task">
+   <property name="text">
+    <string>Delete last task</string>
    </property>
   </action>
  </widget>

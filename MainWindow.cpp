@@ -90,6 +90,7 @@ bool MainWindow::ask_save_and_action()
 void MainWindow::clear_mirror()
 {
     assert(_bMustSave==false);
+
     delete _pMirror;
     _pMirror=new Mirror;
 }
@@ -143,6 +144,7 @@ void MainWindow::on_actionNew_triggered()
     DialogNewMirror nm;
     if(nm.exec())
     {
+        _sFileName="";
         clear_mirror();
 
         _pMirror->set_name(nm.get_name());
@@ -188,7 +190,7 @@ void MainWindow::on_actionSave_as_triggered()
         _sFileName=sFileName;
         MirrorIo::save(_pMirror,sFileName);
         _bMustSave=false;
-        device_changed(false);
+        device_changed(false); // TODO: do not scroll to the start
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -283,7 +285,8 @@ void MainWindow::on_actionAdd_comment_triggered()
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
-        ensure_visible(_pMirror->nb_item()-1);
+        //ensure_visible(_pMirror->nb_item()-1);
+                _ts->ensure_last_visible();
         _bMustSave=true;
         update_title();
     }
@@ -299,7 +302,8 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
-        ensure_visible(_pMirror->nb_item()-1);
+        //ensure_visible(_pMirror->nb_item()-1);
+        _ts->ensure_last_visible();
         _bMustSave=true;
         update_title();
     }
@@ -423,7 +427,8 @@ void MainWindow::on_actionWork_triggered()
         _ts->update_items(_pMirror->nb_item()-1);
 
         _iLastWorkType=nm.get_work_type();
-        ensure_visible(_pMirror->nb_item()-1);
+//        ensure_visible(_pMirror->nb_item()-1);
+        _ts->ensure_last_visible();//_pMirror->nb_item()-1);
 
         _bMustSave=true;
         update_title();
@@ -480,5 +485,15 @@ void MainWindow::on_actionZoom_in_triggered()
 void MainWindow::on_actionZoom_out_triggered()
 {
     _ts->zoom_out();
+}
+///////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionDiscard_last_task_triggered()
+{
+    if(QMessageBox::question(this,tr("Warning"),tr("Delete last task?"),QMessageBox::Yes | QMessageBox::No )==QMessageBox::No)
+        return;
+
+    _pMirror->remove_last_item();
+    device_changed(true);
+    _ts->ensure_last_visible();
 }
 ///////////////////////////////////////////////////////////////////////////////

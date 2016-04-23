@@ -144,6 +144,16 @@ void TimelineScene::ensure_visible(int iItem)
     }
 }
 ///////////////////////////////////////////////////////////////////////////////
+void TimelineScene::ensure_last_visible()
+{
+    QGraphicsView* pView=views()[0];
+    if(_vti.size()!=0)
+    {
+        TaskItem* pItem=_vti.back();
+        pView->ensureVisible(pItem);
+    }
+}
+///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::zoom_in()
 {
     QGraphicsView* v=views()[0];

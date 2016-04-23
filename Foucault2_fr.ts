@@ -295,30 +295,30 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="MainWindow.cpp" line="66"/>
+        <location filename="MainWindow.cpp" line="67"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="66"/>
+        <location filename="MainWindow.cpp" line="67"/>
         <source>Save?</source>
         <translation>Sauver?</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="183"/>
+        <location filename="MainWindow.cpp" line="73"/>
+        <location filename="MainWindow.cpp" line="184"/>
         <source>Save Foucault2 File</source>
         <translation>Sauver le fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="72"/>
-        <location filename="MainWindow.cpp" line="127"/>
-        <location filename="MainWindow.cpp" line="183"/>
+        <location filename="MainWindow.cpp" line="73"/>
+        <location filename="MainWindow.cpp" line="128"/>
+        <location filename="MainWindow.cpp" line="184"/>
         <source>Foucault2 Files (*.foucault2)</source>
         <translation>Fichier Foucault2(*.foucault2)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="107"/>
+        <location filename="MainWindow.cpp" line="108"/>
         <source> by Etienne de Foras</source>
         <oldsource> by Etienne de Foras
 
@@ -338,49 +338,49 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation type="vanished">Merci à Jean-Jacques Jourdanneau pour son aide</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="110"/>
+        <location filename="MainWindow.cpp" line="111"/>
         <source>Thanks to:</source>
         <oldsource>Thanks to:
 </oldsource>
         <translation>Merci à:</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="112"/>
+        <location filename="MainWindow.cpp" line="113"/>
         <source> Jean-Jacques Jourdanneau for his help</source>
         <translation>Jean-Jacques Jourdanneau pour son aide</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="114"/>
+        <location filename="MainWindow.cpp" line="115"/>
         <source> Ken Slater for the translations fixes</source>
         <translation>Ken Slater pour les améliorations de traduction</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="127"/>
+        <location filename="MainWindow.cpp" line="128"/>
         <source>Open Foucault2 File</source>
         <translation>Ouvrir un fichier Foucault2</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="217"/>
+        <location filename="MainWindow.cpp" line="218"/>
         <source>Unable to Open file!!</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="268"/>
+        <location filename="MainWindow.cpp" line="269"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="341"/>
+        <location filename="MainWindow.cpp" line="372"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="341"/>
+        <location filename="MainWindow.cpp" line="372"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="353"/>
+        <location filename="MainWindow.cpp" line="384"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>

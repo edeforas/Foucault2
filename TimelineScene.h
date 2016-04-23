@@ -18,6 +18,7 @@ public:
 
     void update_items(int iFirstItem=-1);
     void ensure_visible(int iItem);
+    void ensure_last_visible();
 
     void zoom_in();
     void zoom_out();

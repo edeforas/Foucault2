@@ -69,6 +69,8 @@ private slots:
 
     void on_actionZoom_out_triggered();
 
+    void on_actionDiscard_last_task_triggered();
+
 private:
     void update_title();
     void ensure_visible(int iItem);
