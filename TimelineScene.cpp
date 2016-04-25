@@ -36,9 +36,8 @@ void TimelineScene::add_item(TaskItem* pi)
     addItem(pi);
 
     //update scene rect to add borders
-    int iBoundaries=60;
     QRectF qr=itemsBoundingRect();
-    QRectF qrWithBorder(qr.left()-iBoundaries,qr.top()-iBoundaries,qr.width()+2*iBoundaries,qr.height()+iBoundaries);
+    QRectF qrWithBorder(qr.left()-SCENE_BOUNDARIES,qr.top()-SCENE_BOUNDARIES,qr.width()+2*SCENE_BOUNDARIES,qr.height()+SCENE_BOUNDARIES);
     setSceneRect(qrWithBorder);
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -164,5 +163,10 @@ void TimelineScene::zoom_out()
 {
     QGraphicsView* v=views()[0];
     v->scale(0.8,0.8);
+}
+///////////////////////////////////////////////////////////////////////////////
+const vector<TaskItem*>& TimelineScene::items() const
+{
+    return _vti;
 }
 ///////////////////////////////////////////////////////////////////////////////

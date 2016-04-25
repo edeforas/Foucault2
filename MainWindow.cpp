@@ -27,6 +27,8 @@
 #include "MirrorCouderMeasure.h"
 
 #include "TimelineScene.h"
+#include "TaskItem.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindowClass)
@@ -325,16 +327,31 @@ void MainWindow::on_actionGlobal_settings_triggered()
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionPrint_triggered()
 {
-    //TODO do not cut widget in two beewten printer pages
-
     //TODO move code in Timeline scene
 
+    // compute nb of pages
+    double dPageRatio=1.414213562373095;
+    const vector<TaskItem*>& vti=_ts->items();
+    vector<int> viPagesFirstItem;
+    double dPageFill=0;
+    for(unsigned int i=0;i<vti.size();i++)
+    {
+        if(dPageFill==0)
+            viPagesFirstItem.push_back(i);
+
+        const TaskItem* pti=vti[i];
+        dPageFill+=pti->rect().height();
+        double dPageHeight=pti->rect().width()*dPageRatio; //all the items have the same width
+        if(dPageFill>=dPageHeight)
+        {
+            // make new page
+            dPageFill=pti->rect().height();
+            viPagesFirstItem.push_back(i);
+        }
+    }
+
+    int iNbPages=viPagesFirstItem.size();
     QPrinter printer;
-    QRectF qrf=_ts->sceneRect();
-    int iNbPages=ceil(qrf.height()/qrf.width()/1.414213562373095); // use A4 portrait paper size
-
-    QRectF qrViewFull(qrf.left(),qrf.top(),qrf.width(),iNbPages*qrf.width()*1.414213562373095);// qrf.height());
-
     printer.setFromTo(1,iNbPages);
 
     if (QPrintDialog(&printer).exec() == QDialog::Accepted)
@@ -356,11 +373,23 @@ void MainWindow::on_actionPrint_triggered()
         painter.setRenderHint(QPainter::SmoothPixmapTransform);
         for(int iPage=iFirstPage;iPage<=iLastPage;iPage++)
         {
-            double pageStart=qrViewFull.top()+qrViewFull.height()*(iPage-iFirstPage)/(iLastPage-iFirstPage+1);
-            double pageHeight=qrViewFull.height()/(iLastPage-iFirstPage+1);
-            QRectF qr(qrViewFull.left(),pageStart,qrViewFull.width(),pageHeight);
+            int iFirstItemInPage=viPagesFirstItem[iPage-1];
+            int iLastItemInpage;
 
-            _ts->render(&painter,printer.pageRect(),qr);
+            if((unsigned int)(iPage-1)==viPagesFirstItem.size()-1) //last page?
+                iLastItemInpage=viPagesFirstItem.back();
+            else
+                iLastItemInpage=viPagesFirstItem[iPage]-1;
+
+            double pageStart=vti[iFirstItemInPage]->pos().y();//-SCENE_BOUNDARIES;
+            double pageHeight=vti[iLastItemInpage]->pos().y()+vti[iLastItemInpage]->rect().height()-pageStart;//-SCENE_BOUNDARIES;
+
+            QRectF qrfPage(vti[iFirstItemInPage]->pos().x(),pageStart,vti[iFirstItemInPage]->rect().width(),pageHeight);
+            QRectF qrfPrinter=printer.pageRect();
+            QRectF qrfPrinterBorder(qrfPrinter.left(),qrfPrinter.top(),qrfPrinter.width(),qrfPrinter.height());
+
+            //todo add borders in QPrinter printer;
+            _ts->render(&painter,qrfPrinterBorder,qrfPage);
 
             if (iPage != iLastPage)
                 printer.newPage();

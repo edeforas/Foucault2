@@ -9,6 +9,8 @@ class TaskItem;
 class MirrorItem;
 class Mirror;
 
+#define SCENE_BOUNDARIES 60
+
 class TimelineScene : public QGraphicsScene
 {
 public:
@@ -22,6 +24,8 @@ public:
 
     void zoom_in();
     void zoom_out();
+
+    const vector<TaskItem*>& items() const;
 
 protected:
     virtual void wheelEvent(QGraphicsSceneWheelEvent* wheelEvent);
