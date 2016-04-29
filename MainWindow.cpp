@@ -329,6 +329,8 @@ void MainWindow::on_actionPrint_triggered()
 {
     //TODO move code in Timeline scene
 
+    //code is not very clean, nor optimized, but works.
+
     // compute nb of pages
     double dPageRatio=1.414213562373095;
     const vector<TaskItem*>& vti=_ts->items();
@@ -385,15 +387,15 @@ void MainWindow::on_actionPrint_triggered()
             double pageHeight=vti[iLastItemInpage]->pos().y()+vti[iLastItemInpage]->rect().height()-pageStart;
 
             QRectF qrfPage(vti[iFirstItemInPage]->pos().x(),pageStart,vti[iFirstItemInPage]->rect().width(),pageHeight);
-            QRectF qrfPrinter=printer.pageRect();
 
+            //compute page rect
+            QRectF qrfPrinter=printer.pageRect();
             double dRatio=(210.-10.)/210.; //10mm lateral edge on A4
             double dLateralEdge=qrfPrinter.width()-qrfPrinter.width()*dRatio;
             double dVerticalEdge=qrfPrinter.height()-qrfPrinter.height()*dRatio;
-
             QRectF qrfPrinterBorder(qrfPrinter.left()+dLateralEdge,qrfPrinter.top()+dVerticalEdge,qrfPrinter.width()-2*dLateralEdge,qrfPrinter.height()-2*dVerticalEdge);
 
-            //todo add borders in QPrinter printer;
+            //print!
             _ts->render(&painter,qrfPrinterBorder,qrfPage);
 
             if (iPage != iLastPage)
