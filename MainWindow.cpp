@@ -381,12 +381,17 @@ void MainWindow::on_actionPrint_triggered()
             else
                 iLastItemInpage=viPagesFirstItem[iPage]-1;
 
-            double pageStart=vti[iFirstItemInPage]->pos().y();//-SCENE_BOUNDARIES;
-            double pageHeight=vti[iLastItemInpage]->pos().y()+vti[iLastItemInpage]->rect().height()-pageStart;//-SCENE_BOUNDARIES;
+            double pageStart=vti[iFirstItemInPage]->pos().y();
+            double pageHeight=vti[iLastItemInpage]->pos().y()+vti[iLastItemInpage]->rect().height()-pageStart;
 
             QRectF qrfPage(vti[iFirstItemInPage]->pos().x(),pageStart,vti[iFirstItemInPage]->rect().width(),pageHeight);
             QRectF qrfPrinter=printer.pageRect();
-            QRectF qrfPrinterBorder(qrfPrinter.left(),qrfPrinter.top(),qrfPrinter.width(),qrfPrinter.height());
+
+            double dRatio=(210.-10.)/210.; //10mm lateral edge on A4
+            double dLateralEdge=qrfPrinter.width()-qrfPrinter.width()*dRatio;
+            double dVerticalEdge=qrfPrinter.height()-qrfPrinter.height()*dRatio;
+
+            QRectF qrfPrinterBorder(qrfPrinter.left()+dLateralEdge,qrfPrinter.top()+dVerticalEdge,qrfPrinter.width()-2*dLateralEdge,qrfPrinter.height()-2*dVerticalEdge);
 
             //todo add borders in QPrinter printer;
             _ts->render(&painter,qrfPrinterBorder,qrfPage);
