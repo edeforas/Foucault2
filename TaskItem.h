@@ -22,7 +22,7 @@ public:
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void set_background_color(QColor color);
 
-    int block_size();
+    int block_size() const;
 
 protected:
     MirrorItem *_pItem;

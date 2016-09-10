@@ -41,15 +41,15 @@ void TaskItem::add_line_tab(string sTitle,vector<double> val,float x,float y, fl
 
     for(unsigned int i=0;i<val.size();i++)
     {
-        float fCellStart=x+width*(i+1.)/(val.size()+1.);
+        double dCellStart=x+width*(i+1.)/(val.size()+1.);
 
         QGraphicsTextItem* item=new QGraphicsTextItem(QString::number(val[i],'g',3));
-        item->setPos(fCellStart,y);
+        item->setPos(dCellStart,y);
         add_item(item);
     }
 }
 ///////////////////////////////////////////////////////////////////////
-int TaskItem::block_size()
+int TaskItem::block_size() const
 {
     return 12;
 }

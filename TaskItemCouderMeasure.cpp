@@ -13,7 +13,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
 
     int iDisplayMode=pM->get_display_mode();
     int iBlockSize=block_size();
-    int iLine=pos().y();
+    int iLine=(int)pos().y();
     bool bShowBothSide=pM->get_show_both_side();
     bool bSmoothCurves=pM->get_smooth_curves();
 

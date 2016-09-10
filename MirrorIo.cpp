@@ -33,7 +33,7 @@ Mirror* MirrorIo::load(string sFile)
     pm->set_conical(p.get_double("Conical"));
 
     if(p.exist("MovingLight"))
-        pm->set_is_slit_moving(p.get_double("MovingLight"));
+        pm->set_is_slit_moving(p.get_bool("MovingLight"));
 
     // old format compatibility, will be removed later
     if(p.exist("IsSlitMoving"))

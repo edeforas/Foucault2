@@ -10,7 +10,7 @@ using namespace std;
 TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
 {
     int iBlockSize=block_size();
-    int iLine=pos().y();
+    int iLine=(int)pos().y();
 
     MirrorWork* pMC=static_cast<MirrorWork*>(pItem);
     const Mirror* pM=pItem->mirror();
@@ -39,7 +39,7 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
     if(iWT==WORK_TYPE_FIGURING)
         qsWorkType=QObject::tr("Figuring");
 
-    int iDuration=pMC->duration();
+    unsigned int iDuration=pMC->duration();
     QString qsDuration="";
 
     if(iDuration!=0)
