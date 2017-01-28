@@ -3,7 +3,7 @@
 
 [Setup]
 AppName=Foucault2
-AppVerName=Foucault2 2.07
+AppVerName=Foucault2 2.08
 AppPublisher=Etienne de Foras
 AppPublisherURL=http://edeforas.free.fr
 AppSupportURL=http://edeforas.free.fr
@@ -37,14 +37,14 @@ Source: ".\*.rc"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\*.ts"; DestDir: "{app}\src\Foucault2"; Flags: ignoreversion
 Source: ".\samples\*.foucault2"; DestDir: "{app}\samples"; Flags: ignoreversion
 
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\Qt5Core.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\Qt5Gui.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\Qt5Widgets.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\Qt5PrintSupport.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\libstdc++-6.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\bin\libwinpthread-1.dll"; DestDir: "{app}"
-Source: "C:\Qt\Qt5.7.0\5.7\mingw53_32\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\Qt5Core.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\Qt5Gui.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\Qt5Widgets.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\Qt5PrintSupport.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\libstdc++-6.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\bin\libwinpthread-1.dll"; DestDir: "{app}"
+Source: "C:\Qt\Qt5.8.0\5.8\mingw53_32\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"
 
 [INI]
 Filename: "{app}\Foucault2.url"; Section: "InternetShortcut"; Key: "URL"; String: "http://edeforas.free.fr"
