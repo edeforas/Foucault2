@@ -1,4 +1,6 @@
 #include "TaskItemNewMirror.h"
+#include "Foucault2Defines.h"
+
 #include <QPen>
 
 #include "MirrorItem.h"
@@ -52,10 +54,10 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     add_item(ptiLight);
     iLine+=iBlockSize;
 
-    if(iDisplayMode==2)
+    if(iDisplayMode>=DISPLAY_MODE_DETAIL)
         iLine+=iBlockSize;
 
-    if(iDisplayMode>=1)
+    if(iDisplayMode>=DISPLAY_MODE_NORMAL)
     {
         vector<double> vdZone;
         for(unsigned int i=0;i<pM->hx().size();i++)
@@ -67,7 +69,7 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
     add_line_tab("Hx:",pM->hx(),pos().x(),iLine,iBlockSize*50);
     iLine+=iBlockSize;
 
-    if(iDisplayMode==2)
+    if(iDisplayMode>=DISPLAY_MODE_DETAIL)
     {
         add_line_tab("Hm²/R:",pM->hm2r(),pos().x(),iLine,iBlockSize*50);
         iLine+=iBlockSize;

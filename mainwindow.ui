@@ -89,6 +89,7 @@
     <addaction name="actionDisplay_Compact"/>
     <addaction name="actionDisplay_Normal"/>
     <addaction name="actionDisplay_Details"/>
+    <addaction name="actionDisplay_Full"/>
     <addaction name="separator"/>
     <addaction name="actionZoom_in"/>
     <addaction name="actionZoom_out"/>
@@ -231,7 +232,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display Compact</string>
+    <string>Compact View</string>
    </property>
   </action>
   <action name="actionDisplay_Normal">
@@ -242,7 +243,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display Normal</string>
+    <string>Normal View</string>
    </property>
   </action>
   <action name="actionDisplay_Details">
@@ -250,7 +251,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display Details</string>
+    <string>Detailed View</string>
    </property>
   </action>
   <action name="actionShow_smooth_curves">
@@ -286,6 +287,14 @@
    </property>
    <property name="text">
     <string>Delete last task</string>
+   </property>
+  </action>
+  <action name="actionDisplay_Full">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Full View</string>
    </property>
   </action>
  </widget>

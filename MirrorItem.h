@@ -17,7 +17,8 @@ public:
     string type() const;
 
     void set_when(unsigned int uiWhen);
-    unsigned int when();
+    unsigned int when() const;
+    string when_as_text() const;
 
 protected:
     string _sType;

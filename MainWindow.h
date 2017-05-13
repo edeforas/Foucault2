@@ -71,6 +71,8 @@ private slots:
 
     void on_actionDiscard_last_task_triggered();
 
+    void on_actionDisplay_Full_triggered();
+
 private:
     void update_title();
     void ensure_visible(int iItem);

@@ -249,9 +249,10 @@ void MainWindow::device_changed(bool bMustSave)
     ui->actionShow_smooth_curves->setChecked(_pMirror->get_smooth_curves());
     ui->actionDiscard_last_task->setEnabled(_pMirror->nb_zones()!=0);
 
-    ui->actionDisplay_Compact->setChecked(_pMirror->get_display_mode()==0);
-    ui->actionDisplay_Normal->setChecked(_pMirror->get_display_mode()==1);
-    ui->actionDisplay_Details->setChecked(_pMirror->get_display_mode()==2);
+    ui->actionDisplay_Compact->setChecked(_pMirror->get_display_mode()==DISPLAY_MODE_COMPACT);
+    ui->actionDisplay_Normal->setChecked(_pMirror->get_display_mode()==DISPLAY_MODE_NORMAL);
+    ui->actionDisplay_Details->setChecked(_pMirror->get_display_mode()==DISPLAY_MODE_DETAIL);
+    ui->actionDisplay_Full->setChecked(_pMirror->get_display_mode()==DISPLAY_MODE_FULL);
 
     update_title();
 
@@ -493,19 +494,19 @@ void MainWindow::on_actionShow_Colors_triggered()
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDisplay_Compact_triggered()
 {
-    _pMirror->set_display_mode(0);
+    _pMirror->set_display_mode(DISPLAY_MODE_COMPACT);
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDisplay_Normal_triggered()
 {
-    _pMirror->set_display_mode(1);
+    _pMirror->set_display_mode(DISPLAY_MODE_NORMAL);
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionDisplay_Details_triggered()
 {
-    _pMirror->set_display_mode(2);
+    _pMirror->set_display_mode(DISPLAY_MODE_DETAIL);
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -533,5 +534,13 @@ void MainWindow::on_actionDiscard_last_task_triggered()
     _pMirror->remove_last_item();
     device_changed(true);
     _ts->ensure_last_visible();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+void MainWindow::on_actionDisplay_Full_triggered()
+{
+    _pMirror->set_display_mode(DISPLAY_MODE_FULL);
+    device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////

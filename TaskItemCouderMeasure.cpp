@@ -1,4 +1,6 @@
 #include "TaskItemCouderMeasure.h"
+#include "Foucault2Defines.h"
+
 #include <QPen>
 #include "Mirror.h"
 #include "MirrorCouderMeasure.h"
@@ -18,12 +20,35 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     bool bSmoothCurves=pM->get_smooth_curves();
 
     MirrorCouderMeasure* mci=static_cast<MirrorCouderMeasure*>(pItem);
-    if(iDisplayMode>=1)
+
+    if(iDisplayMode>=DISPLAY_MODE_NORMAL)
     {
+        //Add date and hour
+       string s=mci->when_as_text();
+       QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(QObject::tr("When: ")+s.c_str());
+       ptiWhen->setPos(pos().x(),iLine);
+       add_item(ptiWhen);
+       iLine+=iBlockSize;
+
+        if(iDisplayMode>=DISPLAY_MODE_FULL)
+        {
+            add_line_tab("Hm²/R:",pM->hm2r(),pos().x(),iLine,iBlockSize*50);
+            iLine+=iBlockSize;
+
+            // compute delta Hm2/R
+            vector<double> vd=pM->hm2r();
+            vd[0]=0;
+            for(unsigned int i=1;i<vd.size();i++)
+                vd[i]=vd[i]-vd[i-1];
+
+            add_line_tab("DeltaHm²/R:",vd,pos().x(),iLine,iBlockSize*50);
+            iLine+=iBlockSize;
+        }
+
         add_line_tab(QObject::tr("Measures (mm):").toStdString(),mci->measures(),pos().x(),iLine,iBlockSize*50);
         iLine+=iBlockSize;
 
-        if(iDisplayMode==2)
+        if(iDisplayMode>=DISPLAY_MODE_DETAIL)
         {
             add_line_tab("deltaC:",mci->deltaC(),pos().x(),iLine,iBlockSize*50);
             iLine+=iBlockSize;
@@ -75,7 +100,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     double dSurfXM=(dSurfX1+dSurfX2)/2.;
     double dSurfY1=iLine+iBlockSize;
 
-    if(iDisplayMode==0)
+    if(iDisplayMode==DISPLAY_MODE_COMPACT)
         iLine+=5*iBlockSize;
     else
         iLine+=8*iBlockSize;
@@ -122,7 +147,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         qpathR.moveTo( pointsX[0]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,dSurfY2);
 
         qpathR.lineTo(
-                pointsX[0]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
+                    pointsX[0]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
                 dSurfY2-dSurfY12*(pointsY[0]/dSurfMax)
                 );
 
@@ -131,15 +156,15 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
             qpathL.moveTo(pointsX[0]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,dSurfY2);
 
             qpathL.lineTo(
-                    pointsX[0]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
+                        pointsX[0]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
                     dSurfY2-dSurfY12*(pointsY[0]/dSurfMax)
-                         );
+                    );
         }
 
         for(unsigned int iZ=1;iZ<hz.size()+1;iZ++)
         {
             qpathR.quadTo(
-                    pointsX[iZ*2-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
+                        pointsX[iZ*2-1]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
                     dSurfY2-dSurfY12*(pointsY[iZ*2-1]/dSurfMax),
                     pointsX[iZ*2]/dRadius*(dSurfX2-dSurfXM)+dSurfXM,
                     dSurfY2-dSurfY12*(pointsY[iZ*2]/dSurfMax)
@@ -148,7 +173,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
             if(bShowBothSide)
             {
                 qpathL.quadTo(
-                        pointsX[iZ*2-1]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
+                            pointsX[iZ*2-1]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
                         dSurfY2-dSurfY12*(pointsY[iZ*2-1]/dSurfMax),
                         pointsX[iZ*2]/dRadius*(-dSurfX2+dSurfXM)+dSurfXM,
                         dSurfY2-dSurfY12*(pointsY[iZ*2]/dSurfMax)

@@ -296,7 +296,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="MainWindow.cpp" line="69"/>
-        <location filename="MainWindow.cpp" line="530"/>
+        <location filename="MainWindow.cpp" line="531"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
@@ -366,27 +366,27 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation>Impossible de charger le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="275"/>
+        <location filename="MainWindow.cpp" line="276"/>
         <source> [loaded </source>
         <translation>[chargé </translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="414"/>
+        <location filename="MainWindow.cpp" line="415"/>
         <source>Import Foucault .mir File</source>
         <translation>Importer un fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="414"/>
+        <location filename="MainWindow.cpp" line="415"/>
         <source>Foucault Files (*.mir)</source>
         <translation>Fichier Foucault (*.mir)</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="426"/>
+        <location filename="MainWindow.cpp" line="427"/>
         <source>Unable to Import file!!</source>
         <translation>Impossible d&apos;importer le fichier!!</translation>
     </message>
     <message>
-        <location filename="MainWindow.cpp" line="530"/>
+        <location filename="MainWindow.cpp" line="531"/>
         <source>Delete last task?</source>
         <translation>Supprimer la dernière tache?</translation>
     </message>
@@ -417,147 +417,164 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
     <message>
         <location filename="mainwindow.ui" line="83"/>
         <source>View</source>
-        <translation>Vue</translation>
+        <translation>Affichage</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="103"/>
+        <location filename="mainwindow.ui" line="104"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="108"/>
+        <location filename="mainwindow.ui" line="109"/>
         <source>About...</source>
         <translation>A propos...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="113"/>
+        <location filename="mainwindow.ui" line="114"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="118"/>
+        <location filename="mainwindow.ui" line="119"/>
         <source>Save</source>
         <translation>Sauver</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="123"/>
+        <location filename="mainwindow.ui" line="124"/>
         <source>Save as...</source>
         <translation>Sauver comme...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="128"/>
+        <location filename="mainwindow.ui" line="129"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="133"/>
+        <location filename="mainwindow.ui" line="134"/>
         <source>New...</source>
         <translation>Nouveau...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="141"/>
+        <location filename="mainwindow.ui" line="142"/>
         <source>Comment</source>
         <translation>Commentaire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="149"/>
+        <location filename="mainwindow.ui" line="150"/>
         <source>Global Settings</source>
         <translation>Propriétés globales</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="157"/>
+        <location filename="mainwindow.ui" line="158"/>
         <source>Foucault Screen</source>
         <oldsource>Couder Screen</oldsource>
         <translation>Ecran de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="165"/>
+        <location filename="mainwindow.ui" line="166"/>
         <source>Foucault Measure</source>
         <oldsource>Couder Measure</oldsource>
         <translation>Mesure de Foucault</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="173"/>
+        <location filename="mainwindow.ui" line="174"/>
         <source>Hartmann Screen</source>
         <translation>Ecran de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="181"/>
+        <location filename="mainwindow.ui" line="182"/>
         <source>Hartmann Measure</source>
         <translation>Mesure de Hartmann</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="189"/>
+        <location filename="mainwindow.ui" line="190"/>
         <source>Bath Measure</source>
         <translation>Mesure de Bath</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="194"/>
+        <location filename="mainwindow.ui" line="195"/>
         <source>Print...</source>
         <translation>Imprimer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="199"/>
+        <location filename="mainwindow.ui" line="200"/>
         <source>Import...</source>
         <translation>Importer...</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="210"/>
+        <location filename="mainwindow.ui" line="211"/>
         <source>Show mirror both side</source>
         <translation>Montrer les deux cotés du miroir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="218"/>
+        <location filename="mainwindow.ui" line="219"/>
         <source>Work</source>
         <translation>Travail</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="226"/>
+        <location filename="mainwindow.ui" line="227"/>
         <source>Show Colors</source>
         <translation>Affichage en couleur</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="235"/>
+        <source>Compact View</source>
+        <translation>Vue compacte</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="246"/>
+        <source>Normal View</source>
+        <translation>Vue normale</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="254"/>
+        <source>Detailed View</source>
+        <translation>Vue détaillée</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="297"/>
+        <source>Full View</source>
+        <translation>Vue complète</translation>
+    </message>
+    <message>
         <source>Display Compact</source>
-        <translation>Affichage compact</translation>
+        <translation type="vanished">Affichage compact</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="245"/>
         <source>Display Normal</source>
-        <translation>Affichage normal</translation>
+        <translation type="vanished">Affichage normal</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="253"/>
         <source>Display Details</source>
-        <translation>Affichage détaillé</translation>
+        <translation type="vanished">Affichage détaillé</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="264"/>
+        <location filename="mainwindow.ui" line="265"/>
         <source>Show smooth curves</source>
         <translation>Montrer des surfaces lisses</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="270"/>
         <source>Zoom in</source>
         <translation>Agrandir</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="272"/>
+        <location filename="mainwindow.ui" line="273"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="277"/>
+        <location filename="mainwindow.ui" line="278"/>
         <source>Zoom out</source>
         <translation>Réduire</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="280"/>
+        <location filename="mainwindow.ui" line="281"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="288"/>
+        <location filename="mainwindow.ui" line="289"/>
         <source>Delete last task</source>
         <translation>Supprimer dernière tache</translation>
     </message>
@@ -699,49 +716,55 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation>Commentaire: </translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="23"/>
+        <location filename="MirrorItem.cpp" line="46"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="28"/>
+        <source>When: </source>
+        <translation>Date:</translation>
+    </message>
+    <message>
+        <location filename="TaskItemCouderMeasure.cpp" line="48"/>
         <source>Measures (mm):</source>
         <oldsource>Measures:</oldsource>
         <translation>Mesures (mm):</translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="44"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="69"/>
         <source>Aspect: </source>
         <translation>Aspect: </translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="50"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="75"/>
         <source>LambdaWave=</source>
         <translation>Lambda sur l&apos;onde=</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="28"/>
+        <location filename="TaskItemNewMirror.cpp" line="30"/>
         <source>Diameter: </source>
         <translation>Diamètre: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="32"/>
+        <location filename="TaskItemNewMirror.cpp" line="34"/>
         <source>Hole Diameter: </source>
         <translation>Diamètre du trou central: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="37"/>
+        <location filename="TaskItemNewMirror.cpp" line="39"/>
         <source>Focal Length: </source>
         <oldsource>Focal: </oldsource>
         <translation>Focale: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="41"/>
+        <location filename="TaskItemNewMirror.cpp" line="43"/>
         <source>Conical: </source>
         <translation>Constante conique: </translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="50"/>
+        <location filename="TaskItemNewMirror.cpp" line="52"/>
         <source>LigthSlit: Moving</source>
         <translation>Fente: mobile</translation>
     </message>
     <message>
-        <location filename="TaskItemNewMirror.cpp" line="50"/>
+        <location filename="TaskItemNewMirror.cpp" line="52"/>
         <source>LightSlit: Still</source>
         <translation>Fente: immobile</translation>
     </message>

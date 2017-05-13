@@ -98,7 +98,7 @@ private:
     bool _bSmoothCurves;
     bool _bShowBothSide;
     bool _bShowColors;
-    int _iDisplayMode; //0=compact 1=normal 2=details
+    int _iDisplayMode; //0=compact 1=normal 2=details 3=full
 };
 
 #endif

@@ -190,7 +190,7 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
     for (int i=0;i<iNbZone+1;i++)
         pMes->_surf[i]-=min;
 
-    // on retourne le PTV
+    // return PTV
     return *max_element(pMes->_surf.begin(),pMes->_surf.end());
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -213,7 +213,7 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
         }
         else
         {
-            dtemp=curv*sqr(pMirror->hz()[i]); // cas degrade
+            dtemp=curv*sqr(pMirror->hz()[i]); // bad case
         }
 
         pMes->_surf[i]=(pMes->_profil[i]-dtemp)/2.;
