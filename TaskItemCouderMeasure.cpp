@@ -25,7 +25,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     {
         //Add date and hour
        string s=mci->when_as_text();
-       QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(QObject::tr("When: ")+s.c_str());
+       QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
        ptiWhen->setPos(pos().x(),iLine);
        add_item(ptiWhen);
        iLine+=iBlockSize;

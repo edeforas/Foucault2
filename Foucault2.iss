@@ -51,7 +51,8 @@ Filename: "{app}\Foucault2.url"; Section: "InternetShortcut"; Key: "URL"; String
 
 [Icons]
 Name: "{group}\Foucault2"; Filename: "{app}\Foucault2.exe"; WorkingDir: "{app}"
-Name: "{group}\{cm:ProgramOnTheWeb,Foucault2}"; Filename: "{app}\Foucault2.url"
+Name: "{group}\Foucault2 website"; Filename: "{app}\Foucault2.url"
+Name: "{group}\Foucault2 Samples"; Filename: "{app}\samples\"
 Name: "{group}\{cm:UninstallProgram,Foucault2}"; Filename: "{uninstallexe}"
 Name: "{userdesktop}\Foucault2"; Filename: "{app}\Foucault2.exe"; Tasks: desktopicon; WorkingDir: "{app}"
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Foucault2"; Filename: "{app}\Foucault2.exe"; Tasks: quicklaunchicon; WorkingDir: "{app}"

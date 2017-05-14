@@ -1,4 +1,6 @@
 #include "TaskItemWork.h"
+#include "Foucault2Defines.h"
+
 #include <QPen>
 
 #include "MirrorWork.h"
@@ -14,12 +16,19 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
 
     MirrorWork* pMC=static_cast<MirrorWork*>(pItem);
     const Mirror* pM=pItem->mirror();
+    int iDisplayMode=pM->get_display_mode();
     if(pM->get_show_colors())
         set_background_color(QColor(247,247,192));
 
-    QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
-    ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
-    add_item(ptiTitleTab);
+    if(iDisplayMode>=DISPLAY_MODE_NORMAL)
+    {
+        //Add date and hour
+        string s=pMC->when_as_text();
+        QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
+        ptiWhen->setPos(pos().x(),iLine);
+        add_item(ptiWhen);
+        iLine+=iBlockSize;
+    }
 
     int iWT=pMC->work_type();
     QString qsWorkType;
@@ -62,5 +71,10 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
     }
 
     QGraphicsTextItem* pti=new QGraphicsTextItem(qsWorkType+qsDuration+": "+pMC->work().c_str());
+    pti->setPos(pos().x(),iLine);
     add_item(pti);
+
+    QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
+    ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
+    add_item(ptiTitleTab);
 }
