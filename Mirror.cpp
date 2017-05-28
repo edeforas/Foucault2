@@ -277,7 +277,7 @@ bool Mirror::get_show_colors() const
     return _bShowColors;
 }
 //////////////////////////////////////////////////////////////////////////////
-void Mirror::set_display_mode(int iDisplayMode) //0=compact 1=normal 2=details
+void Mirror::set_display_mode(int iDisplayMode)    //0=compact 1=normal 2=details 3=full
 {
     _iDisplayMode=iDisplayMode;
 }

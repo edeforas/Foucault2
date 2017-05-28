@@ -711,13 +711,12 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="TaskItemComment.cpp" line="17"/>
+        <location filename="TaskItemComment.cpp" line="29"/>
         <source>Comment: </source>
         <translation>Commentaire: </translation>
     </message>
     <message>
         <location filename="MirrorItem.cpp" line="46"/>
-        <location filename="TaskItemCouderMeasure.cpp" line="28"/>
         <source>When: </source>
         <translation>Date:</translation>
     </message>
@@ -728,12 +727,12 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation>Mesures (mm):</translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="69"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="72"/>
         <source>Aspect: </source>
         <translation>Aspect: </translation>
     </message>
     <message>
-        <location filename="TaskItemCouderMeasure.cpp" line="75"/>
+        <location filename="TaskItemCouderMeasure.cpp" line="78"/>
         <source>LambdaWave=</source>
         <translation>Lambda sur l&apos;onde=</translation>
     </message>
@@ -773,33 +772,33 @@ Thanks to Jean-Jacques Jourdanneau for his help</source>
         <translation type="vanished">Travail: </translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="31"/>
+        <location filename="TaskItemWork.cpp" line="40"/>
         <source>Rough Grinding</source>
         <translation>Ebauchage</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="34"/>
+        <location filename="TaskItemWork.cpp" line="43"/>
         <source>Fine Grinding</source>
         <translation>Doucissage</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="37"/>
+        <location filename="TaskItemWork.cpp" line="46"/>
         <source>Polishing</source>
         <translation>Polissage</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="40"/>
+        <location filename="TaskItemWork.cpp" line="49"/>
         <source>Figuring</source>
         <translation>Asphérisation</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="51"/>
+        <location filename="TaskItemWork.cpp" line="60"/>
         <source>duration</source>
         <oldsource>during</oldsource>
         <translation>durée</translation>
     </message>
     <message>
-        <location filename="TaskItemWork.cpp" line="28"/>
+        <location filename="TaskItemWork.cpp" line="37"/>
         <source>Work</source>
         <translation>Travail</translation>
     </message>
