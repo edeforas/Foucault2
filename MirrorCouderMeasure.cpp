@@ -32,7 +32,7 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
     _sAspect=sAspect;
     assert(pMirror);
 
-    int iNbZone=pMirror->nb_zones();
+    unsigned int iNbZone=pMirror->nb_zones();
     _lf1000.resize(iNbZone);
     _lfro.resize(iNbZone);
     _moinsu.resize(iNbZone);
@@ -41,27 +41,27 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
     _mesc.resize(iNbZone);
     _deltaC.resize(iNbZone);
 
-    for (int i=0;i<iNbZone;i++)
+    for (unsigned int i=0;i<iNbZone;i++)
         _mesc[i]=(vdMeasures[i]-pMirror->hm2r()[i])*(pMirror->is_slit_moving()?2.:1.);
 
-    //on calcules la mesure max et min
+    // computes max and min
     double a=*min_element(_mesc.begin(),_mesc.end());
     double b=*max_element(_mesc.begin(),_mesc.end());
 
-    //et on cherche le lf/ro entre ces valeurs
-    dichotomy(a,b,RESMES,&(calc_lf1000));
+    // search for lf/ro between a end b
+    find_minimum(a,b,RESMES,&(calc_lf1000));
 
-    for (int i=0;i<iNbZone;i++)
+    for(unsigned int i=0;i<iNbZone;i++)
         _lfro[i]=_lf1000[i]/pMirror->ro_dif()/1e6;
 
     _dLfRoMax=*max_element(_lfro.begin(),_lfro.end());
 
-    for (int i=0;i<iNbZone;i++)
-        _moinsu[i]=-_lf1000[i]/pMirror->radius_curvature()*2000.; //TODO was ray
+    for(unsigned int i=0;i<iNbZone;i++)
+        _moinsu[i]=-_lf1000[i]/pMirror->radius_curvature()*2000.;
 
-    //on calcule le profil de la surface grace aux pentes
+    // compute surface profile using slopes
     _profil[0]=0;
-    for (int i=1;i<iNbZone+1;i++)
+    for(unsigned int i=1;i<iNbZone+1;i++)
         _profil[i]=_profil[i-1]+(pMirror->hz()[i]-pMirror->hz()[i-1])*_moinsu[i-1];
 
     //on calcule le max et le min de la conique a ajuster
@@ -75,11 +75,11 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
 
     double dReso=1./(pMirror->hx()[iNbZone-1]*pMirror->hx()[iNbZone-1]);
 
-    // on cherche la conique qui minimise le rms
-    dichotomy(a,b,dReso,&(calc_less_rms));
+    // compute conique qui minimise le rms
+    find_minimum(a,b,dReso,&(calc_less_rms));
 
-    //et on cherche la conique qui minimise le ptv
-    dichotomy(a,b,dReso,&(calc_less_ptv));
+    // compute conique qui minimise le ptv
+    find_minimum(a,b,dReso,&(calc_less_ptv));
 
     double dMax=*max_element(_surf.begin(),_surf.end());
     if (dMax!=0.)
@@ -90,7 +90,7 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
     _dGlassMax=dMax;
 
     //compute best parabola (vs RMS)
-    _dWeightedLambdaRms=YELLOW/2./_dStd; //   1./(ecart type de la surface en unite lambda)
+    _dWeightedLambdaRms=YELLOW/2./_dStd; //   1./(surface std in lambda unit)
 
     //compute stddev rms
     _dWeightedStrehl=exp(-sqr(2.*M_PI*1./_dWeightedLambdaRms));
@@ -126,7 +126,7 @@ const vector<double>& MirrorCouderMeasure::surface() const
     return _surf;
 }
 ////////////////////////////////////////////////////////////////////////////////
-double MirrorCouderMeasure::dichotomy(double a,double c,double res,double (*fcn)(void* self,double h))
+double MirrorCouderMeasure::find_minimum(double a,double c,double res,double (*fcn)(void* self,double h))
 {
     double b=(a+c)/2.;
     double fb=fcn(this,b);
@@ -166,10 +166,9 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
     MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
-    int iNbZone=pMirror->nb_zones();
 
     //compute surface
-    for (int i=0;i<iNbZone+1;i++)
+    for (unsigned int i=0;i<pMirror->nb_zones()+1;i++)
     {
         double dtemp;
         double denom= 1.-(pMirror->conical()+1.)*sqr(curv*pMirror->hz()[i]);
@@ -185,9 +184,10 @@ double MirrorCouderMeasure::calc_less_ptv(void* self,double curv)
 
         pMes->_surf[i]=(pMes->_profil[i]-dtemp)/2.;
     }
-    //on la decale entre 0 et max-min
+
+    // shift between 0 and max-min
     double min=*min_element(pMes->_surf.begin(),pMes->_surf.end());
-    for (int i=0;i<iNbZone+1;i++)
+    for (unsigned int i=0;i<pMirror->nb_zones()+1;i++)
         pMes->_surf[i]-=min;
 
     // return PTV
@@ -199,11 +199,11 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
     MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
-    int iNbZone=pMirror->nb_zones();
+    unsigned int iNbZone=pMirror->nb_zones();
     double dtemp;
 
     //compute surface
-    for (int i=0;i<iNbZone+1;i++)
+    for (unsigned int i=0;i<iNbZone+1;i++)
     {
         double denom= 1.-(pMirror->conical()+1.)*sqr(curv*pMirror->hz()[i]);
 
@@ -221,12 +221,12 @@ double MirrorCouderMeasure::calc_less_rms(void* self,double curv)
 
     //compute mean
     double dM=0.;
-    for(int i=0;i<iNbZone;i++)
+    for(unsigned int i=0;i<iNbZone;i++)
         dM+=(pMes->_surf[i]+pMes->_surf[i+1])/2.*pMirror->relative_surface()[i];
 
     //compute var and stddev
     double dVar=0.;
-    for(int i=0;i<iNbZone;i++)
+    for(unsigned int i=0;i<iNbZone;i++)
         dVar+=sqr((pMes->_surf[i]+pMes->_surf[i+1])/2.-dM)*pMirror->relative_surface()[i];
 
     double dStd=sqrt(dVar);
@@ -241,10 +241,9 @@ double MirrorCouderMeasure::calc_lf1000(void* self,double h)
     MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
-    int iNbZone=pMirror->nb_zones();
 
     double minl,maxl;
-    for (int i=0;i<iNbZone;i++)
+    for (unsigned int i=0;i<pMirror->nb_zones();i++)
     {
         pMes->_deltaC[i]=pMes->_mesc[i]-h;
         pMes->_lf1000[i]=1000.*pMes->_deltaC[i]*pMirror->hm4f()[i];
@@ -280,17 +279,17 @@ string MirrorCouderMeasure::get_aspect() const
     return _sAspect;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void MirrorCouderMeasure::get_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const
+void MirrorCouderMeasure::compute_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const
 {
     const vector<double>& hz=mirror()->hz();
-    const vector<double>&  surf=surface();
+    const vector<double>& surf=surface();
     assert(hz.size()==surf.size());
-    int iNbPoints=hz.size();
+    unsigned int iNbPoints=hz.size();
 
     pointsX.resize(iNbPoints+iNbPoints+1); //iNbPoints+1 points and iNbPoints control points
     pointsY.resize(iNbPoints+iNbPoints+1);
 
-    for(int iZ=1;iZ<iNbPoints-1;iZ++)
+    for(unsigned int iZ=1;iZ<iNbPoints-1;iZ++)
     {
         double X1= hz[iZ-1];
         double X2= hz[iZ];

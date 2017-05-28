@@ -28,10 +28,10 @@ public:
 
     // get the surface as a set of quad splines
     // each control points[i] is beetwen points[i-1] and points[i+1]
-    void get_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const;
+    void compute_surface_smooth(vector<double>& pointsX,vector<double>& pointsY) const;
 
 private:
-    double dichotomy(double a,double c,double res,double (*fcn)(void *self,double h));
+    double find_minimum(double a,double c,double res,double (*fcn)(void *self,double h));
 
     static double calc_lf1000(void *self, double h);
     static double calc_less_rms(void* self,double curv);

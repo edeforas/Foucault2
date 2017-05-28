@@ -35,8 +35,9 @@ public:
 
     double conical() const;
     void set_conical(double dConical);
+    bool is_parabolic() const;
 
-    int nb_zones() const;
+    unsigned int nb_zones() const;
     const vector<double>& hx() const;
     void set_hx(vector<double> vdHx);
 
@@ -71,7 +72,7 @@ public:
     void set_show_colors(bool bShowColors);
     bool get_show_colors() const;
 
-    //0=compact 1=normal 2=details
+    //0=compact 1=normal 2=details 3=full
     void set_display_mode(int iDisplayMode);
     int get_display_mode() const;
 

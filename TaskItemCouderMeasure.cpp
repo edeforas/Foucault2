@@ -24,11 +24,11 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     if(iDisplayMode>=DISPLAY_MODE_NORMAL)
     {
         //Add date and hour
-       string s=mci->when_as_text();
-       QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
-       ptiWhen->setPos(pos().x(),iLine);
-       add_item(ptiWhen);
-       iLine+=iBlockSize;
+        string s=mci->when_as_text();
+        QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
+        ptiWhen->setPos(pos().x(),iLine);
+        add_item(ptiWhen);
+        iLine+=iBlockSize;
 
         if(iDisplayMode>=DISPLAY_MODE_FULL)
         {
@@ -56,8 +56,11 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
             add_line_tab("Lf*1000:",mci->lf1000(),pos().x(),iLine,iBlockSize*50);
             iLine+=iBlockSize;
 
-            add_line_tab("Lf/Ro:",mci->lfro(),pos().x(),iLine,iBlockSize*50);
-            iLine+=iBlockSize;
+            if(pM->is_parabolic())
+            {
+                add_line_tab("Lf/Ro:",mci->lfro(),pos().x(),iLine,iBlockSize*50);
+                iLine+=iBlockSize;
+            }
 
             add_line_tab("-U:",mci->moinsu(),pos().x(),iLine,iBlockSize*50);
             iLine+=iBlockSize*2;
@@ -77,7 +80,12 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     ptiLambdaWave->setPos(pos().x(),iLine);
     add_item(ptiLambdaWave);
 
-    QString qsLfro="Lf/Ro=" +QString::number(mci->get_lfro(),'g',2);
+    QString qsLfro;
+    if(pM->is_parabolic())
+        qsLfro="Lf/Ro=" +QString::number(mci->get_lfro(),'g',2);
+    else
+        qsLfro="Lf/Ro= n/a";
+
     QGraphicsTextItem* ptiLFRO=new QGraphicsTextItem(qsLfro);
     ptiLFRO->setPos(pos().x()+iBlockSize*16,iLine);
     add_item(ptiLFRO);
@@ -87,7 +95,12 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     ptiRMS->setPos(pos().x()+iBlockSize*31,iLine);
     add_item(ptiRMS);
 
-    QString qsStrehl="Strehl="+QString::number(mci->get_strehl(),'g',2);
+    QString qsStrehl;
+    if(pM->is_parabolic())
+        qsStrehl="Strehl="+QString::number(mci->get_strehl(),'g',2);
+    else
+        qsStrehl="Strehl= n/a";
+
     QGraphicsTextItem* ptiStrehl=new QGraphicsTextItem(qsStrehl);
     ptiStrehl->setPos(pos().x()+iBlockSize*46,iLine);
     add_item(ptiStrehl);
@@ -138,7 +151,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     if(bSmoothCurves)
     {
         vector<double> pointsX,pointsY;
-        pMeasure->get_surface_smooth(pointsX,pointsY);
+        pMeasure->compute_surface_smooth(pointsX,pointsY);
         assert(pointsX.size()==hz.size()+hz.size()+1);
         assert(pointsY.size()==hz.size()+hz.size()+1);
 

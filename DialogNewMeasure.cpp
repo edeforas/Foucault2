@@ -21,7 +21,7 @@ DialogNewMeasure::DialogNewMeasure(Mirror* pMirror,QWidget *parent):
     ui->twZones->setColumnCount(_pMirror->nb_zones());
     ui->twZones->horizontalHeader()->setVisible(true);
 
-    for(int i=0;i<_pMirror->nb_zones();i++)
+    for(unsigned int i=0;i<_pMirror->nb_zones();i++)
         ui->twZones->setItem(0,i,new QTableWidgetItem());
 
     ui->twZones->item(0,0)->setSelected(true);
@@ -40,7 +40,7 @@ void DialogNewMeasure::on_pushButton_2_clicked()
     vector<double> vdMes;
     int iError=-1;
 
-    for(int i=0;i<_pMirror->nb_zones();i++)
+    for(unsigned int i=0;i<_pMirror->nb_zones();i++)
     {
         QTableWidgetItem* pItem=ui->twZones->item(0,i);
         assert(pItem);
@@ -57,7 +57,7 @@ void DialogNewMeasure::on_pushButton_2_clicked()
 
     if(iError!=-1)
     {
-        for(int i=0;i<_pMirror->nb_zones();i++)
+        for(unsigned int i=0;i<_pMirror->nb_zones();i++)
             ui->twZones->item(0,i)->setSelected(false);
 
         ui->twZones->setFocus();
@@ -67,7 +67,7 @@ void DialogNewMeasure::on_pushButton_2_clicked()
 
     _vdMeasures=vdMes;
 
-    assert((int)_vdMeasures.size()==_pMirror->nb_zones());
+    assert((unsigned int)_vdMeasures.size()==_pMirror->nb_zones());
     accept();
 }
 
