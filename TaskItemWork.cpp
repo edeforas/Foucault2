@@ -9,9 +9,9 @@
 #include <string>
 using namespace std;
 
-TaskItemWork::TaskItemWork(MirrorItem* pItem):TaskItem(pItem)
+TaskItemWork::TaskItemWork(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
-    int iBlockSize=block_size();
+ //   int iBlockSize=block_size();
     int iLine=(int)pos().y();
 
     MirrorWork* pMC=static_cast<MirrorWork*>(pItem);

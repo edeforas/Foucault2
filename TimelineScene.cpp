@@ -19,6 +19,10 @@
 TimelineScene::TimelineScene()
 {
     _pM=0;
+
+    QFontInfo qfi(font());
+    _iFontHeight=qfi.pixelSize()*1.25;
+    _iSceneBorder=3*_iFontHeight;
 }
 ///////////////////////////////////////////////////////////////////////////////
 void TimelineScene::add_item(TaskItem* pi)
@@ -37,7 +41,7 @@ void TimelineScene::add_item(TaskItem* pi)
 
     //update scene rect to add borders
     QRectF qr=itemsBoundingRect();
-    QRectF qrWithBorder(qr.left()-SCENE_BOUNDARIES,qr.top()-SCENE_BOUNDARIES,qr.width()+2*SCENE_BOUNDARIES,qr.height()+SCENE_BOUNDARIES);
+    QRectF qrWithBorder(qr.left()-_iSceneBorder,qr.top()-_iSceneBorder,qr.width()+2*_iSceneBorder,qr.height()+_iSceneBorder);
     setSceneRect(qrWithBorder);
 }
 ///////////////////////////////////////////////////////////////////////////////
@@ -85,7 +89,7 @@ void TimelineScene::update_items(int iFirstItem)
         MirrorItem mi;
         mi.set_mirror(_pM);
 
-        TaskItemNewMirror* ptinm=new TaskItemNewMirror(&mi);
+        TaskItemNewMirror* ptinm=new TaskItemNewMirror(&mi,_iFontHeight);
         add_item(ptinm);
         iFirstItem=0;
     }
@@ -101,17 +105,17 @@ TaskItem* TimelineScene::create_item(MirrorItem* rmi)
 {
     if(rmi->type()=="MirrorComment")
     {
-        return new TaskItemComment(rmi);
+        return new TaskItemComment(rmi,_iFontHeight);
     }
 
     if(rmi->type()=="MirrorWork")
     {
-        return new TaskItemWork(rmi);
+        return new TaskItemWork(rmi,_iFontHeight);
     }
 
     if(rmi->type()=="MirrorCouderMeasure")
     {
-        return new TaskItemCouderMeasure(rmi);
+        return new TaskItemCouderMeasure(rmi,_iFontHeight);
     }
 
     return 0;

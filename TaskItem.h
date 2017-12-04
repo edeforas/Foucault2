@@ -13,19 +13,18 @@ class MirrorItem;
 class TaskItem : public QGraphicsRectItem
 {
 public:
-    TaskItem(MirrorItem *pItem);
+    TaskItem(MirrorItem *pItem,int iBlockSize);
 
     void add_item(QGraphicsItem *pItem);
-    void add_line_tab(string sTitle, vector<double> val, float x, float y, float width);
+    void add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect=true);
     virtual QRectF boundingRect() const;
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void set_background_color(QColor color);
 
-    int block_size() const;
-
 protected:
     MirrorItem *_pItem;
+    int _iBlockSize;
 
 private:
     QRectF _boundingRect;

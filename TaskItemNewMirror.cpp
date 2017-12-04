@@ -9,9 +9,9 @@
 #include <string>
 using namespace std;
 ///////////////////////////////////////////////////////////////////////
-TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem):TaskItem(pItem)
+TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
-    int iBlockSize=block_size();
+   // int iBlockSize=block_size();
     const Mirror* pM=pItem->mirror();
     int iLine=pos().y();
     int iDisplayMode=pM->get_display_mode();

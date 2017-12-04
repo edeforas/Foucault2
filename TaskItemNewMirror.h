@@ -6,7 +6,7 @@
 class TaskItemNewMirror : public TaskItem
 {
 public:
-    TaskItemNewMirror(MirrorItem* pItem);
+    TaskItemNewMirror(MirrorItem* pItem,int iBlockSize);
 
 };
 

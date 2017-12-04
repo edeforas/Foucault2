@@ -2,9 +2,10 @@
 
 #include <cassert>
 ///////////////////////////////////////////////////////////////////////
-TaskItem::TaskItem(MirrorItem *pItem)
+TaskItem::TaskItem(MirrorItem *pItem, int iBlockSize)
 {
     _pItem=pItem;
+    _iBlockSize=iBlockSize;
     _color=Qt::transparent;
 }
 ///////////////////////////////////////////////////////////////////////
@@ -12,7 +13,7 @@ void TaskItem::add_item(QGraphicsItem * pItem)
 {
     assert(pItem);
     pItem->setParentItem(this);
-    _boundingRect=childrenBoundingRect();    
+    _boundingRect=childrenBoundingRect();
 }
 ///////////////////////////////////////////////////////////////////////
 QRectF TaskItem::boundingRect() const
@@ -33,11 +34,18 @@ void TaskItem::set_background_color(QColor color)
     _color=color;
 }
 ///////////////////////////////////////////////////////////////////////
-void TaskItem::add_line_tab(string sTitle,vector<double> val,float x,float y, float width)
+void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect)
 {
     QGraphicsTextItem* title=new QGraphicsTextItem(sTitle.c_str());
     title->setPos(x,y);
     add_item(title);
+    int iSmallVerticalMargin=_iBlockSize*0.25;
+
+    if(bDrawRect)
+    {
+        QGraphicsRectItem* itemR=new QGraphicsRectItem(x,y+iSmallVerticalMargin,width,_iBlockSize);
+        add_item(itemR);
+    }
 
     for(unsigned int i=0;i<val.size();i++)
     {
@@ -46,11 +54,12 @@ void TaskItem::add_line_tab(string sTitle,vector<double> val,float x,float y, fl
         QGraphicsTextItem* item=new QGraphicsTextItem(QString::number(val[i],'g',3));
         item->setPos(dCellStart,y);
         add_item(item);
+
+        if(bDrawRect)
+        {
+            QGraphicsLineItem* itemL=new QGraphicsLineItem(dCellStart,y+iSmallVerticalMargin,dCellStart,y+_iBlockSize+iSmallVerticalMargin);
+            add_item(itemL);
+        }
     }
-}
-///////////////////////////////////////////////////////////////////////
-int TaskItem::block_size() const
-{
-    return 12;
 }
 ///////////////////////////////////////////////////////////////////////

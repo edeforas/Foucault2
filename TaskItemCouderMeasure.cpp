@@ -6,7 +6,7 @@
 #include "MirrorCouderMeasure.h"
 #include <cassert>
 
-TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
+TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
     const Mirror* pM=pItem->mirror();
 
@@ -14,7 +14,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
         set_background_color(QColor(230,239,244));
 
     int iDisplayMode=pM->get_display_mode();
-    int iBlockSize=block_size();
+ //   int iBlockSize=iBlockSize;
     int iLine=(int)pos().y();
     bool bShowBothSide=pM->get_show_both_side();
     bool bSmoothCurves=pM->get_smooth_curves();
@@ -122,7 +122,6 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem):TaskItem(pItem)
     QGraphicsTextItem* ptiTitleTab2=new QGraphicsTextItem(" ");
     ptiTitleTab2->setPos(pos().x()+iBlockSize*61,iLine-iBlockSize/2);
     add_item(ptiTitleTab2);
-
 
     double dSurfY2=iLine;
     double dSurfY12=dSurfY2-dSurfY1;

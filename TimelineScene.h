@@ -9,8 +9,6 @@ class TaskItem;
 class MirrorItem;
 class Mirror;
 
-#define SCENE_BOUNDARIES 60
-
 class TimelineScene : public QGraphicsScene
 {
 public:
@@ -34,6 +32,8 @@ private:
     void add_item(TaskItem* pi);
     TaskItem* create_item(MirrorItem* rmi);
 
+    int _iFontHeight;
+    int _iSceneBorder;
     Mirror *_pM;
     vector<TaskItem*> _vti;
 };

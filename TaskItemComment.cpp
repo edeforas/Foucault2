@@ -8,9 +8,9 @@
 using namespace std;
 #include "Foucault2Defines.h"
 
-TaskItemComment::TaskItemComment(MirrorItem* pItem):TaskItem(pItem)
+TaskItemComment::TaskItemComment(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
-    int iBlockSize=block_size();
+  //  int iBlockSize=block_size();
     int iLine=pos().y();
 
     MirrorComment* pMC=static_cast<MirrorComment*>(pItem);

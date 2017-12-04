@@ -6,7 +6,7 @@
 class TaskItemCouderMeasure : public TaskItem
 {
 public:
-    TaskItemCouderMeasure(MirrorItem* pItem);
+    TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize);
 };
 
 #endif

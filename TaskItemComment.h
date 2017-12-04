@@ -6,7 +6,7 @@
 class TaskItemComment : public TaskItem
 {
 public:
-    TaskItemComment(MirrorItem* pItem);
+    TaskItemComment(MirrorItem* pItem,int iBlockSize);
 };
 
 #endif
