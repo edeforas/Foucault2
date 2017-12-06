@@ -37,13 +37,19 @@ void TaskItem::set_background_color(QColor color)
 void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect)
 {
     QGraphicsTextItem* title=new QGraphicsTextItem(sTitle.c_str());
+    int iSmallVerticalMargin=_iBlockSize*0.25;
+    QPen qp(Qt::darkGray);
+
+    //add left margin
+    x+=_iBlockSize*0.25;
+
     title->setPos(x,y);
     add_item(title);
-    int iSmallVerticalMargin=_iBlockSize*0.25;
 
     if(bDrawRect)
     {
         QGraphicsRectItem* itemR=new QGraphicsRectItem(x,y+iSmallVerticalMargin,width,_iBlockSize);
+        itemR->setPen(qp);
         add_item(itemR);
     }
 
@@ -58,6 +64,7 @@ void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y,
         if(bDrawRect)
         {
             QGraphicsLineItem* itemL=new QGraphicsLineItem(dCellStart,y+iSmallVerticalMargin,dCellStart,y+_iBlockSize+iSmallVerticalMargin);
+            itemL->setPen(qp);
             add_item(itemL);
         }
     }

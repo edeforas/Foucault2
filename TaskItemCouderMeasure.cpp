@@ -14,7 +14,6 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
         set_background_color(QColor(230,239,244));
 
     int iDisplayMode=pM->get_display_mode();
- //   int iBlockSize=iBlockSize;
     int iLine=(int)pos().y();
     bool bShowBothSide=pM->get_show_both_side();
     bool bSmoothCurves=pM->get_smooth_curves();
@@ -29,6 +28,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
         ptiWhen->setPos(pos().x(),iLine);
         add_item(ptiWhen);
         iLine+=iBlockSize;
+        int iHalfCellMargin=(50/(pM->nb_zones()+1)/2)*iBlockSize;
 
         if(iDisplayMode>=DISPLAY_MODE_FULL)
         {
@@ -36,12 +36,12 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
             iLine+=iBlockSize;
 
             // compute delta Hm2/R
-            vector<double> vd=pM->hm2r();
-            vd[0]=0;
-            for(unsigned int i=1;i<vd.size();i++)
-                vd[i]=vd[i]-vd[i-1];
+            vector<double> vd(pM->nb_zones()-1);
+            for(unsigned int i=0;i<vd.size();i++)
+                vd[i]=pM->hm2r()[i+1]-pM->hm2r()[i];
 
-            add_line_tab("DeltaHm²/R:",vd,pos().x(),iLine,iBlockSize*50);
+
+            add_line_tab("DeltaHm²/R:",vd,pos().x()+iHalfCellMargin,iLine,iBlockSize*50-iHalfCellMargin*2);
             iLine+=iBlockSize;
         }
 
@@ -50,6 +50,17 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
 
         if(iDisplayMode>=DISPLAY_MODE_DETAIL)
         {
+            if(iDisplayMode>=DISPLAY_MODE_FULL)
+            {
+                // compute delta Measure
+                vector<double> vd(pM->nb_zones()-1);
+                for(unsigned int i=0;i<vd.size();i++)
+                    vd[i]=mci->measures()[i+1]-mci->measures()[i];
+
+                add_line_tab("DeltaMeasure:",vd,pos().x()+iHalfCellMargin,iLine,iBlockSize*50-iHalfCellMargin*2);
+                iLine+=iBlockSize;
+            }
+
             add_line_tab("deltaC:",mci->deltaC(),pos().x(),iLine,iBlockSize*50);
             iLine+=iBlockSize;
 
