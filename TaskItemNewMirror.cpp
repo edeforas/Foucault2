@@ -1,17 +1,14 @@
 #include "TaskItemNewMirror.h"
-#include "Foucault2Defines.h"
-
-#include <QPen>
-
 #include "MirrorItem.h"
 #include "Mirror.h"
+#include "Foucault2Defines.h"
 
 #include <string>
 using namespace std;
+
 ///////////////////////////////////////////////////////////////////////
 TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
-   // int iBlockSize=block_size();
     const Mirror* pM=pItem->mirror();
     int iLine=pos().y();
     int iDisplayMode=pM->get_display_mode();
@@ -19,9 +16,10 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(
         set_background_color(QColor(166,184,221));
 
     QGraphicsTextItem* ptiTitle=new QGraphicsTextItem(pM->name().c_str());
+    ptiTitle->setScale(2);
     ptiTitle->setPos(pos().x(),iLine);
-    add_item(ptiTitle); //TODO center and in bold
-    iLine+=iBlockSize*2;
+    add_item(ptiTitle);
+    iLine+=iBlockSize*3;
 
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
@@ -62,7 +60,7 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(
         vector<double> vdZone;
         for(unsigned int i=0;i<pM->hx().size();i++)
             vdZone.push_back(i+1);
-        add_line_tab("Zone:",vdZone,pos().x(),iLine,iBlockSize*50);
+        add_line_tab("Zone:",vdZone,pos().x(),iLine,iBlockSize*50,true,true);
         iLine+=iBlockSize;
     }
 

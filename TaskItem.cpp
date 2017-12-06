@@ -34,11 +34,15 @@ void TaskItem::set_background_color(QColor color)
     _color=color;
 }
 ///////////////////////////////////////////////////////////////////////
-void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect)
+void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect,bool bAllInBold)
 {
     QGraphicsTextItem* title=new QGraphicsTextItem(sTitle.c_str());
     int iSmallVerticalMargin=_iBlockSize*0.25;
     QPen qp(Qt::darkGray);
+
+    QFont qfBold=title->font();
+    qfBold.setBold(true);
+    title->setFont(qfBold);
 
     //add left margin
     x+=_iBlockSize*0.25;
@@ -59,6 +63,9 @@ void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y,
 
         QGraphicsTextItem* item=new QGraphicsTextItem(QString::number(val[i],'g',3));
         item->setPos(dCellStart,y);
+        if(bAllInBold)
+            item->setFont(qfBold);
+
         add_item(item);
 
         if(bDrawRect)

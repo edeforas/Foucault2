@@ -1,11 +1,12 @@
 #include "TaskItemCouderMeasure.h"
+#include "Mirror.h"
+#include "MirrorCouderMeasure.h"
 #include "Foucault2Defines.h"
 
 #include <QPen>
-#include "Mirror.h"
-#include "MirrorCouderMeasure.h"
 #include <cassert>
 
+////////////////////////////////////////////////////////////////////////////
 TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
     const Mirror* pM=pItem->mirror();
@@ -39,7 +40,6 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
             vector<double> vd(pM->nb_zones()-1);
             for(unsigned int i=0;i<vd.size();i++)
                 vd[i]=pM->hm2r()[i+1]-pM->hm2r()[i];
-
 
             add_line_tab("DeltaHm²/R:",vd,pos().x()+iHalfCellMargin,iLine,iBlockSize*50-iHalfCellMargin*2);
             iLine+=iBlockSize;

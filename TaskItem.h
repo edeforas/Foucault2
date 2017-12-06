@@ -16,7 +16,7 @@ public:
     TaskItem(MirrorItem *pItem,int iBlockSize);
 
     void add_item(QGraphicsItem *pItem);
-    void add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect=true);
+    void add_line_tab(string sTitle, vector<double> val, float x, float y, float width, bool bDrawRect=true,bool bAllInBold=false);
     virtual QRectF boundingRect() const;
 
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

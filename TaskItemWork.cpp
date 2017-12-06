@@ -1,17 +1,14 @@
 #include "TaskItemWork.h"
-#include "Foucault2Defines.h"
-
-#include <QPen>
-
 #include "MirrorWork.h"
 #include "Mirror.h"
+#include "Foucault2Defines.h"
 
 #include <string>
 using namespace std;
 
+////////////////////////////////////////////////////////////////////////////
 TaskItemWork::TaskItemWork(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
- //   int iBlockSize=block_size();
     int iLine=(int)pos().y();
 
     MirrorWork* pMC=static_cast<MirrorWork*>(pItem);
@@ -78,3 +75,4 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlo
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
 }
+////////////////////////////////////////////////////////////////////////////

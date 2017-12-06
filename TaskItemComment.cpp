@@ -1,16 +1,14 @@
 #include "TaskItemComment.h"
-#include <QPen>
-
 #include "MirrorComment.h"
 #include "Mirror.h"
+#include "Foucault2Defines.h"
 
 #include <string>
 using namespace std;
-#include "Foucault2Defines.h"
 
+////////////////////////////////////////////////////////////////////////////
 TaskItemComment::TaskItemComment(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlockSize)
 {
-  //  int iBlockSize=block_size();
     int iLine=pos().y();
 
     MirrorComment* pMC=static_cast<MirrorComment*>(pItem);
@@ -37,3 +35,4 @@ TaskItemComment::TaskItemComment(MirrorItem* pItem,int iBlockSize):TaskItem(pIte
     if(pM->get_show_colors())
         set_background_color(QColor(242,219,222));
 }
+////////////////////////////////////////////////////////////////////////////
