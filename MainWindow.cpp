@@ -535,12 +535,18 @@ void MainWindow::on_actionDiscard_last_task_triggered()
     device_changed(true);
     _ts->ensure_last_visible();
 }
-
 ///////////////////////////////////////////////////////////////////////////////
-
 void MainWindow::on_actionDisplay_Full_triggered()
 {
     _pMirror->set_display_mode(DISPLAY_MODE_FULL);
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////
+void MainWindow::resizeEvent( QResizeEvent *e )
+{
+    (void)e;
+    //  MainWindow::resizeEvent(e);
+
+    _ts->ensure_visible(-1);
+}
+//////////////////////////////////////////////////////////////////////////////

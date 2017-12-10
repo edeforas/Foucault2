@@ -13,7 +13,7 @@ using namespace std;
 
 namespace Ui
 {
-    class MainWindowClass;
+class MainWindowClass;
 }
 
 class Mirror;
@@ -36,6 +36,7 @@ public slots:
 
 protected:
     virtual void closeEvent ( QCloseEvent * event );
+    virtual void resizeEvent( QResizeEvent *e );
 
 private:
     Ui::MainWindowClass *ui;
