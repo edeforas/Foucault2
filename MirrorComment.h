@@ -8,7 +8,7 @@ using namespace std;
 class MirrorComment : public MirrorItem
 {
 public:
-    MirrorComment(string sComment);
+    MirrorComment(const string& sComment);
 
     string& comment();
 

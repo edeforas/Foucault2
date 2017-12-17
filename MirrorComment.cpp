@@ -1,6 +1,6 @@
 #include "MirrorComment.h"
 
-MirrorComment::MirrorComment(string sComment):
+MirrorComment::MirrorComment(const string& sComment):
     _sComment(sComment)
 {
     _sType="MirrorComment";
