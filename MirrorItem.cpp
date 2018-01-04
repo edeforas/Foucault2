@@ -42,8 +42,13 @@ unsigned int MirrorItem::when() const
 ///////////////////////////////////////////////////////////
 string MirrorItem::when_as_text() const
 {
-    QDateTime qdt=QDateTime::fromSecsSinceEpoch(_uiWhen);
-    QString qs=QObject::tr("When: ")+qdt.toString(Qt::SystemLocaleLongDate);
-    return qs.toStdString();
+    if(_uiWhen)
+    {
+        QDateTime qdt=QDateTime::fromMSecsSinceEpoch(_uiWhen*1000);
+        QString qs=QObject::tr("When: ")+qdt.toString(Qt::SystemLocaleLongDate);
+        return qs.toStdString();
+    }
+    else
+        return "";
 }
 ///////////////////////////////////////////////////////////

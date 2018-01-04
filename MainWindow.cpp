@@ -290,7 +290,6 @@ void MainWindow::on_actionAdd_comment_triggered()
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
-        //ensure_visible(_pMirror->nb_item()-1);
         _ts->ensure_last_visible();
         _bMustSave=true;
         update_title();
@@ -307,7 +306,6 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
-        //ensure_visible(_pMirror->nb_item()-1);
         _ts->ensure_last_visible();
         _bMustSave=true;
         update_title();
@@ -466,8 +464,7 @@ void MainWindow::on_actionWork_triggered()
         _ts->update_items(_pMirror->nb_item()-1);
 
         _iLastWorkType=nm.get_work_type();
-        //        ensure_visible(_pMirror->nb_item()-1);
-        _ts->ensure_last_visible();//_pMirror->nb_item()-1);
+        _ts->ensure_last_visible();
 
         _bMustSave=true;
         update_title();
@@ -545,7 +542,6 @@ void MainWindow::on_actionDisplay_Full_triggered()
 void MainWindow::resizeEvent( QResizeEvent *e )
 {
     (void)e;
-    //  MainWindow::resizeEvent(e);
 
     _ts->ensure_visible(-1);
 }

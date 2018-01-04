@@ -21,10 +21,13 @@ TaskItemWork::TaskItemWork(MirrorItem* pItem,int iBlockSize):TaskItem(pItem,iBlo
     {
         //Add date and hour
         string s=pMC->when_as_text();
-        QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
-        ptiWhen->setPos(pos().x(),iLine);
-        add_item(ptiWhen);
-        iLine+=iBlockSize;
+        if(!s.empty())
+        {
+            QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
+            ptiWhen->setPos(pos().x(),iLine);
+            add_item(ptiWhen);
+            iLine+=iBlockSize;
+        }
     }
 
     int iWT=pMC->work_type();

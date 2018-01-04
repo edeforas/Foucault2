@@ -18,10 +18,13 @@ TaskItemComment::TaskItemComment(MirrorItem* pItem,int iBlockSize):TaskItem(pIte
     if(iDisplayMode>=DISPLAY_MODE_NORMAL)
     {
         string s=pMC->when_as_text();
-        QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
-        ptiWhen->setPos(pos().x(),iLine);
-        add_item(ptiWhen);
-        iLine+=iBlockSize;
+        if(!s.empty())
+        {
+            QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
+            ptiWhen->setPos(pos().x(),iLine);
+            add_item(ptiWhen);
+            iLine+=iBlockSize;
+        }
     }
 
     QGraphicsTextItem* pti=new QGraphicsTextItem(QString(QObject::tr("Comment: "))+pMC->comment().c_str());

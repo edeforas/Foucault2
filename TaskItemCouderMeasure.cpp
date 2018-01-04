@@ -25,10 +25,13 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
     {
         //Add date and hour
         string s=mci->when_as_text();
-        QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
-        ptiWhen->setPos(pos().x(),iLine);
-        add_item(ptiWhen);
-        iLine+=iBlockSize;
+        if(!s.empty())
+        {
+            QGraphicsTextItem* ptiWhen=new QGraphicsTextItem(s.c_str());
+            ptiWhen->setPos(pos().x(),iLine);
+            add_item(ptiWhen);
+            iLine+=iBlockSize;
+        }
         int iHalfCellMargin=(50/(pM->nb_zones()+1)/2)*iBlockSize;
 
         if(iDisplayMode>=DISPLAY_MODE_FULL)
