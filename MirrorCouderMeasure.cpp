@@ -9,6 +9,7 @@ using namespace std;
 
 #define RESMES 0.0001
 #define YELLOW 560.
+#define PI 3.14159265359
 
 inline double sqr(double a) { return a*a; }
 
@@ -93,7 +94,7 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures,string sA
     _dWeightedLambdaRms=YELLOW/2./_dStd; //   1./(surface std in lambda unit)
 
     //compute stddev rms
-    _dWeightedStrehl=exp(-sqr(2.*M_PI*1./_dWeightedLambdaRms));
+    _dWeightedStrehl=exp(-sqr(2.*PI*1./_dWeightedLambdaRms));
 }
 ////////////////////////////////////////////////////////////////////////////////
 const vector<double>& MirrorCouderMeasure::measures() const
@@ -284,7 +285,7 @@ void MirrorCouderMeasure::compute_surface_smooth(vector<double>& pointsX,vector<
     const vector<double>& hz=mirror()->hz();
     const vector<double>& surf=surface();
     assert(hz.size()==surf.size());
-    unsigned int iNbPoints=hz.size();
+    size_t iNbPoints=hz.size();
 
     pointsX.resize(iNbPoints+iNbPoints+1); //iNbPoints+1 points and iNbPoints control points
     pointsY.resize(iNbPoints+iNbPoints+1);

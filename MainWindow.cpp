@@ -351,7 +351,7 @@ void MainWindow::on_actionPrint_triggered()
         }
     }
 
-    int iNbPages=viPagesFirstItem.size();
+    int iNbPages=(int)(viPagesFirstItem.size());
     QPrinter printer;
     printer.setFromTo(1,iNbPages);
 

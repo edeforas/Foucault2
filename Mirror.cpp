@@ -35,7 +35,7 @@ void Mirror::add_item(MirrorItem* pItem)
 //////////////////////////////////////////////////////////////////////////////
 int Mirror::nb_item() const
 {
-    return _allItem.size();
+    return (int)(_allItem.size());
 }
 //////////////////////////////////////////////////////////////////////////////
 MirrorItem* Mirror::get_item(int iPos)
@@ -110,7 +110,7 @@ double Mirror::ro_dif() const
 //////////////////////////////////////////////////////////////////////////////
 unsigned int Mirror::nb_zones() const
 {
-    return _vdHx.size();
+    return (int)(_vdHx.size());
 }
 //////////////////////////////////////////////////////////////////////////////
 const vector<double>& Mirror::hx() const
@@ -155,7 +155,7 @@ void Mirror::set_is_slit_moving(bool bSlitMoving)
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::initialize()
 {
-    int iNbZone=hx().size();
+    int iNbZone=(int)(hx().size());
     double dRay=2.*_dFocal;
 
     double dYellow=560.*1.e-9;

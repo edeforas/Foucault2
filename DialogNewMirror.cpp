@@ -201,7 +201,7 @@ void DialogNewMirror::on_pushButton_2_clicked()
 
     if(_dHx[_dHx.size()-1]+0.001<_dDiameter/2.)
     {
-        ui->twHx->item(0,_dHx.size()-1)->setSelected(true);
+        ui->twHx->item(0,(int)(_dHx.size()-1))->setSelected(true);
         QMessageBox::critical(this,tr("Error"),tr("Last Hx must be equal to the mirroir radius (i.e. the diameter/2)"));
         return;
     }
@@ -274,10 +274,10 @@ void DialogNewMirror::on_btnComputeNbOfzone_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(unsigned int i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i<10;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
-        ui->twHx->setItem(0,i,qti);
+        ui->twHx->setItem(0,(int)i,qti);
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -306,10 +306,10 @@ void DialogNewMirror::on_btnComputeNbMillimetersByZone_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(unsigned int i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i<10;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
-        ui->twHx->setItem(0,i,qti);
+        ui->twHx->setItem(0,(int)i,qti);
     }
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -338,10 +338,10 @@ void DialogNewMirror::on_btnComputeMinZoneSize_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(unsigned int i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i<10;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
-        ui->twHx->setItem(0,i,qti);
+        ui->twHx->setItem(0,(int)i,qti);
     }
 }
 //////////////////////////////////////////////////////////////////////////////
