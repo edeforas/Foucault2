@@ -16,14 +16,14 @@ public:
     const Mirror* mirror() const;
     string type() const;
 
-    void set_when(unsigned int uiWhen);
-    unsigned int when() const;
+    void set_when(long lWhen);
+    long when() const;
     string when_as_text() const;
 
 protected:
     string _sType;
     Mirror* _pParent;
-    unsigned int _uiWhen;
+    long _lWhen;
 };
 
 #endif

@@ -79,7 +79,7 @@ Mirror* MirrorIo::load(string sFile)
         {
             string sComment=p.get(sIndex+".Comment");
             MirrorComment* mc=new MirrorComment(sComment);
-            mc->set_when(p.get_unsigned_int(sIndex+".When"));
+            mc->set_when(p.get_long(sIndex+".When"));
             pm->add_item(mc);
         }
 

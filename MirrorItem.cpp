@@ -1,7 +1,6 @@
 #include "MirrorItem.h"
 #include "Mirror.h"
 
-#include <ctime>
 #include <QDateTime>
 #include <QObject>
 
@@ -9,7 +8,7 @@
 MirrorItem::MirrorItem()
 {
     _pParent=0;
-    _uiWhen=0;
+    _lWhen=0;
 }
 ///////////////////////////////////////////////////////////
 MirrorItem::~MirrorItem()
@@ -30,21 +29,21 @@ void MirrorItem::set_mirror(Mirror* pMirror)
     _pParent=pMirror;
 }
 ///////////////////////////////////////////////////////////
-void MirrorItem::set_when(unsigned int uiWhen)
+void MirrorItem::set_when(long lWhen)
 {
-    _uiWhen=uiWhen;
+    _lWhen=lWhen;
 }
 ///////////////////////////////////////////////////////////
-unsigned int MirrorItem::when() const
+long MirrorItem::when() const
 {
-    return _uiWhen;
+    return _lWhen;
 }
 ///////////////////////////////////////////////////////////
 string MirrorItem::when_as_text() const
 {
-    if(_uiWhen)
+    if(_lWhen!=0)
     {
-        QDateTime qdt=QDateTime::fromMSecsSinceEpoch(_uiWhen*1000);
+        QDateTime qdt=QDateTime::fromSecsSinceEpoch(_lWhen);
         QString qs=QObject::tr("When: ")+qdt.toString(Qt::SystemLocaleLongDate);
         return qs.toStdString();
     }

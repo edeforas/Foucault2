@@ -1,7 +1,7 @@
 #ifndef Foucault2Defines_
 #define Foucault2Defines_
 
-#define FOUCAULT2_VERSION "2.11"
+#define FOUCAULT2_VERSION "2.12"
 
 //ui defines
 #define DISPLAY_MODE_COMPACT 0
