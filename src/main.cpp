@@ -16,11 +16,11 @@ int main(int argc, char *argv[])
     QString sPath=QCoreApplication::applicationDirPath();
 
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    (void)qtTranslator.load("qt_" + QLocale::system().name(),QLibraryInfo::path(QLibraryInfo::TranslationsPath));
     app.installTranslator(&qtTranslator);
 
     QTranslator myappTranslator;
-    myappTranslator.load("Foucault2_" + QLocale::system().name(),sPath);
+    (void)myappTranslator.load("Foucault2_" + QLocale::system().name(),sPath);
     app.installTranslator(&myappTranslator);
 
     MainWindow w;
