@@ -45,7 +45,7 @@ DialogNewUnmaskedMeasure::~DialogNewUnmaskedMeasure()
 /////////////////////////////////////////////////////////////////////////////////
 unsigned int DialogNewUnmaskedMeasure::get_when()
 {
-    return ui->dateTimeEdit->dateTime().toTime_t();
+    return (unsigned int)ui->dateTimeEdit->dateTime().toSecsSinceEpoch();
 }
 //////////////////////////////////////////////////////////////////////////////
   float DialogNewUnmaskedMeasure::get_slit_angle()
