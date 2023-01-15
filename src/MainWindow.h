@@ -9,7 +9,7 @@
 #include <QGraphicsItem>
 
 #include <string>
-using namespace std;
+//using namespace std;
 
 namespace Ui
 {
@@ -27,7 +27,7 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    bool load_file(string sFile);
+    bool load_file(std::string sFile);
     bool ask_save_and_action();
     void clear_mirror();
 
@@ -65,13 +65,9 @@ private slots:
     void on_actionDisplay_Normal_triggered();
     void on_actionDisplay_Details_triggered();
     void on_actionShow_smooth_curves_triggered();
-
     void on_actionZoom_in_triggered();
-
     void on_actionZoom_out_triggered();
-
     void on_actionDiscard_last_task_triggered();
-
     void on_actionDisplay_Full_triggered();
 
 private:
@@ -81,7 +77,7 @@ private:
     int _iLastWorkType;
 
     bool _bMustSave;
-    string _sFileName;
+    std::string _sFileName;
     TimelineScene* _ts;
     int _iqgi;
 };
