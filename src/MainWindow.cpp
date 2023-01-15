@@ -116,7 +116,8 @@ void MainWindow::on_actionAbout_triggered()
     qsText+= tr(" Jean-Jacques Jourdanneau for his help");
     qsText+= "\n";
     qsText+= tr(" Ken Slater for the translations fixes");
-
+    qsText += "\n";
+    qsText += tr(" Paul Crubille for all the mirrors image processing and dialogs");
 
     mb.setText(qsText);
     mb.setIconPixmap(QPixmap(":/Foucault2/Foucault2.ico"));
