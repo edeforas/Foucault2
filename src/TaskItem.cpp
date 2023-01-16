@@ -57,9 +57,11 @@ void TaskItem::add_line_tab(string sTitle, vector<double> val, float x, float y,
         add_item(itemR);
     }
 
+    x+=width/12;
+
     for(unsigned int i=0;i<val.size();i++)
     {
-        double dCellStart=x+width*(i+1.)/(val.size()+1.);
+        double dCellStart=x+width*(i)/(val.size()+1.);
 
         QGraphicsTextItem* item=new QGraphicsTextItem(QString::number(val[i],'g',3));
         item->setPos(dCellStart,y);

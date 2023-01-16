@@ -37,7 +37,7 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Focal Length (mm)</string>
@@ -47,21 +47,21 @@
      <item row="1" column="1">
       <widget class="QLineEdit" name="leOpticalDiameter"/>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Conical constant</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QLineEdit" name="leConicalConstant">
        <property name="text">
         <string>-1</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QLineEdit" name="leFocal"/>
      </item>
      <item row="2" column="0">
@@ -78,6 +78,37 @@
        </property>
       </widget>
      </item>
+
+     <item row="3" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Obstruction size (mm)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="leObstructionSize">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+
+     <item row="6" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Edge Mask Width (mm)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="leEdgeMaskWidth">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+
     </layout>
    </item>
    <item>
@@ -142,7 +173,7 @@
          <number>1</number>
         </property>
         <property name="columnCount">
-         <number>10</number>
+         <number>64</number>
         </property>
         <attribute name="horizontalHeaderVisible">
          <bool>false</bool>
@@ -309,8 +340,10 @@
   <tabstop>leName</tabstop>
   <tabstop>leOpticalDiameter</tabstop>
   <tabstop>leHoleDiameter</tabstop>
+  <tabstop>leObstructionSize</tabstop>
   <tabstop>leFocal</tabstop>
   <tabstop>leConicalConstant</tabstop>
+  <tabstop>leEdgeMaskWidth</tabstop>
   <tabstop>twHx</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton</tabstop>

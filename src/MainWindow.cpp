@@ -14,6 +14,7 @@
 
 #include "DialogNewMirror.h"
 #include "DialogNewMeasure.h"
+#include "DialogNewUnmaskedMeasure.h"
 #include "DialogNewComment.h"
 #include "DialogNewWork.h"
 
@@ -153,6 +154,8 @@ void MainWindow::on_actionNew_triggered()
         _pMirror->set_name(nm.get_name());
         _pMirror->set_diameter(nm.get_diameter());
         _pMirror->set_hole_diameter(nm.get_hole_diameter());
+        _pMirror->set_obstruction_size(nm.get_obstruction_size());
+        _pMirror->set_edge_mask_width(nm.get_edge_mask_width());
         _pMirror->set_focal(nm.get_focal());
         _pMirror->set_conical(nm.get_conical());
         _pMirror->set_hx(nm.get_hx());
@@ -242,10 +245,12 @@ void MainWindow::device_changed(bool bMustSave)
 
     _ts->set_mirror(_pMirror);
 
-    ui->actionNew_Couder_Measure->setEnabled(_pMirror->nb_zones()!=0);
-    ui->actionAdd_comment->setEnabled(_pMirror->nb_zones()!=0);
-    ui->actionWork->setEnabled(_pMirror->nb_zones()!=0);
+    ui->actionNew_Couder_Measure->setEnabled( _pMirror->nb_zones() !=0);
+    ui->actionNew_Unmasked_Measure->setEnabled( _pMirror->diameter() !=0);
+    ui->actionAdd_comment->setEnabled( _pMirror->nb_zones()!=0);
+    ui->actionWork->setEnabled( _pMirror->nb_zones()!=0);
     ui->actionShow_mirror_both_side->setChecked(_pMirror->get_show_both_side());
+    ui->actionShow_TAf_ro->setChecked(_pMirror->get_show_lf_ro());
     ui->actionShow_Colors->setChecked(_pMirror->get_show_colors());
     ui->actionShow_smooth_curves->setChecked(_pMirror->get_smooth_curves());
     ui->actionDiscard_last_task->setEnabled(_pMirror->nb_zones()!=0);
@@ -303,7 +308,15 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
     if(nm.exec())
     {
         MirrorCouderMeasure* t=new MirrorCouderMeasure(_pMirror);
-        t->set_measure(nm.get_measure(),nm.get_aspect());
+	
+	vector<double> vdHm;
+	vdHm.resize(_pMirror->nb_zones());
+	vdHm[0]=(_pMirror->hole_diameter() + _pMirror->hx()[0])/2.;	    
+	for(unsigned int i=1;i< _pMirror->nb_zones() ;i++)
+	  vdHm[i]= (_pMirror->hx()[i-1] + _pMirror->hx()[i] )/2;
+	
+	t->set_measure(nm.get_measure(), vdHm, nm.get_aspect());
+	
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
@@ -311,6 +324,19 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
         _bMustSave=true;
         update_title();
     }
+}
+//////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionNew_Unmasked_Measure_triggered()
+{
+  DialogNewUnmaskedMeasure nm(_pMirror, this);
+  printf("unmasked triggered\n");
+  if(nm.exec())
+    {
+      _ts->update_items(_pMirror->nb_item()-1);
+      _ts->ensure_last_visible();
+      _bMustSave=true;
+    };
+
 }
 //////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionNew_Couder_Screen_triggered()
@@ -378,7 +404,7 @@ void MainWindow::on_actionPrint_triggered()
             int iLastItemInpage;
 
             if((unsigned int)(iPage-1)==viPagesFirstItem.size()-1) //last page?
-                iLastItemInpage=viPagesFirstItem.back();
+          iLastItemInpage=(int)vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
             else
                 iLastItemInpage=viPagesFirstItem[iPage]-1;
 
@@ -446,6 +472,12 @@ void MainWindow::on_actionImport_triggered()
 void MainWindow::on_actionShow_mirror_both_side_triggered()
 {
     _pMirror->set_show_both_side(ui->actionShow_mirror_both_side->isChecked());
+    device_changed(false);
+}
+///////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionShow_TAf_ro_triggered()
+{
+    _pMirror->set_show_lf_ro(ui->actionShow_TAf_ro->isChecked());
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////

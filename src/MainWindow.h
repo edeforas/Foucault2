@@ -49,6 +49,7 @@ private slots:
     void on_actionNew_Hartmann_Screen_triggered();
     void on_actionNew_Couder_Screen_triggered();
     void on_actionNew_Couder_Measure_triggered();
+    void on_actionNew_Unmasked_Measure_triggered();
     void on_actionAdd_comment_triggered();
     void on_actionNew_triggered();
     void on_actionLoad_triggered();
@@ -58,6 +59,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionQuit_triggered();
     void on_actionShow_mirror_both_side_triggered();
+    void on_actionShow_TAf_ro_triggered();
     void on_actionWork_triggered();
     void ensureVisibleSlot();
     void on_actionShow_Colors_triggered();
@@ -65,9 +67,13 @@ private slots:
     void on_actionDisplay_Normal_triggered();
     void on_actionDisplay_Details_triggered();
     void on_actionShow_smooth_curves_triggered();
+
     void on_actionZoom_in_triggered();
+
     void on_actionZoom_out_triggered();
+
     void on_actionDiscard_last_task_triggered();
+
     void on_actionDisplay_Full_triggered();
 
 private:
