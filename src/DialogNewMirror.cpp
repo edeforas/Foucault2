@@ -15,6 +15,8 @@ DialogNewMirror::DialogNewMirror(QWidget *parent) :
     _dHoleDiameter=0;
     _dFocal=0;
     _dConical=0;
+    _dEdgeMaskWidth = 0;
+
     _bMovingSlit=false;
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -45,7 +47,7 @@ bool DialogNewMirror::get_and_check_DFH()
             return false;
         }
     }
-
+    /////////////////////////////////////   Hole 
     _dHoleDiameter=ui->leHoleDiameter->text().toDouble(&bSuccess);
     if((!bSuccess) || (_dHoleDiameter<0.) )
     {
@@ -73,6 +75,63 @@ bool DialogNewMirror::get_and_check_DFH()
         }
     }
 
+    /////////////////////////////////////   Obstruction
+    _dObstructionSize=ui->leObstructionSize->text().toDouble(&bSuccess);
+    if((!bSuccess) || (_dObstructionSize<0.) )
+    {
+        ui->leObstructionSize->selectAll();
+        QMessageBox::critical(this,tr("Error"),tr("Please enter a valid Obstruction diameter"));
+        ui->leObstructionSize->setFocus();
+        return false;
+    }
+
+    if(_dObstructionSize>=_dDiameter)
+    {
+        ui->leObstructionSize->selectAll();
+        QMessageBox::critical(this,tr("Error"),tr("Obstruction is bigger than the diameter"));
+        ui->leObstructionSize->setFocus();
+        return false;
+    }
+
+    if(_dObstructionSize*2.>=_dDiameter)
+    {
+        if(QMessageBox::warning(this,tr("Obstruction is big"),tr("Obstruction is bigger than 50% of the mirror diameter, is it intentional?"),QMessageBox::Yes|QMessageBox::No)==QMessageBox::No)
+        {
+            ui->leOpticalDiameter->selectAll();
+            ui->leOpticalDiameter->setFocus();
+            return false;
+        }
+    }
+
+    /////////////////////////////////////  EdgeMask
+    _dEdgeMaskWidth=ui->leEdgeMaskWidth->text().toDouble(&bSuccess);
+    if( !bSuccess )
+    {
+        ui->leEdgeMaskWidth->selectAll();
+        QMessageBox::critical(this,tr("Error"),tr("Please enter a valid Edge Mask Diameter diameter"));
+        ui->leObstructionSize->setFocus();
+        return false;
+    }
+
+    if( (_dEdgeMaskWidth< 0.) || ( _dEdgeMaskWidth*2 > _dDiameter)  )
+    {
+      _dEdgeMaskWidth = 0;
+      ui->leEdgeMaskWidth->selectAll();
+      QMessageBox::critical(this,tr("Error"),tr("Please enter a valid Edge Mask Diameter diameter"));
+      ui->leObstructionSize->setFocus();
+        return false;
+    }
+
+    if(_dEdgeMaskWidth*4.>=_dDiameter)
+    {
+        if(QMessageBox::warning(this,tr("Edge Mask is big"),tr("Edge Mask is more than 50% of the mirror diameter, is it intentional?"),QMessageBox::Yes|QMessageBox::No)==QMessageBox::No)
+        {
+            ui->leOpticalDiameter->selectAll();
+            ui->leOpticalDiameter->setFocus();
+        }
+    }
+
+    /////////////////////////////////////  Focal
     _dFocal=ui->leFocal->text().toDouble(&bSuccess);
     if((!bSuccess) || (_dFocal<=0.) )
     {
@@ -136,14 +195,14 @@ void DialogNewMirror::on_pushButton_2_clicked()
     double dLastHx=_dHoleDiameter/2.;
 
     //unselect all items
-    for(int i=0;i<10;i++)
+    for(int i=0;i< MaxZones ;i++)
     {
         QTableWidgetItem* pItem=ui->twHx->item(0,i);
         if(pItem)
             pItem->setSelected(false);
     }
 
-    for(int i=0;i<10;i++)
+    for(int i=0;i< MaxZones ;i++)
     {
         QTableWidgetItem* pItem=ui->twHx->item(0,i);
         if(pItem)
@@ -224,9 +283,19 @@ double DialogNewMirror::get_diameter()
     return _dDiameter;
 }
 //////////////////////////////////////////////////////////////////////////////
+double DialogNewMirror::get_edge_mask_width()
+{
+    return _dEdgeMaskWidth;
+}
+//////////////////////////////////////////////////////////////////////////////
 double DialogNewMirror::get_hole_diameter()
 {
     return _dHoleDiameter;
+}
+//////////////////////////////////////////////////////////////////////////////
+double DialogNewMirror::get_obstruction_size()
+{
+    return _dObstructionSize;
 }
 //////////////////////////////////////////////////////////////////////////////
 double DialogNewMirror::get_focal()
@@ -258,10 +327,10 @@ void DialogNewMirror::on_btnComputeNbOfzone_clicked()
     bool bSuccess;
     int iNbZone=ui->leNumberOfZones->text().toInt(&bSuccess);
 
-    if((!bSuccess) || (iNbZone>10) || (iNbZone<3) )
+    if((!bSuccess) || (iNbZone> MaxZones ) || (iNbZone<3) )
     {
         ui->leNumberOfZones->setFocus();
-        QMessageBox::critical(this,tr("Error"),tr("please enter a valid number of zone (must be <10 and >=3)"));
+        QMessageBox::critical(this,tr("Error"),tr("please enter a valid number of zone (must be < MaxZones and >=3)"));
         return;
     }
 
@@ -274,7 +343,7 @@ void DialogNewMirror::on_btnComputeNbOfzone_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(size_t i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i< MaxZones ;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
         ui->twHx->setItem(0,(int)i,qti);
@@ -306,7 +375,7 @@ void DialogNewMirror::on_btnComputeNbMillimetersByZone_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(size_t i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i< MaxZones ;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
         ui->twHx->setItem(0,(int)i,qti);
@@ -338,7 +407,7 @@ void DialogNewMirror::on_btnComputeMinZoneSize_clicked()
         ui->twHx->setItem(0,i,qti);
     }
 
-    for(size_t i=vdHx.size();i<10;i++)
+    for(size_t i=vdHx.size();i< MaxZones ;i++)
     {
         QTableWidgetItem* qti =new QTableWidgetItem("");
         ui->twHx->setItem(0,(int)i,qti);

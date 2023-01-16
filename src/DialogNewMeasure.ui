@@ -58,7 +58,7 @@
       <number>1</number>
      </property>
      <property name="columnCount">
-      <number>10</number>
+      <number>MaxZones</number>
      </property>
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
@@ -79,7 +79,7 @@
       <bool>false</bool>
      </attribute>
      <attribute name="verticalHeaderMinimumSectionSize">
-      <number>10</number>
+      <number>MaxZones</number>
      </attribute>
      <row/>
      <column/>

@@ -22,6 +22,8 @@ public:
     string get_name();
     double get_diameter();
     double get_hole_diameter();
+    double get_obstruction_size();
+    double get_edge_mask_width();
     double get_focal();
     double get_conical();
     vector<double> get_hx();
@@ -45,6 +47,8 @@ private:
     string _sName;
     double _dDiameter;
     double _dHoleDiameter;
+    double _dObstructionSize;
+    double _dEdgeMaskWidth;
     double _dFocal;
     double _dConical;
     vector<double> _dHx;

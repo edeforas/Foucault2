@@ -7,7 +7,7 @@
 #include "Mirror.h"
 #include "UnmaskedFoucaultImgSet.h"
 #include <math.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <QGuiApplication>
 #include <QScreen>
 #include <QPainter>
@@ -424,7 +424,7 @@ bool FoucaultSnapshot::find_center_3points(double angle)
       for(int i=0; i< 5; i++) forget_smaller_and_largest_radius_x_y();
       compute_average();
       */
-      int nb_circle = vector_circle.size();
+      int nb_circle = (int)vector_circle.size();
       int nb_filtered = 0;
       c_x_circle = 0; c_y_circle = 0; r_circle = 0; 
       if( nb_circle <= 8 ) return false ; // very poor image
@@ -590,7 +590,7 @@ int FoucaultSnapshot::find_zones( double obstruction, double edge )
   // - So we forget too the log_2( img_size ) internals pixels and the last external pixel
   // (as we are unable to compute their averaged values).
   
-  int average_array[ diff_mirror.width()/2 ];
+  vector<int> average_array(diff_mirror.width()/2 );
   int log_2_img_width ; log_2_img_width = log2( diff_mirror.width()/2. );
   int search_begin, search_end;
   if( obstruction <= 0 )
