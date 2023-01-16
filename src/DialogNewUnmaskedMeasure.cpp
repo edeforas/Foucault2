@@ -155,9 +155,10 @@ void DialogNewUnmaskedMeasure::enter_STATE_INIT()
 
   void DialogNewUnmaskedMeasure::resize_vectors()
 {
-  //bool bSuccess;
+  bool bSuccess;
   float hxi;
   assert(_dNumber_of_images == ui->le_nb_img->text().toDouble(&bSuccess ));
+  (void)bSuccess;
   //unselect all items
   for(int i=0;i< MaxZones ;i++)
     {
