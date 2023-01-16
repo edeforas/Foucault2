@@ -11,13 +11,16 @@ SOURCES += main.cpp \
     Mirror.cpp \
     MirrorIo.cpp \
     MirrorComment.cpp \
+    UnmaskedFoucaultImgSet.cpp \
     MirrorCouderMeasure.cpp \
     MirrorItem.cpp \
     TimelineScene.cpp \
     TaskItem.cpp \
     TaskItemComment.cpp \
     TaskItemCouderMeasure.cpp \
+    TaskItemUnmaskedMeasure.cpp \
     DialogNewMeasure.cpp \
+    DialogNewUnmaskedMeasure.cpp \
     DialogNewMirror.cpp \
     DialogNewComment.cpp \
     MainWindow.cpp \
@@ -37,6 +40,7 @@ HEADERS += \
     TaskItemComment.h \
     TaskItemCouderMeasure.h \
     DialogNewMeasure.h \
+    DialogNewUnmaskedMeasure.h \
     DialogNewMirror.h \
     DialogNewComment.h \
     MainWindow.h \
@@ -48,6 +52,7 @@ HEADERS += \
 FORMS += mainwindow.ui \
     DialogNewMirror.ui \
     DialogNewMeasure.ui \
+    DialogNewUnmaskedMeasure.ui \
     DialogNewComment.ui \
     DialogNewWork.ui
 INCLUDEPATH += Util

@@ -13,6 +13,7 @@
 #include "TaskItemComment.h"
 #include "TaskItemWork.h"
 #include "TaskItemCouderMeasure.h"
+#include "TaskItemUnmaskedMeasure.h"
 
 #include <cassert>
 ///////////////////////////////////////////////////////////////////////////////
@@ -111,6 +112,11 @@ TaskItem* TimelineScene::create_item(MirrorItem* rmi)
     if(rmi->type()=="MirrorWork")
     {
         return new TaskItemWork(rmi,_iFontHeight);
+    }
+
+    if(rmi->type()=="MirrorUnmaskedMeasure")
+    {
+        return new TaskItemUnmaskedMeasure(rmi,_iFontHeight);
     }
 
     if(rmi->type()=="MirrorCouderMeasure")

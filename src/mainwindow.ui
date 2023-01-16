@@ -66,6 +66,7 @@
     <addaction name="separator"/>
     <addaction name="actionNew_Couder_Screen"/>
     <addaction name="actionNew_Couder_Measure"/>
+    <addaction name="actionNew_Unmasked_Measure"/>
     <addaction name="separator"/>
     <addaction name="actionNew_Hartmann_Screen"/>
     <addaction name="actionAdd_Hartmann_Measure"/>
@@ -84,6 +85,7 @@
     </property>
     <addaction name="actionShow_mirror_both_side"/>
     <addaction name="actionShow_Colors"/>
+    <addaction name="actionShow_TAf_ro"/>
     <addaction name="actionShow_smooth_curves"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_Compact"/>
@@ -119,21 +121,25 @@
     <string>Save</string>
    </property>
   </action>
+
   <action name="actionSave_as">
    <property name="text">
     <string>Save as...</string>
    </property>
   </action>
+
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
    </property>
   </action>
+
   <action name="actionNew">
    <property name="text">
     <string>New...</string>
    </property>
   </action>
+
   <action name="actionAdd_comment">
    <property name="enabled">
     <bool>false</bool>
@@ -142,6 +148,7 @@
     <string>Comment</string>
    </property>
   </action>
+
   <action name="actionGlobal_settings">
    <property name="enabled">
     <bool>false</bool>
@@ -150,6 +157,7 @@
     <string>Global Settings</string>
    </property>
   </action>
+  
   <action name="actionNew_Couder_Screen">
    <property name="enabled">
     <bool>false</bool>
@@ -158,6 +166,7 @@
     <string>Foucault Screen</string>
    </property>
   </action>
+
   <action name="actionNew_Couder_Measure">
    <property name="enabled">
     <bool>false</bool>
@@ -166,6 +175,16 @@
     <string>Foucault Measure</string>
    </property>
   </action>
+
+  <action name="actionNew_Unmasked_Measure">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Foucault Unmasked Measure</string>
+   </property>
+  </action>
+
   <action name="actionNew_Hartmann_Screen">
    <property name="enabled">
     <bool>false</bool>
@@ -174,6 +193,7 @@
     <string>Hartmann Screen</string>
    </property>
   </action>
+  
   <action name="actionAdd_Hartmann_Measure">
    <property name="enabled">
     <bool>false</bool>
@@ -225,6 +245,14 @@
    </property>
    <property name="text">
     <string>Show Colors</string>
+   </property>
+  </action>
+  <action name="actionShow_TAf_ro">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show TAf/ro Graph</string>
    </property>
   </action>
   <action name="actionDisplay_Compact">
