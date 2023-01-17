@@ -437,17 +437,17 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
 
     // Here are the min and max index including obstruction and edge mask
     unsigned obs_i = 0;
-    unsigned edge_mask_i = hz.size()-1;
+    unsigned edge_mask_i = (unsigned int)hz.size()-1;
     for(unsigned int i=1;i<(hz.size()-1);i++)
       {
 	if( hz[ i-1 ] < pM->obstruction_size()/2) obs_i = i;
       }
-    for(unsigned int i=(hz.size()-1); i > 2; i--)
+    for(unsigned int i=(unsigned int)hz.size()-1; i > 2; i--)
       {
 	if( hz[ i ] > ( pM->diameter()/2 - pM->edge_mask_width() ))
 	    edge_mask_i = i-1;
       }
-    unsigned int lfrosz = lfro.size() ;
+    unsigned int lfrosz = (unsigned int)lfro.size() ;
     printf("index :: obs = %d - edge = %d - lfro.size = %d \n" , obs_i, edge_mask_i, lfrosz );
 
     

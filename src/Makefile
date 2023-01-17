@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Foucault21.0.0
-DISTDIR = /home/crubille/ASTRO/GIT/FORK/Foucault2/src/.tmp/Foucault21.0.0
+DISTDIR = /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/.tmp/Foucault21.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5PrintSupport.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
@@ -56,7 +56,6 @@ SOURCES       = main.cpp \
 		Mirror.cpp \
 		MirrorIo.cpp \
 		MirrorComment.cpp \
-		UnmaskedFoucaultImgSet.cpp \
 		MirrorCouderMeasure.cpp \
 		MirrorItem.cpp \
 		TimelineScene.cpp \
@@ -65,26 +64,26 @@ SOURCES       = main.cpp \
 		TaskItemCouderMeasure.cpp \
 		TaskItemUnmaskedMeasure.cpp \
 		DialogNewMeasure.cpp \
-		DialogNewUnmaskedMeasure.cpp \
 		DialogNewMirror.cpp \
 		DialogNewComment.cpp \
+		DialogNewUnmaskedMeasure.cpp \
 		MainWindow.cpp \
 		TaskItemNewMirror.cpp \
 		MirrorWork.cpp \
 		DialogNewWork.cpp \
+		UnmaskedFoucaultImgSet.cpp \
 		TaskItemWork.cpp \
 		Util/Properties.cpp qrc_Foucault2.cpp \
 		moc_DialogNewMeasure.cpp \
-		moc_DialogNewUnmaskedMeasure.cpp \
 		moc_DialogNewMirror.cpp \
 		moc_DialogNewComment.cpp \
+		moc_DialogNewUnmaskedMeasure.cpp \
 		moc_MainWindow.cpp \
 		moc_DialogNewWork.cpp
 OBJECTS       = main.o \
 		Mirror.o \
 		MirrorIo.o \
 		MirrorComment.o \
-		UnmaskedFoucaultImgSet.o \
 		MirrorCouderMeasure.o \
 		MirrorItem.o \
 		TimelineScene.o \
@@ -93,20 +92,21 @@ OBJECTS       = main.o \
 		TaskItemCouderMeasure.o \
 		TaskItemUnmaskedMeasure.o \
 		DialogNewMeasure.o \
-		DialogNewUnmaskedMeasure.o \
 		DialogNewMirror.o \
 		DialogNewComment.o \
+		DialogNewUnmaskedMeasure.o \
 		MainWindow.o \
 		TaskItemNewMirror.o \
 		MirrorWork.o \
 		DialogNewWork.o \
+		UnmaskedFoucaultImgSet.o \
 		TaskItemWork.o \
 		Properties.o \
 		qrc_Foucault2.o \
 		moc_DialogNewMeasure.o \
-		moc_DialogNewUnmaskedMeasure.o \
 		moc_DialogNewMirror.o \
 		moc_DialogNewComment.o \
+		moc_DialogNewUnmaskedMeasure.o \
 		moc_MainWindow.o \
 		moc_DialogNewWork.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -236,25 +236,27 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		MirrorItem.h \
 		MirrorComment.h \
 		MirrorCouderMeasure.h \
+		MirrorUnmaskedMeasure.h \
 		TimelineScene.h \
 		TaskItem.h \
 		TaskItemComment.h \
 		TaskItemCouderMeasure.h \
+		TaskItemUnmaskedMeasure.h \
 		DialogNewMeasure.h \
-		DialogNewUnmaskedMeasure.h \
 		DialogNewMirror.h \
 		DialogNewComment.h \
+		DialogNewUnmaskedMeasure.h \
 		MainWindow.h \
 		TaskItemNewMirror.h \
 		MirrorWork.h \
 		DialogNewWork.h \
 		TaskItemWork.h \
+		UnmaskedFoucaultImgSet.h \
 		Foucault2Defines.h \
 		Util/Properties.h main.cpp \
 		Mirror.cpp \
 		MirrorIo.cpp \
 		MirrorComment.cpp \
-		UnmaskedFoucaultImgSet.cpp \
 		MirrorCouderMeasure.cpp \
 		MirrorItem.cpp \
 		TimelineScene.cpp \
@@ -263,13 +265,14 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		TaskItemCouderMeasure.cpp \
 		TaskItemUnmaskedMeasure.cpp \
 		DialogNewMeasure.cpp \
-		DialogNewUnmaskedMeasure.cpp \
 		DialogNewMirror.cpp \
 		DialogNewComment.cpp \
+		DialogNewUnmaskedMeasure.cpp \
 		MainWindow.cpp \
 		TaskItemNewMirror.cpp \
 		MirrorWork.cpp \
 		DialogNewWork.cpp \
+		UnmaskedFoucaultImgSet.cpp \
 		TaskItemWork.cpp \
 		Util/Properties.cpp
 QMAKE_TARGET  = Foucault2
@@ -280,7 +283,7 @@ TARGET        = ../Foucault2
 first: all
 ####### Build rules
 
-../Foucault2: ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewComment.h ui_DialogNewWork.h $(OBJECTS)  
+../Foucault2: ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewComment.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewWork.h $(OBJECTS)  
 	@test -d ../ || mkdir -p ../
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -549,9 +552,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents Foucault2.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Mirror.h MirrorIo.h MirrorItem.h MirrorComment.h MirrorCouderMeasure.h TimelineScene.h TaskItem.h TaskItemComment.h TaskItemCouderMeasure.h DialogNewMeasure.h DialogNewUnmaskedMeasure.h DialogNewMirror.h DialogNewComment.h MainWindow.h TaskItemNewMirror.h MirrorWork.h DialogNewWork.h TaskItemWork.h Foucault2Defines.h Util/Properties.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp Mirror.cpp MirrorIo.cpp MirrorComment.cpp UnmaskedFoucaultImgSet.cpp MirrorCouderMeasure.cpp MirrorItem.cpp TimelineScene.cpp TaskItem.cpp TaskItemComment.cpp TaskItemCouderMeasure.cpp TaskItemUnmaskedMeasure.cpp DialogNewMeasure.cpp DialogNewUnmaskedMeasure.cpp DialogNewMirror.cpp DialogNewComment.cpp MainWindow.cpp TaskItemNewMirror.cpp MirrorWork.cpp DialogNewWork.cpp TaskItemWork.cpp Util/Properties.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui DialogNewMirror.ui DialogNewMeasure.ui DialogNewUnmaskedMeasure.ui DialogNewComment.ui DialogNewWork.ui $(DISTDIR)/
+	$(COPY_FILE) --parents Mirror.h MirrorIo.h MirrorItem.h MirrorComment.h MirrorCouderMeasure.h MirrorUnmaskedMeasure.h TimelineScene.h TaskItem.h TaskItemComment.h TaskItemCouderMeasure.h TaskItemUnmaskedMeasure.h DialogNewMeasure.h DialogNewMirror.h DialogNewComment.h DialogNewUnmaskedMeasure.h MainWindow.h TaskItemNewMirror.h MirrorWork.h DialogNewWork.h TaskItemWork.h UnmaskedFoucaultImgSet.h Foucault2Defines.h Util/Properties.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp Mirror.cpp MirrorIo.cpp MirrorComment.cpp MirrorCouderMeasure.cpp MirrorItem.cpp TimelineScene.cpp TaskItem.cpp TaskItemComment.cpp TaskItemCouderMeasure.cpp TaskItemUnmaskedMeasure.cpp DialogNewMeasure.cpp DialogNewMirror.cpp DialogNewComment.cpp DialogNewUnmaskedMeasure.cpp MainWindow.cpp TaskItemNewMirror.cpp MirrorWork.cpp DialogNewWork.cpp UnmaskedFoucaultImgSet.cpp TaskItemWork.cpp Util/Properties.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui DialogNewMirror.ui DialogNewMeasure.ui DialogNewComment.ui DialogNewUnmaskedMeasure.ui DialogNewWork.ui $(DISTDIR)/
 	$(COPY_FILE) --parents Foucault2_fr.ts $(DISTDIR)/
 
 
@@ -590,13 +593,23 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_DialogNewMeasure.cpp moc_DialogNewUnmaskedMeasure.cpp moc_DialogNewMirror.cpp moc_DialogNewComment.cpp moc_MainWindow.cpp moc_DialogNewWork.cpp
+compiler_moc_header_make_all: moc_DialogNewMeasure.cpp moc_DialogNewMirror.cpp moc_DialogNewComment.cpp moc_DialogNewUnmaskedMeasure.cpp moc_MainWindow.cpp moc_DialogNewWork.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_DialogNewMeasure.cpp moc_DialogNewUnmaskedMeasure.cpp moc_DialogNewMirror.cpp moc_DialogNewComment.cpp moc_MainWindow.cpp moc_DialogNewWork.cpp
+	-$(DEL_FILE) moc_DialogNewMeasure.cpp moc_DialogNewMirror.cpp moc_DialogNewComment.cpp moc_DialogNewUnmaskedMeasure.cpp moc_MainWindow.cpp moc_DialogNewWork.cpp
 moc_DialogNewMeasure.cpp: DialogNewMeasure.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewMeasure.h -o moc_DialogNewMeasure.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewMeasure.h -o moc_DialogNewMeasure.cpp
+
+moc_DialogNewMirror.cpp: DialogNewMirror.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewMirror.h -o moc_DialogNewMirror.cpp
+
+moc_DialogNewComment.cpp: DialogNewComment.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewComment.h -o moc_DialogNewComment.cpp
 
 moc_DialogNewUnmaskedMeasure.cpp: DialogNewUnmaskedMeasure.h \
 		UnmaskedFoucaultImgSet.h \
@@ -604,35 +617,25 @@ moc_DialogNewUnmaskedMeasure.cpp: DialogNewUnmaskedMeasure.h \
 		MirrorItem.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewUnmaskedMeasure.h -o moc_DialogNewUnmaskedMeasure.cpp
-
-moc_DialogNewMirror.cpp: DialogNewMirror.h \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewMirror.h -o moc_DialogNewMirror.cpp
-
-moc_DialogNewComment.cpp: DialogNewComment.h \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewComment.h -o moc_DialogNewComment.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewUnmaskedMeasure.h -o moc_DialogNewUnmaskedMeasure.cpp
 
 moc_MainWindow.cpp: MainWindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
 
 moc_DialogNewWork.cpp: DialogNewWork.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/FORK/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src -I/home/crubille/ASTRO/GIT/FORK/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewWork.h -o moc_DialogNewWork.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src -I/home/crubille/ASTRO/GIT/Foucault2_deforas/Foucault2/src/Util -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include DialogNewWork.h -o moc_DialogNewWork.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewComment.h ui_DialogNewWork.h
+compiler_uic_make_all: ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewComment.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewWork.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewComment.h ui_DialogNewWork.h
+	-$(DEL_FILE) ui_mainwindow.h ui_DialogNewMirror.h ui_DialogNewMeasure.h ui_DialogNewComment.h ui_DialogNewUnmaskedMeasure.h ui_DialogNewWork.h
 ui_mainwindow.h: mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic mainwindow.ui -o ui_mainwindow.h
@@ -645,13 +648,13 @@ ui_DialogNewMeasure.h: DialogNewMeasure.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic DialogNewMeasure.ui -o ui_DialogNewMeasure.h
 
-ui_DialogNewUnmaskedMeasure.h: DialogNewUnmaskedMeasure.ui \
-		/usr/lib/qt5/bin/uic
-	/usr/lib/qt5/bin/uic DialogNewUnmaskedMeasure.ui -o ui_DialogNewUnmaskedMeasure.h
-
 ui_DialogNewComment.h: DialogNewComment.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic DialogNewComment.ui -o ui_DialogNewComment.h
+
+ui_DialogNewUnmaskedMeasure.h: DialogNewUnmaskedMeasure.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic DialogNewUnmaskedMeasure.ui -o ui_DialogNewUnmaskedMeasure.h
 
 ui_DialogNewWork.h: DialogNewWork.ui \
 		/usr/lib/qt5/bin/uic
@@ -686,11 +689,6 @@ MirrorIo.o: MirrorIo.cpp Util/Properties.h \
 MirrorComment.o: MirrorComment.cpp MirrorComment.h \
 		MirrorItem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MirrorComment.o MirrorComment.cpp
-
-UnmaskedFoucaultImgSet.o: UnmaskedFoucaultImgSet.cpp Mirror.h \
-		UnmaskedFoucaultImgSet.h \
-		MirrorItem.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UnmaskedFoucaultImgSet.o UnmaskedFoucaultImgSet.cpp
 
 MirrorCouderMeasure.o: MirrorCouderMeasure.cpp MirrorCouderMeasure.h \
 		MirrorItem.h \
@@ -744,15 +742,6 @@ DialogNewMeasure.o: DialogNewMeasure.cpp DialogNewMeasure.h \
 		Mirror.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DialogNewMeasure.o DialogNewMeasure.cpp
 
-DialogNewUnmaskedMeasure.o: DialogNewUnmaskedMeasure.cpp DialogNewUnmaskedMeasure.h \
-		UnmaskedFoucaultImgSet.h \
-		Mirror.h \
-		MirrorItem.h \
-		ui_DialogNewUnmaskedMeasure.h \
-		MirrorUnmaskedMeasure.h \
-		MirrorCouderMeasure.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DialogNewUnmaskedMeasure.o DialogNewUnmaskedMeasure.cpp
-
 DialogNewMirror.o: DialogNewMirror.cpp DialogNewMirror.h \
 		ui_DialogNewMirror.h \
 		Mirror.h
@@ -761,6 +750,15 @@ DialogNewMirror.o: DialogNewMirror.cpp DialogNewMirror.h \
 DialogNewComment.o: DialogNewComment.cpp DialogNewComment.h \
 		ui_DialogNewComment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DialogNewComment.o DialogNewComment.cpp
+
+DialogNewUnmaskedMeasure.o: DialogNewUnmaskedMeasure.cpp DialogNewUnmaskedMeasure.h \
+		UnmaskedFoucaultImgSet.h \
+		Mirror.h \
+		MirrorItem.h \
+		ui_DialogNewUnmaskedMeasure.h \
+		MirrorUnmaskedMeasure.h \
+		MirrorCouderMeasure.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DialogNewUnmaskedMeasure.o DialogNewUnmaskedMeasure.cpp
 
 MainWindow.o: MainWindow.cpp Foucault2Defines.h \
 		MainWindow.h \
@@ -798,6 +796,11 @@ DialogNewWork.o: DialogNewWork.cpp DialogNewWork.h \
 		MirrorItem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DialogNewWork.o DialogNewWork.cpp
 
+UnmaskedFoucaultImgSet.o: UnmaskedFoucaultImgSet.cpp Mirror.h \
+		UnmaskedFoucaultImgSet.h \
+		MirrorItem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UnmaskedFoucaultImgSet.o UnmaskedFoucaultImgSet.cpp
+
 TaskItemWork.o: TaskItemWork.cpp TaskItemWork.h \
 		TaskItem.h \
 		MirrorWork.h \
@@ -815,14 +818,14 @@ qrc_Foucault2.o: qrc_Foucault2.cpp
 moc_DialogNewMeasure.o: moc_DialogNewMeasure.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DialogNewMeasure.o moc_DialogNewMeasure.cpp
 
-moc_DialogNewUnmaskedMeasure.o: moc_DialogNewUnmaskedMeasure.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DialogNewUnmaskedMeasure.o moc_DialogNewUnmaskedMeasure.cpp
-
 moc_DialogNewMirror.o: moc_DialogNewMirror.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DialogNewMirror.o moc_DialogNewMirror.cpp
 
 moc_DialogNewComment.o: moc_DialogNewComment.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DialogNewComment.o moc_DialogNewComment.cpp
+
+moc_DialogNewUnmaskedMeasure.o: moc_DialogNewUnmaskedMeasure.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_DialogNewUnmaskedMeasure.o moc_DialogNewUnmaskedMeasure.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

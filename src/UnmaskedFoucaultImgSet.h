@@ -19,6 +19,8 @@
 #include "MirrorItem.h"
 using namespace std;
 
+//#define MaxZones 10
+
 #define channel_Gray 0
 #define channel_R 1
 #define channel_G 2

@@ -45,7 +45,7 @@ DialogNewUnmaskedMeasure::~DialogNewUnmaskedMeasure()
 /////////////////////////////////////////////////////////////////////////////////
 unsigned int DialogNewUnmaskedMeasure::get_when()
 {
-    return ui->dateTimeEdit->dateTime().toTime_t();
+    return ui->dateTimeEdit->dateTime().toSecsSinceEpoch();
 }
 //////////////////////////////////////////////////////////////////////////////
   float DialogNewUnmaskedMeasure::get_slit_angle()
@@ -158,6 +158,7 @@ void DialogNewUnmaskedMeasure::enter_STATE_INIT()
   bool bSuccess;
   float hxi;
   assert(_dNumber_of_images == ui->le_nb_img->text().toDouble(&bSuccess ));
+  (void)bSuccess;
   //unselect all items
   for(int i=0;i< MaxZones ;i++)
     {

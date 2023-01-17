@@ -39,7 +39,7 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const ve
     assert(pMirror);
 
     //    int iNbZone=pMirror->nb_zones_M();
-    int iNbZone=vdMeasures.size(); // So it can adapt to various mask size or images numbers 
+    int iNbZone=(int)vdMeasures.size(); // So it can adapt to various mask size or images numbers
     /////////////////////////////////////////////////////////////////
     _measures.resize(iNbZone);
     for(int i=0;i<iNbZone;i++)
@@ -342,6 +342,7 @@ double MirrorCouderMeasure::calc_lf1000(void* self,double h)
     MirrorCouderMeasure* pMes=static_cast<MirrorCouderMeasure*>(self);
     const Mirror* pMirror=pMes->mirror();
     assert(pMirror!=0);
+    (void)pMirror;
 
     double minl,maxl;
     for (unsigned int i=0;i<pMes->nb_zones();i++)

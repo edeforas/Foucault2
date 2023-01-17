@@ -117,7 +117,8 @@ void MainWindow::on_actionAbout_triggered()
     qsText+= tr(" Jean-Jacques Jourdanneau for his help");
     qsText+= "\n";
     qsText+= tr(" Ken Slater for the translations fixes");
-
+    qsText += "\n";
+    qsText += tr(" Paul Crubille for all the mirrors image processing and dialogs");
 
     mb.setText(qsText);
     mb.setIconPixmap(QPixmap(":/Foucault2/Foucault2.ico"));
@@ -396,7 +397,6 @@ void MainWindow::on_actionPrint_triggered()
         painter.fillRect(painter.window(), QColor(255, 255, 255, 0)); // to fix a QPainter Bug with alpha channel
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setRenderHint(QPainter::TextAntialiasing);
-        painter.setRenderHint(QPainter::HighQualityAntialiasing);
         painter.setRenderHint(QPainter::SmoothPixmapTransform);
         for(int iPage=iFirstPage;iPage<=iLastPage;iPage++)
         {
@@ -404,7 +404,7 @@ void MainWindow::on_actionPrint_triggered()
             int iLastItemInpage;
 
             if((unsigned int)(iPage-1)==viPagesFirstItem.size()-1) //last page?
-	      iLastItemInpage=vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
+          iLastItemInpage=(int)vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
             else
                 iLastItemInpage=viPagesFirstItem[iPage]-1;
 
@@ -414,7 +414,7 @@ void MainWindow::on_actionPrint_triggered()
             QRectF qrfPage(vti[iFirstItemInPage]->pos().x(),pageStart,vti[iFirstItemInPage]->rect().width(),pageHeight);
 
             //compute page rect
-            QRectF qrfPrinter=printer.pageRect();
+            QRectF qrfPrinter=printer.pageRect(QPrinter::Millimeter);
             double dRatio=(210.-10.)/210.; //10mm lateral edge on A4
             double dLateralEdge=qrfPrinter.width()-qrfPrinter.width()*dRatio;
             double dVerticalEdge=qrfPrinter.height()-qrfPrinter.height()*dRatio;

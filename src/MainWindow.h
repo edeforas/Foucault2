@@ -9,7 +9,7 @@
 #include <QGraphicsItem>
 
 #include <string>
-using namespace std;
+//using namespace std;
 
 namespace Ui
 {
@@ -27,7 +27,7 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    bool load_file(string sFile);
+    bool load_file(std::string sFile);
     bool ask_save_and_action();
     void clear_mirror();
 
@@ -83,7 +83,7 @@ private:
     int _iLastWorkType;
 
     bool _bMustSave;
-    string _sFileName;
+    std::string _sFileName;
     TimelineScene* _ts;
     int _iqgi;
 };

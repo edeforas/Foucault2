@@ -4,7 +4,7 @@
 #include <QDialog>
 
 #include <string>
-using namespace std;
+//using namespace std;
 
 namespace Ui {
 class DialogNewWork;
@@ -18,7 +18,7 @@ public:
     explicit DialogNewWork(QWidget *parent = 0);
     ~DialogNewWork();
 
-    string get_work();
+    std::string get_work();
     unsigned int get_when();
     unsigned int get_duration();
     void set_work_type(int iWorkType);
