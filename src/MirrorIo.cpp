@@ -14,6 +14,7 @@
 #include "MirrorComment.h"
 #include "MirrorWork.h"
 #include "MirrorCouderMeasure.h"
+#include "MirrorUnmaskedMeasure.h"
 
 #include <sstream>
 #include <cassert>
@@ -99,6 +100,44 @@ Mirror* MirrorIo::load(string sFile)
             pm->add_item(mw);
         }
 
+	if( sType == "MirrorUnmaskedMeasure")
+	  {
+            MirrorUnmaskedMeasure* mum=new MirrorUnmaskedMeasure;
+            mum->set_when(p.get_unsigned_int(sIndex+".When"));
+            if(p.exist(sIndex+".TotalDiameter"))
+                mum->set_mirror_total_diameter
+		  ( p.get_double(sIndex+".TotalDiameter"));
+            if(p.exist(sIndex+".RGB_channel"))
+	      mum->set_RGB_channel
+		(p.get_unsigned_int(sIndex+".RGB_channel"));
+            if(p.exist(sIndex+".Slit_Angle"))
+                mum->set_slit_angle
+		  ( p.get_double(sIndex+".Slit_Angle"));
+
+            if(p.exist(sIndex+".Flat_Image"))
+                mum->set_flat_image_name
+		  ( p.get(sIndex+".Flat_Image"));
+            if(p.exist(sIndex+".First_Image"))
+                mum->set_first_image_name
+		  ( p.get(sIndex+".First_Image"));
+	    
+            if(p.exist(sIndex+".Number_Images"))
+	      mum->set_number_images
+		(p.get_unsigned_int(sIndex+".Number_Images"));
+            if(p.exist(sIndex+".Delta_Hx"))
+                mum->set_delta_hx
+		  ( p.get_double(sIndex+".Delta_Hx"));
+
+            if(p.exist(sIndex+".Img_Number_Part_Size"))
+	      mum->set_img_name_number_part_size
+		(p.get_unsigned_int(sIndex+".Img_Number_Part_Size"));
+            if(p.exist(sIndex+".Img_Suffix_Size"))
+	      mum->set_img_name_suffix_size
+		(p.get_unsigned_int(sIndex+".Img_Suffix_Size"));
+
+	    pm->add_item(mum);
+	  }
+
 	
         if(sType=="MirrorCouderMeasure")
         {
@@ -178,6 +217,22 @@ bool MirrorIo::save(Mirror* pm,string sFile)
             p.set(sIndex+".Duration",tc->duration());
             p.set(sIndex+".WorkType",tc->work_type());
         }
+
+	if( sType == "MirrorUnmaskedMeasure")
+	  {
+            MirrorUnmaskedMeasure* mum = dynamic_cast<MirrorUnmaskedMeasure*>(mi);
+	    p.set(sIndex+".TotalDiameter", mum->get_mirror_total_diameter());
+	    p.set(sIndex+".RGB_channel", mum->get_RGB_channel());
+	    p.set(sIndex+".Slit_Angle", mum->get_slit_angle());
+
+	    p.set(sIndex+".Flat_Image", mum->get_flat_image_name());
+	    p.set(sIndex+".First_Image", mum->get_first_image_name());
+	    
+	    p.set(sIndex+".Number_Images", mum->get_number_images());
+	    p.set(sIndex+".Delta_Hx", mum->get_delta_hx());
+	    p.set(sIndex+".Img_Number_Part_Size", mum->get_img_name_number_part_size());
+	    p.set(sIndex+".Img_Suffix_Size", mum->get_img_name_suffix_size());
+	  }
 
         if(sType=="MirrorCouderMeasure")
         {	  
