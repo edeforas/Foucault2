@@ -24,12 +24,13 @@ MirrorCouderMeasure::MirrorCouderMeasure(Mirror *pParent)
     set_mirror(pParent);
     mirror_meridian = 0;
 }
-  void MirrorCouderMeasure::set_measure_meridian( double m )
-  { mirror_meridian = m ;}
-
 ////////////////////////////////////////////////////////////////////////////////
-void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const vector<double>& vdHm,
-				      string sAspect="")
+void MirrorCouderMeasure::set_measure_meridian( double m )
+{
+    mirror_meridian = m ;
+}
+////////////////////////////////////////////////////////////////////////////////
+void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const vector<double>& vdHm, string sAspect="")
 {
     const Mirror* pMirror=mirror();
     //    _measures=vdMeasures;
@@ -44,13 +45,13 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const ve
     _measures.resize(iNbZone);
     for(int i=0;i<iNbZone;i++)
     {
-      _measures[i]= vdMeasures[i]; // ou i+1 ????????????
+        _measures[i]= vdMeasures[i]; // ou i+1 ????????????
     }
 
     _vdHm.resize(iNbZone);
     for(int i=0;i<iNbZone;i++)
     {
-      _vdHm[i]= vdHm[i]; // ou i+1 ????????????
+        _vdHm[i]= vdHm[i]; // ou i+1 ????????????
     }
 
     _vdHmz.resize(iNbZone+1);
@@ -61,17 +62,17 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const ve
     */
     _vdHmz[0]= pMirror->hole_diameter()/2.;
     for(int i=1; i<iNbZone+1; i++)
-      _vdHmz[i]= _vdHm[i-1];
+        _vdHmz[i]= _vdHm[i-1];
 
     //compute Hm2R
     double dRay = pMirror->radius_curvature();
     _vdHm2R.resize(iNbZone);
     for(int i=0;i<iNbZone;i++)
     {
-      if (pMirror->is_slit_moving())
-	_vdHm2R[i]=-pMirror->conical()*sqr(_vdHm[i])/2./dRay;
+        if (pMirror->is_slit_moving())
+            _vdHm2R[i]=-pMirror->conical()*sqr(_vdHm[i])/2./dRay;
         else
-	  _vdHm2R[i]=-pMirror->conical()*( sqr(_vdHm[i])/dRay + sqr(sqr(_vdHm[i])) /2. /dRay/sqr(dRay));
+            _vdHm2R[i]=-pMirror->conical()*( sqr(_vdHm[i])/dRay + sqr(sqr(_vdHm[i])) /2. /dRay/sqr(dRay));
     }
 
     //compute Hm4F
@@ -84,22 +85,21 @@ void MirrorCouderMeasure::set_measure(const vector<double>& vdMeasures, const ve
     double dSum=0.; double current = pMirror->hole_diameter(); // 0 or hole radius.
     for(int i=0;i<(iNbZone-1);i++)
     {
-      double next_c;
-      next_c = (_vdHmz[i+1]+_vdHmz[i+2])/2; 
-      _vdRelativeSurface[i]=sqr(next_c)-sqr(current);
-	//        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
-      current = next_c;
-      dSum+=_vdRelativeSurface[i];
+        double next_c;
+        next_c = (_vdHmz[i+1]+_vdHmz[i+2])/2;
+        _vdRelativeSurface[i]=sqr(next_c)-sqr(current);
+        //        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
+        current = next_c;
+        dSum+=_vdRelativeSurface[i];
     }
     _vdRelativeSurface[iNbZone -1]=sqr( pMirror->diameter()/2 )-sqr(current);
-      dSum+=_vdRelativeSurface[iNbZone -1];
+    dSum+=_vdRelativeSurface[iNbZone -1];
 
-for(int i=0;i<iNbZone;i++)
+    for(int i=0;i<iNbZone;i++)
     {
         _vdRelativeSurface[i]=_vdRelativeSurface[i]/dSum/**iNbZone*/;
     }
 
-    /////////////////////////////////////////////////////////////////
     _lf1000.resize(iNbZone);
     _lfro.resize(iNbZone);
     _moinsu.resize(iNbZone);
@@ -163,13 +163,12 @@ for(int i=0;i<iNbZone;i++)
     //compute stddev rms
     _dWeightedStrehl=exp(-sqr(2.*PI*1./_dWeightedLambdaRms));
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 // Functions from Mirror class moved to MirrorCouderMeasure (P. Crubillé
 ////////////////////////////////////////////////////////////////////////////////
 const vector<double>& MirrorCouderMeasure::hmx() const
 {
-  return _vdHm;
+    return _vdHm;
 } 
 const vector<double>& MirrorCouderMeasure::hmz() const
 {
@@ -195,7 +194,6 @@ void MirrorCouderMeasure::set_hmx(vector<double> vdHmx)
 {
     _vdHm=vdHmx;
 }
-
 ////////////////////////////////////////////////////////////////////////////////
 const vector<double>& MirrorCouderMeasure::measures() const
 {
@@ -358,7 +356,7 @@ double MirrorCouderMeasure::calc_lf1000(void* self,double h)
 ////////////////////////////////////////////////////////////////////////////////
 unsigned int MirrorCouderMeasure::nb_zones() const
 {
-  return (int)(_vdHm.size());
+    return (int)(_vdHm.size());
 }
 ////////////////////////////////////////////////////////////////////////////////
 double MirrorCouderMeasure::get_lfro() const
