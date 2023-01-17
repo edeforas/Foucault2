@@ -308,15 +308,15 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
     if(nm.exec())
     {
         MirrorCouderMeasure* t=new MirrorCouderMeasure(_pMirror);
-	
-	vector<double> vdHm;
-	vdHm.resize(_pMirror->nb_zones());
-	vdHm[0]=(_pMirror->hole_diameter() + _pMirror->hx()[0])/2.;	    
-	for(unsigned int i=1;i< _pMirror->nb_zones() ;i++)
-	  vdHm[i]= (_pMirror->hx()[i-1] + _pMirror->hx()[i] )/2;
-	
-	t->set_measure(nm.get_measure(), vdHm, nm.get_aspect());
-	
+
+        vector<double> vdHm;
+        vdHm.resize(_pMirror->nb_zones());
+        vdHm[0]=(_pMirror->hole_diameter() + _pMirror->hx()[0])/2.;
+        for(unsigned int i=1;i< _pMirror->nb_zones() ;i++)
+            vdHm[i]= (_pMirror->hx()[i-1] + _pMirror->hx()[i] )/2;
+
+        t->set_measure(nm.get_measure(), vdHm, nm.get_aspect());
+
         t->set_when(nm.get_when());
         _pMirror->add_item(t);
         _ts->update_items(_pMirror->nb_item()-1);
@@ -328,13 +328,13 @@ void MainWindow::on_actionNew_Couder_Measure_triggered()
 //////////////////////////////////////////////////////////////////////////////
 void MainWindow::on_actionNew_Unmasked_Measure_triggered()
 {
-  DialogNewUnmaskedMeasure nm(_pMirror, this);
-  printf("unmasked triggered\n");
-  if(nm.exec())
+    DialogNewUnmaskedMeasure nm(_pMirror, this);
+    printf("unmasked triggered\n");
+    if(nm.exec())
     {
-      _ts->update_items(_pMirror->nb_item()-1);
-      _ts->ensure_last_visible();
-      _bMustSave=true;
+        _ts->update_items(_pMirror->nb_item()-1);
+        _ts->ensure_last_visible();
+        _bMustSave=true;
     };
 
 }
@@ -404,7 +404,7 @@ void MainWindow::on_actionPrint_triggered()
             int iLastItemInpage;
 
             if((unsigned int)(iPage-1)==viPagesFirstItem.size()-1) //last page?
-          iLastItemInpage=(int)vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
+                iLastItemInpage=(int)vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
             else
                 iLastItemInpage=viPagesFirstItem[iPage]-1;
 
