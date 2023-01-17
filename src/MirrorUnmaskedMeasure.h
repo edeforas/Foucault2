@@ -1,5 +1,5 @@
-#ifndef _MirrorWork_
-#define _MirrorWork_
+#ifndef _MirrorUnmaskedMeasure_
+#define _MirrorUnmaskedMeasure_
 
 #include "MirrorItem.h"
 #include <string>
