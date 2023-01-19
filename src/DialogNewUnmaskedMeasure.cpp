@@ -345,7 +345,7 @@ void DialogNewUnmaskedMeasure::on_pushButton_compute_clicked()
 
 
 ////////////////////////////////////////////////////////////////
-
+using std::vector;
 class hx_hm
 {
 public:
@@ -359,13 +359,13 @@ struct less_than_hm
         return (a.hm < b.hm);
     }
 };
-static std::vector < hx_hm > v_hx_hm;
-
-// v_hx_mx.push_back(hx_mx( hx , hm));
 
 void DialogNewUnmaskedMeasure::on_pushButton_generate_measure_clicked()
 {
   bool bSuccess;
+  std::vector < hx_hm > v_hx_hm;
+  v_hx_hm.clear();
+
   if( _STATE == STATE_ANALYZED )
     {
       MirrorCouderMeasure* UnmaskedMeasure = new MirrorCouderMeasure(_pMirror);
@@ -417,8 +417,8 @@ void DialogNewUnmaskedMeasure::on_pushButton_generate_measure_clicked()
 	
       std::sort(v_hx_hm.begin(), v_hx_hm.end(), less_than_hm());
 
-      vector<double> vdHm;
-      vector<double> vdHx; 
+      vector<double> vdHm; vdHm.clear();
+      vector<double> vdHx; vdHx.clear();
       double Hm_old = 0;
       for (std::vector < hx_hm >::iterator it = v_hx_hm.begin() ; it != v_hx_hm.end(); ++it)
 	{
@@ -559,77 +559,8 @@ vector<double> DialogNewUnmaskedMeasure::get_Img_hx()
   return _Img_Hx;
 }
 //////////////////////////////////////////////////////////////////////
-/*void DialogNewUnmaskedMeasure::on_btnComputeNbOfzone_clicked()
-{
-    // compute with number of zones
-    if(!get_and_check_DFH())
-        return;
-
-    bool bSuccess;
-    int iNbZone=ui->leNumberOfZones->text().toInt(&bSuccess);
-
-    if((!bSuccess) || (iNbZone> MaxZones ) || (iNbZone<3) )
-    {
-        ui->leNumberOfZones->setFocus();
-        QMessageBox::critical(this,tr("Error"),tr("please enter a valid number of zone (must be < MaxZones and >=3)"));
-        return;
-    }
-
-    vector<double> vdHx;
-    Mirror::design_hx_nb_zone(_dDiameter,_dHoleDiameter,_dFocal,iNbZone, vdHx);
-
-    for(unsigned int i=0;i<vdHx.size();i++)
-    {
-        QTableWidgetItem* qti =new QTableWidgetItem(QString::number(vdHx[i],'f',1));
-        ui->twHx->setItem(0,i,qti);
-    }
-
-    for(size_t i=vdHx.size();i< MaxZones ;i++)
-    {
-        QTableWidgetItem* qti =new QTableWidgetItem("");
-        ui->twHx->setItem(0,(int)i,qti);
-    }
-}
-*/
 //////////////////////////////////////////////////////////////////////////////
-  /* 
-void DialogNewUnmaskedMeasure::on_radioButton_2_clicked()
-{
-   ui->leNumberOfZones->setEnabled(true);
-    ui->leMillimetersByZone->setEnabled(false);
-    ui->btnComputeNbOfzone->setEnabled(true);
-    ui->btnComputeNbMillimetersByZone->setEnabled(false);
-    ui->btnComputeMinZoneSize->setEnabled(false);
-    ui->leMinZoneSize->setEnabled(false);
-}
-  */
-  /*
-//////////////////////////////////////////////////////////////////////////////
-void DialogNewUnmaskedMeasure::on_radioButton_3_clicked()
-{
-    //select with nb millimeters/zone
-    ui->leNumberOfZones->setEnabled(false);
-    ui->leMillimetersByZone->setEnabled(true);
-    ui->btnComputeNbOfzone->setEnabled(false);
-    ui->btnComputeNbMillimetersByZone->setEnabled(true);
-    ui->btnComputeMinZoneSize->setEnabled(false);
-    ui->leMinZoneSize->setEnabled(false);
-}
-  */
-//////////////////////////////////////////////////////////////////////////////
-  /*
-void DialogNewUnmaskedMeasure::on_radioButton_clicked()
-{
-    // select with manual design
-    ui->leNumberOfZones->setEnabled(false);
-    ui->leMillimetersByZone->setEnabled(false);
-    ui->btnComputeNbOfzone->setEnabled(false);
-    ui->btnComputeNbMillimetersByZone->setEnabled(false);
-    ui->btnComputeMinZoneSize->setEnabled(false);
-    ui->leMinZoneSize->setEnabled(false);
-}
-  */
-//////////////////////////////////////////////////////////////////////////////
+
 bool DialogNewUnmaskedMeasure::cropped_button_on()
   {
     //    return ui->radioButton_cropped->isDown() ;

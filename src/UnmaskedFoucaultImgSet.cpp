@@ -476,10 +476,15 @@ double FoucaultSnapshot::find_edge_y( int y, int x_diff, int y_diff )
 	pixvalue_p2 = qGray( cropped.pixel(i + 2*x_diff, y + 2*y_diff ));
 
 	int k_edge = (max_pixel - min_pixel)/32; //rather good but can be a user selectable param
-	if(    ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
+	if((    ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
 	       && ( pixvalue_p2 > pixvalue_m2 +4*k_edge ) && ( pixvalue_p1 > pixvalue_m2 +3*k_edge)
 	       && ( pixvalue -k_edge > pixvalue_m1 ) && ( pixvalue -2*k_edge > pixvalue_m2 )
-	       )
+		) // detect bevel edge
+	   ||
+	   (      // detect diffraction ridge
+	    ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
+	    && ( pixvalue -4*k_edge > pixvalue_m1 ) && ( pixvalue -4*k_edge > pixvalue_m2 )
+	    ))
 	  {
 	    return i;
 	  }
@@ -595,7 +600,7 @@ int FoucaultSnapshot::find_zones( double obstruction, double edge )
   int search_begin, search_end;
   if( obstruction <= 0 )
     {
-      search_begin = diff_mirror.width()*5./100. + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
+      search_begin = diff_mirror.width()*1./100. + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
     } else
     {
       search_begin = obstruction*r_circle + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
