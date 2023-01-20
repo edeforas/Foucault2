@@ -21,12 +21,12 @@ SOURCES += main.cpp \
     DialogNewMeasure.cpp \
     DialogNewMirror.cpp \
     DialogNewComment.cpp \
-    DialogNewUnmaskedMeasure.cpp \
+  #  DialogNewUnmaskedMeasure.cpp \
     MainWindow.cpp \
     TaskItemNewMirror.cpp \
     MirrorWork.cpp \
     DialogNewWork.cpp \
-    UnmaskedFoucaultImgSet.cpp \
+  #  UnmaskedFoucaultImgSet.cpp \
     TaskItemWork.cpp
 
 HEADERS += \
@@ -44,20 +44,20 @@ HEADERS += \
     DialogNewMeasure.h \
     DialogNewMirror.h \
     DialogNewComment.h \
-    DialogNewUnmaskedMeasure.h \
+  #  DialogNewUnmaskedMeasure.h \
     MainWindow.h \
     TaskItemNewMirror.h \
     MirrorWork.h \
     DialogNewWork.h \
     TaskItemWork.h \
-    UnmaskedFoucaultImgSet.h \
+  #  UnmaskedFoucaultImgSet.h \
     Foucault2Defines.h
 
 FORMS += mainwindow.ui \
     DialogNewMirror.ui \
     DialogNewMeasure.ui \
     DialogNewComment.ui \
-    DialogNewUnmaskedMeasure.ui \
+  #  DialogNewUnmaskedMeasure.ui \
     DialogNewWork.ui
 INCLUDEPATH += Util
 SOURCES += Util/Properties.cpp
