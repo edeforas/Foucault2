@@ -15,6 +15,7 @@ Mirror::Mirror()
     _dConical=-1.;
     _bIsSlitMoving=false;
     _dRoDif=0;
+    _bShowLfRo=false;
 
     _bShowBothSide=false;
     _bSmoothCurves=false;
@@ -132,19 +133,19 @@ double Mirror::ro_dif() const
 //////////////////////////////////////////////////////////////////////////////
 unsigned int Mirror::nb_zones() const
 {
-  return (int)(_vdHx.size());
+    return (int)(_vdHx.size());
 }
 //////////////////////////////////////////////////////////////////////////////
 const vector<double>& Mirror::hx() const
 {
     return _vdHx;
-    } 
+}
 
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::set_hx(vector<double> vdHx)
 {
     _vdHx=vdHx;
-    }
+}
 /*
 const vector<double>& Mirror::hz() const
 {
@@ -164,7 +165,7 @@ void Mirror::set_is_slit_moving(bool bSlitMoving)
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::initialize()
 {
-  //    int iNbZone=(int)(hx().size());
+    //    int iNbZone=(int)(hx().size());
     double dRay=2.*_dFocal;
 
     double dYellow=560.*1.e-9;
@@ -207,9 +208,9 @@ void Mirror::initialize()
     for(int i=0;i<(iNbZone-1);i++)
     {
       double next_c;
-      next_c = (_vdHmz[i+1]+_vdHmz[i+2])/2; 
+      next_c = (_vdHmz[i+1]+_vdHmz[i+2])/2;
       _vdRelativeSurface[i]=sqr(next_c)-sqr(current);
-	//        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
+    //        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
       current = next_c;
       dSum+=_vdRelativeSurface[i];
     }
@@ -229,7 +230,7 @@ void Mirror::design_hx_nb_zone(double dDiameter,double dHole,double dFocal,int i
     double dRadius=dDiameter/2.;
 
     if (iNbZone> MaxZones )
-      iNbZone= MaxZones ;
+        iNbZone= MaxZones ;
 
     if (iNbZone<3)
         iNbZone=3;

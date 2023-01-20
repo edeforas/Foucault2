@@ -20,41 +20,41 @@ class MirrorItem;
 class Mirror
 {
 public:
-  Mirror();
-  virtual ~Mirror();
-  void initialize();
+    Mirror();
+    virtual ~Mirror();
+    void initialize();
 
-  void set_name(string sName);
-  const string &name() const;
+    void set_name(string sName);
+    const string &name() const;
 
-  double focal() const;
-  double radius_curvature() const;
-  void set_focal(double dFocal);
+    double focal() const;
+    double radius_curvature() const;
+    void set_focal(double dFocal);
 
-  double diameter() const; //mm
-  void set_diameter(double dDiameter);
+    double diameter() const; //mm
+    void set_diameter(double dDiameter);
 
-  double hole_diameter() const; // mm 
-  void set_hole_diameter(double dHoleDiameter);
+    double hole_diameter() const; // mm
+    void set_hole_diameter(double dHoleDiameter);
 
-  double obstruction_size() const; // mm
-  void set_obstruction_size(double dObstructionSize);
+    double obstruction_size() const; // mm
+    void set_obstruction_size(double dObstructionSize);
 
-  double edge_mask_width() const; //mm
-  void set_edge_mask_width(double dEdgeMask);
+    double edge_mask_width() const; //mm
+    void set_edge_mask_width(double dEdgeMask);
 
     double conical() const;
     void set_conical(double dConical);
     bool is_parabolic() const;
 
-    unsigned int nb_zones() const; 
-    const vector<double>& hx() const; 
+    unsigned int nb_zones() const;
+    const vector<double>& hx() const;
     void set_hx(vector<double> vdHx);
 
-  //    const vector<double>& hz() const;
+    //    const vector<double>& hz() const;
 
-  /*
-  const vector<double>& hmx() const; 
+    /*
+  const vector<double>& hmx() const;
     void set_hmx(vector<double> vdHmx);
   const vector<double>& hmz() const;
 
@@ -63,7 +63,7 @@ public:
     const vector<double>& hm2r() const;
     const vector<double>& hm4f() const;
   */
-  
+
     bool is_slit_moving() const;
     void set_is_slit_moving(bool bSlitMoving);
 
@@ -100,17 +100,17 @@ private:
     string _sName;
     double _dFocal;
     double _dDiameter;
-  double _dHoleDiameter; // there is nothing so no measure in this circle
-  double _dObstructionSize; // measure are possible, but default have no impact
+    double _dHoleDiameter; // there is nothing so no measure in this circle
+    double _dObstructionSize; // measure are possible, but default have no impact
     double _dEdgeMaskWidth;
 
     double _dConical;
     double _dRoDif;
 
     //Couder parameters
-  vector<double> _vdHx;
-  //    vector<double> _vdHz;
-  /*
+    vector<double> _vdHx;
+    //    vector<double> _vdHz;
+    /*
  vector<double> _vdHmx;
   vector<double> _vdHmz; // really vdHmx withe a first value  either 0 either hole radius.
    vector<double> _vdHm;
@@ -118,7 +118,7 @@ private:
     vector<double> _vdHm4F;
     vector<double> _vdRelativeSurface;
   */
-  
+
     bool _bIsSlitMoving;
 
     //ui settings
