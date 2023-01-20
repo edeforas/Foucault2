@@ -4,27 +4,27 @@
 // copyright Paul Crubille ( the author )
 // mailto: paul@crubille.lautre.net
 
-#include "Mirror.h"
-#include "UnmaskedFoucaultImgSet.h"
-#include <math.h>
+#include <cmath>
 
 #include <QGuiApplication>
 #include <QScreen>
 #include <QPainter>
 
+#include "Mirror.h"
+#include "UnmaskedFoucaultImgSet.h"
+
 int Vignette_Size = 240;
 
+/////////////////////////////////////////////////////////////////////////////
 FoucaultSnapshot::FoucaultSnapshot()
 {}
-
+/////////////////////////////////////////////////////////////////////////////
 void FoucaultSnapshot::draw_image( )
 {
     if ( raw_image.isNull())
     { QPixmap nullqimage;
-        pixmap = nullqimage;
-    }
-    else
-    {
+        pixmap = nullqimage;}
+    else {
         double ratio = (double)raw_image.height() / (double)Vignette_Size;
         pixmap = pixmap.fromImage( raw_image );
         pixmap = pixmap.scaledToHeight( Vignette_Size, Qt::SmoothTransformation);
@@ -32,18 +32,15 @@ void FoucaultSnapshot::draw_image( )
         painter.setPen( QColor(0,255,0) );
         painter.setFont( QFont("Arial") );
         painter.drawText( QPoint(10, pixmap.height() - 20), file_name.right(12) );
-        painter.drawEllipse( QPointF( c_x_circle/ratio, c_y_circle/ratio),
-                             r_circle/ratio,
-                             r_circle/ratio) ;
-    };
+        painter.drawEllipse( QPointF( c_x_circle/ratio, c_y_circle/ratio), r_circle/ratio, r_circle/ratio) ;
+    }
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void FoucaultSnapshot::draw_cropped()
 {
     if ( cropped.isNull())
     {
-        QPixmap nullqimage;
-        pixmap = nullqimage;
+        pixmap = QPixmap();
     }
     else
     {
@@ -68,16 +65,13 @@ void FoucaultSnapshot::draw_cropped()
         }
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void FoucaultSnapshot::draw_diff_180()
 {
     if ( diff_mirror.isNull())
-    {
-        QPixmap nullqimage;
-        pixmap = nullqimage;
-    }
-    else
-    {
+    { QPixmap nullqimage;
+        pixmap = nullqimage;}
+    else {
         double ratio = (double)diff_mirror.height() / (double)Vignette_Size;
         pixmap = pixmap.fromImage( diff_mirror );
         pixmap = pixmap.scaledToWidth( Vignette_Size, Qt::SmoothTransformation);
@@ -99,7 +93,7 @@ void FoucaultSnapshot::draw_diff_180()
         }
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////
 UnmaskedFoucaultImgSet::UnmaskedFoucaultImgSet()
 {
     Slit = 0;
@@ -121,17 +115,16 @@ UnmaskedFoucaultImgSet::UnmaskedFoucaultImgSet()
     hlayout = new QHBoxLayout( hbox_widget );
     hlayout->setGeometry (QRect(0, 0, 1000, Vignette_Size));
 }
-
+/////////////////////////////////////////////////////////////////////////////
 UnmaskedFoucaultImgSet::~UnmaskedFoucaultImgSet()
 {
     scrollarea->close();
+    //  imgs_window->close();
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void UnmaskedFoucaultImgSet::set_RGB_channel( int channel ) 
 {
-    if( RGB_channel == channel )
-        return ; // nothing to do
-
+    if( RGB_channel == channel ) return ; // nothing to do
     for(int i=0; i< MaxZones ; i++)
     {
         clear_image( i );
@@ -139,12 +132,12 @@ void UnmaskedFoucaultImgSet::set_RGB_channel( int channel )
     }
     RGB_channel = channel;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void UnmaskedFoucaultImgSet::set_DrawImg_State( int index )
 {
     DrawImgState = index;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void UnmaskedFoucaultImgSet::set_DrawImg_Size( int index )
 {
     if( index == 0 ) Vignette_Size = 240;
@@ -153,7 +146,7 @@ void UnmaskedFoucaultImgSet::set_DrawImg_Size( int index )
     if( index == 3 ) Vignette_Size = 720;
     if( index >= 4 ) Vignette_Size = 1024;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 void UnmaskedFoucaultImgSet::show_images()
 {
     int hbox_size = 20;
@@ -169,7 +162,6 @@ void UnmaskedFoucaultImgSet::show_images()
         QRect  screenGeometry = screen->geometry();
         int screen_height = screenGeometry.height();
         int screen_width = screenGeometry.width();
-
 
         hbox_widget = new QWidget;
         hbox_widget->setGeometry (QRect(0, 0, screen_width, Vignette_Size));
@@ -200,7 +192,6 @@ void UnmaskedFoucaultImgSet::show_images()
                 hbox_size += foucault_img[i].pixmap.width() +10;
             }
         }
-
         hbox_widget->setGeometry (QRect(0, 0, hbox_size, Vignette_Size));
         hlayout->setGeometry (QRect(0, 0, hbox_size, Vignette_Size));
         scrollarea->takeWidget();
@@ -214,13 +205,15 @@ void UnmaskedFoucaultImgSet::show_images()
         scrollarea->activateWindow();
     }
 }
-
+/////////////////////////////////////////////////////////////////////////////
 bool UnmaskedFoucaultImgSet::set_image( int i, QString name)
 {
-    FILE *F; static QImage nullqimage;
+    FILE *F;
+    static QImage nullqimage;
     static QPixmap nullqpixmap;
 
-    if(i >= MaxZones) return false;
+    if(i >= MaxZones)
+        return false;
     //    foucault_img[i].raw_image = nullqimage;
     foucault_img[i].cropped = nullqimage; foucault_img[i].diff_mirror = nullqimage; foucault_img[i].pixmap = nullqpixmap;
 
@@ -232,8 +225,10 @@ bool UnmaskedFoucaultImgSet::set_image( int i, QString name)
             fclose( F );
             foucault_img[i].draw_image( );
             return true;
-        } else return false;
-    } else
+        } else
+            return false;
+    }
+    else
     {
         foucault_img[i].file_name = name;
 
@@ -272,10 +267,11 @@ bool UnmaskedFoucaultImgSet::set_image( int i, QString name)
     }
     return false;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 bool FoucaultSnapshot::clear()
 {
-    static QImage nullqimage;static QPixmap nullqpixmap;
+    static QImage nullqimage;
+    static QPixmap nullqpixmap;
     bool R;
     R = !raw_image.isNull();
     raw_image = nullqimage; cropped = nullqimage; diff_mirror = nullqimage; pixmap = nullqpixmap;
@@ -284,18 +280,18 @@ bool FoucaultSnapshot::clear()
     number_of_zones = 0 ;
     return R;
 }
+/////////////////////////////////////////////////////////////////////////////
 bool UnmaskedFoucaultImgSet::clear_image( int i )
 {
     if(i >= MaxZones)
         return false;
     return foucault_img[i].clear() ;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 FoucaultSnapshot *UnmaskedFoucaultImgSet::foucaultsnapshot( int i)
 {
     return &foucault_img[ i ];
 }
-
 /////////////////////////////////////////////////////////////
 //           ALGO TO FIND THE CENTER:
 // 1 -  ROTATE THE IMAGE (slit)
@@ -320,16 +316,10 @@ class Circle
 private:
     double X, Y, Radius ;
 public:
-    double x()
-    {return X;}
-
-    double y()
-    {return Y;}
-
-    double radius()
-    {return Radius;}
-
-    void thee_point_circle( double p1_x, double p1_y, double p2_x, double p2_y, double p3_x, double p3_y )
+    double x(){return X;} double y(){return Y;} double radius(){return Radius;}
+    void thee_point_circle( double p1_x, double p1_y,
+                            double p2_x, double p2_y,
+                            double p3_x, double p3_y )
     {
         double A, B, C, D;
 
@@ -342,10 +332,9 @@ public:
         Radius = sqrt( pow(X- p1_x , 2 ) + pow( Y- p1_y ,2) );
     }
 };
-
 bool comp_radius( Circle c1, Circle c2 ){ return c1.radius() < c2.radius() ;}
 bool comp_x( Circle c1, Circle c2 ){ return c1.x() < c2.x() ;}
-
+/////////////////////////////////////////////////////////////////////////////
 bool FoucaultSnapshot::find_center_3points(double angle)
 {
     double Y_step, img_height;
@@ -372,25 +361,16 @@ bool FoucaultSnapshot::find_center_3points(double angle)
         while( find_edge_y( y, 0, 1 ) <=0 ) // search black to white from bottom.
         {
             y = y+ Y_step;
-            if( y >= img_height-3 )
-                return false; // no foucault mirror image
+            if( y >= img_height-3 ) return false; // no foucault mirror image
         };
-
-        if( y < Y_step +2 )
-        { y = 2;}
-        else
-        {
-            y = y - Y_step ;
-        }
-
-        // restart edge search but for all x.
+        if( y < Y_step +2 ) { y = 2;}
+        else { y = y - Y_step ;
+        } // restart edge search but for all x.
         while( (x_lower_edge = find_edge_y( y, 0, 1 )) <=0 ) // search black to white from bottom.
         {
-            if( y >= img_height-3 )
-                return false; // should not happend
+            if( y >= img_height-3 ) return false; // should not happend
             y = y+1;
         };
-
         y_lower_edge = y;
         // (x_lower_edge,y_lower_edge) is  the lower edge for the disk!
         // <end> find lower edge (starting from y=0 to
@@ -401,26 +381,16 @@ bool FoucaultSnapshot::find_center_3points(double angle)
         while( find_edge_y( y, 0, -1 ) <=0 ) // search black to white from bottom.
         {
             y = y- Y_step;
-            if( y <= 2 )
-                return false; // no foucault mirror image
+            if( y <= 2 ) return false; // no foucault mirror image
         };
-        if( y > img_height -3 - Y_step )
-        {
-            y = img_height - 3;
-        }
-        else
-        {
-            y = y + Y_step ;
-        }
-
-        // restart edge search but for all x.
+        if( y > img_height -3 - Y_step ) { y = img_height - 3;}
+        else { y = y + Y_step ;
+        } // restart edge search but for all x.
         while( (x_upper_edge = find_edge_y( y, 0, -1 )) <=0 ) // search black to white from bottom.
         {
-            if( y <= 2)
-                return false; // should not happend
+            if( y <= 2) return false; // should not happend
             y = y-1;
         };
-
         y_upper_edge = y;
         // (x_upper_edge,y_upper_edge) is  the upper edge for the disk!
         // <end> find low edge (starting from y=0 to
@@ -434,7 +404,6 @@ bool FoucaultSnapshot::find_center_3points(double angle)
             int new_edge_x = find_edge_y( c_y , 1, 0 );
             if( new_edge_x < edge_x) edge_x = new_edge_x;
         };
-
         c_x_circle = edge_x + r_circle ;
         int edge_60 = y_lower_edge - 2 + 2*r_circle/3;
         ////////////////////////////////////////////////////////////////
@@ -443,8 +412,8 @@ bool FoucaultSnapshot::find_center_3points(double angle)
         for(int p_i_y = y_lower_edge; p_i_y < edge_60 ; p_i_y = p_i_y +Y_step )
         {
             float p1_i_x, p2_i_x, p3_i_x;
-            float p2_i_y = p_i_y + (2*r_circle)/3. ;
-            float p3_i_y = p_i_y + (4*r_circle)/3. ;
+            float p2_i_y = p_i_y + (2*r_circle)/3 ;
+            float p3_i_y = p_i_y + (4*r_circle)/3 ;
             p1_i_x = find_edge_y( p_i_y , 1, 1 );
             p2_i_x = find_edge_y( p2_i_y , 1, 0 );
             p3_i_x = find_edge_y( p3_i_y , 1, -1 );
@@ -452,7 +421,7 @@ bool FoucaultSnapshot::find_center_3points(double angle)
             if( ( p1_i_x > 0 ) && ( p2_i_x > 0 ) && ( p3_i_x > 0 ) )
             {
                 Circle circle_i;
-                circle_i.thee_point_circle( p1_i_x, p_i_y, p2_i_x, p2_i_y, p3_i_x, p3_i_y );
+                circle_i.thee_point_circle( p1_i_x, p_i_y,      p2_i_x,  p2_i_y,      p3_i_x, p3_i_y );
                 vector_circle.push_back( circle_i );
             }
         }
@@ -465,12 +434,11 @@ bool FoucaultSnapshot::find_center_3points(double angle)
         int nb_circle = (int)vector_circle.size();
         int nb_filtered = 0;
         c_x_circle = 0; c_y_circle = 0; r_circle = 0;
-        if( nb_circle <= 8 )
-            return false ; // very poor image
-
+        if( nb_circle <= 8 ) return false ; // very poor image
         std::sort( vector_circle.begin(), vector_circle.end(), comp_x );
         std::sort( vector_circle.begin() + nb_circle*4/16, vector_circle.begin() + nb_circle*14/16 , comp_radius );
-        for (auto it=vector_circle.begin()+nb_circle*7/16; it!=vector_circle.begin()+nb_circle*12/16; ++it)
+        for (std::vector<Circle>::iterator it=vector_circle.begin()+nb_circle*7/16;
+             it!=vector_circle.begin()+nb_circle*12/16; ++it)
         {
             nb_filtered++ ;
             c_x_circle += it->x();
@@ -503,7 +471,7 @@ bool FoucaultSnapshot::find_center_3points(double angle)
     else
         return false;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 double FoucaultSnapshot::find_edge_y( int y, int x_diff, int y_diff )
 {
     double pixvalue, pixvalue_m1, pixvalue_m2, pixvalue_p1, pixvalue_p2 ;
@@ -516,18 +484,22 @@ double FoucaultSnapshot::find_edge_y( int y, int x_diff, int y_diff )
         pixvalue_p2 = qGray( cropped.pixel(i + 2*x_diff, y + 2*y_diff ));
 
         int k_edge = (max_pixel - min_pixel)/32; //rather good but can be a user selectable param
-        if(    ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
-               && ( pixvalue_p2 > pixvalue_m2 +4*k_edge ) && ( pixvalue_p1 > pixvalue_m2 +3*k_edge)
-               && ( pixvalue -k_edge > pixvalue_m1 ) && ( pixvalue -2*k_edge > pixvalue_m2 )
-               )
+        if((    ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
+                && ( pixvalue_p2 > pixvalue_m2 +4*k_edge ) && ( pixvalue_p1 > pixvalue_m2 +3*k_edge)
+                && ( pixvalue -k_edge > pixvalue_m1 ) && ( pixvalue -2*k_edge > pixvalue_m2 )
+                ) // detect bevel edge
+                ||
+                (      // detect diffraction ridge
+                       ( pixvalue >= min_pixel + (max_pixel - min_pixel)*1./2. )
+                       && ( pixvalue -4*k_edge > pixvalue_m1 ) && ( pixvalue -4*k_edge > pixvalue_m2 )
+                       ))
         {
             return i;
         }
     }
     return -1;
 }
-
-/////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 //           ALGO TO FIND THE ZONES:
 // 1 -  COMPUTE diff_mirror
 // 2 -  FIND zones
@@ -549,11 +521,13 @@ bool FoucaultSnapshot::diff_180()
         }
         diff_mirror = GrayImg;
     }
-    else return false;
+    else
+        return false;
+
     draw_diff_180();
     return true;
 }
-
+/////////////////////////////////////////////////////////////////////////////
 class table_trigo
 {
     double *table_cos, *table_sin;
@@ -570,13 +544,6 @@ public:
             table_sin[ i ] = sin( (double)i * angle/r_sample ) ;
         }
     }
-
-    ~table_trigo()
-    {
-        delete table_cos;
-        delete table_sin;
-    }
-
     double cos_scaled( int index ) // return cos( index * angle/sample ) as stored in table_cos
     {
         return table_cos[ index ];
@@ -586,7 +553,7 @@ public:
         return table_sin[ index ];
     }
 };
-
+/////////////////////////////////////////////////////////////////////////////
 //
 #define ANGLE_ZONE 20.
 #define SAMPLE_ZONE_WIDTH 200
@@ -619,7 +586,8 @@ int FoucaultSnapshot::find_zones( double obstruction, double edge )
         std::sort (SortArc.begin(), SortArc.end());
         value_array[ x_index ] = 0;
         int SAMPLE_BEGIN = SAMPLE_ZONE_WIDTH/2; int SAMPLE_END = 6*SAMPLE_ZONE_WIDTH/4;
-        for (auto it=SortArc.begin()+SAMPLE_BEGIN; it!=SortArc.begin()+SAMPLE_END; ++it)
+        for (std::vector<int>::iterator it=SortArc.begin()+SAMPLE_BEGIN;
+             it!=SortArc.begin()+SAMPLE_END; ++it)
             //      for( int alpha = 0 ; alpha < SAMPLE_ZONE_WIDTH; alpha++)
         {
             value_array[ x_index ] += *it;
@@ -641,18 +609,22 @@ int FoucaultSnapshot::find_zones( double obstruction, double edge )
     int search_begin, search_end;
     if( obstruction <= 0 )
     {
-        search_begin = diff_mirror.width()*5./100. + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
-    } else
+        search_begin = diff_mirror.width()*1./100. + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
+    }
+    else
     {
         search_begin = obstruction*r_circle + log_2_img_width+1 ; // really, it miss some value (log2( search_begin), but it does not matter.
-    };
+    }
+
     if( edge <= 0 )
     {
         search_end = diff_mirror.width()/2. -2 ;
-    } else
+    }
+    else
     {
         search_end = r_circle - edge*r_circle -1 ;
-    };
+    }
+
     for( int i = search_begin ; i< search_end; i++)
     {
         int log2_i =  1 + log_2_img_width - log2( i );
@@ -716,3 +688,4 @@ int FoucaultSnapshot::find_zones( double obstruction, double edge )
     };
     return number_of_zones;
 }
+/////////////////////////////////////////////////////////////////////////////
