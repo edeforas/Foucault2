@@ -1,7 +1,7 @@
 #include "Mirror.h"
 #include "MirrorItem.h"
 
-#include <math.h>
+#include <cmath>
 inline double sqr(double a) { return a*a; }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,6 @@ void Mirror::set_name(string sName)
 {
     _sName=sName;
 }
-//////////////////////////////////////////////////////////////////////////////
 const string& Mirror::name() const
 {
     return _sName;
@@ -75,7 +74,6 @@ double Mirror::diameter() const
 {
     return _dDiameter;
 }
-//////////////////////////////////////////////////////////////////////////////
 void Mirror::set_diameter(double dDiameter)
 {
     _dDiameter=dDiameter;
@@ -85,7 +83,6 @@ double Mirror::hole_diameter() const
 {
     return _dHoleDiameter;
 }
-
 void Mirror::set_hole_diameter(double dHoleDiameter)
 {
     _dHoleDiameter=dHoleDiameter;
@@ -95,7 +92,6 @@ double Mirror::obstruction_size() const
 {
     return _dObstructionSize;
 }
-
 void Mirror::set_obstruction_size(double dObstructionSize)
 {
     _dObstructionSize=dObstructionSize;
