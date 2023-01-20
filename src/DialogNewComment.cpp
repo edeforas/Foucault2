@@ -34,5 +34,5 @@ string DialogNewComment::get_comment()
 
 unsigned int DialogNewComment::get_when()
 {
-    return ui->dteWhen->dateTime().toTime_t();
+    return (unsigned int)ui->dteWhen->dateTime().toSecsSinceEpoch();
 }
