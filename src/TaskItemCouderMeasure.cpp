@@ -299,7 +299,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
             }
             QGraphicsTextItem* ptiSurfaceHeight=new QGraphicsTextItem(QString::number(surf[iZ],'f',0)+sSurfUnit);
             QGraphicsTextItem* ptiSurfaceOrd=new QGraphicsTextItem(QString::number(hz[iZ],'f',0)+sUnitMm);
-/*            if( (MaxSurfaceHeight < surf[iZ] )&&((iZ>=hz.size()) || (surf[iZ] >= surf[iZ+1])))
+            /*            if( (MaxSurfaceHeight < surf[iZ] )&&((iZ>=hz.size()) || (surf[iZ] >= surf[iZ+1])))
             {
                 QGraphicsLineItem* li1=new QGraphicsLineItem(dBorder1,dSurfY1,dBorder1,dSurfY2);
                 add_item(li1);
@@ -332,9 +332,9 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
                 }
             }
   */
-      }
+        }
 
-      //////////////// add obstruction mask polygon //
+        //////////////// add obstruction mask polygon //
         {
             QPolygonF qpolyObsR, qpolyObsL;
             double dPosX= hz[0] / dRadius*( dSurfX2-dSurfXM );
@@ -391,7 +391,6 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
                     polysurfEdgeL->setBrush(QColor(240,240,240));//setBrush(QColor(159,192,159));
                     add_item(polysurfEdgeL);
                 }
-
             }
         }
     }
@@ -416,8 +415,7 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
         else {
             iLine+=10*iBlockSize;
             dSurfY2= dSurfY1 + 5*iBlockSize;
-        };
-
+        }
 
         QGraphicsTextItem* ptiTitleTab2=new QGraphicsTextItem("Transverse error");
         //    ptiTitleTab2->setPos(pos().x()+iBlockSize*61,iLine-iBlockSize/2);
@@ -439,8 +437,8 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
         assert((hz.size()-1)==lfro.size());
 
         // Here are the min and max index including obstruction and edge mask
-        unsigned obs_i = 0;
-        unsigned edge_mask_i = (unsigned int)hz.size()-1;
+        unsigned int obs_i = 0;
+        unsigned int edge_mask_i = (unsigned int)hz.size()-1;
         for(unsigned int i=1;i<(hz.size()-1);i++)
         {
             if( hz[ i-1 ] < pM->obstruction_size()/2) obs_i = i;
@@ -621,7 +619,6 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
                 polysurfEdgeL->setBrush(QColor(240,240,240));//setBrush(QColor(159,192,159));
                 add_item(polysurfEdgeL);
             }
-
         }
         /////////////////  add vertical zonal mask border
         QString sSurfUnit=iDisplayMode>=2?" ":"";
@@ -658,7 +655,8 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
             if( (MaxSurfaceHeight < lfro[iZ] )&&((iZ>=(lfro.size()-1)) || (lfro[iZ] >= lfro[iZ+1])))
             {
                 MaxSurfaceHeight = lfro[iZ] ; MaxSurfacedBorder = dBorder1;
-                if(MaxSurfaceHeight > 0){
+                if(MaxSurfaceHeight > 0)
+                {
                     QGraphicsLineItem* li1=new QGraphicsLineItem(dBorder1,dSurfY1,dBorder1,dSurfY2);
                     add_item(li1);
 
@@ -667,13 +665,15 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
                     ptiSurfaceOrd->setPos(MaxSurfacedBorder-20, dSurfY2);
                     add_item(ptiSurfaceOrd);
                 }
-            } else
+            }
+            else
             {
                 MaxSurfaceHeight = lfro[iZ] ;
                 if( (MinSurfaceHeight > lfro[iZ] )&&((iZ>=(lfro.size()-1)) || (lfro[iZ] < lfro[iZ+1])))
                 {
                     MinSurfaceHeight = lfro[iZ] ; MinSurfacedBorder = dBorder1;
-                    if(MinSurfaceHeight < 0){
+                    if(MinSurfaceHeight < 0)
+                    {
                         QGraphicsLineItem* li1=new QGraphicsLineItem(dBorder1,dSurfY2+dSurfY12,dBorder1,dSurfY2);
                         add_item(li1);
 
@@ -682,7 +682,8 @@ TaskItemCouderMeasure::TaskItemCouderMeasure(MirrorItem* pItem,int iBlockSize):T
                         ptiSurfaceOrd->setPos(MinSurfacedBorder-20, dSurfY2); // Test P. Crubillé
                         add_item(ptiSurfaceOrd);
                     }
-                }  else
+                }
+                else
                 {
                     QGraphicsLineItem* li1=new QGraphicsLineItem(dBorder1,dSurfY2,dBorder1,dSurfY2-10);
                     add_item(li1);
