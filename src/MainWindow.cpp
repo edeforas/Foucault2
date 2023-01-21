@@ -246,6 +246,7 @@ void MainWindow::device_changed(bool bMustSave)
     ui->actionAdd_comment->setEnabled(_pMirror->nb_zones()!=0);
     ui->actionWork->setEnabled(_pMirror->nb_zones()!=0);
     ui->actionShow_mirror_both_side->setChecked(_pMirror->get_show_both_side());
+    ui->actionShow_TAf_ro->setChecked(_pMirror->get_show_lf_ro());
     ui->actionShow_Colors->setChecked(_pMirror->get_show_colors());
     ui->actionShow_smooth_curves->setChecked(_pMirror->get_smooth_curves());
     ui->actionDiscard_last_task->setEnabled(_pMirror->nb_zones()!=0);
@@ -378,7 +379,7 @@ void MainWindow::on_actionPrint_triggered()
             int iLastItemInpage;
 
             if((unsigned int)(iPage-1)==viPagesFirstItem.size()-1) //last page?
-                iLastItemInpage=viPagesFirstItem.back();
+                iLastItemInpage=(int)vti.size()-1; // Modif Paul Crubillé // iLastItemInpage=viPagesFirstItem.back(); // Print only one set on the last page
             else
                 iLastItemInpage=viPagesFirstItem[iPage]-1;
 
@@ -446,6 +447,12 @@ void MainWindow::on_actionImport_triggered()
 void MainWindow::on_actionShow_mirror_both_side_triggered()
 {
     _pMirror->set_show_both_side(ui->actionShow_mirror_both_side->isChecked());
+    device_changed(false);
+}
+///////////////////////////////////////////////////////////////////////////////
+void MainWindow::on_actionShow_TAf_ro_triggered()
+{
+    _pMirror->set_show_lf_ro(ui->actionShow_TAf_ro->isChecked());
     device_changed(false);
 }
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 #include "Mirror.h"
 #include "MirrorItem.h"
 
-#include <math.h>
+#include <cmath>
 inline double sqr(double a) { return a*a; }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -18,6 +18,8 @@ Mirror::Mirror()
     _bSmoothCurves=false;
 
     _bShowColors=true;
+    _bShowLfRo=false;
+
     _iDisplayMode=1; //0=compact 1=normal 2=details
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -275,6 +277,15 @@ void Mirror::set_show_colors(bool bShowColors)
 bool Mirror::get_show_colors() const
 {
     return _bShowColors;
+}
+//////////////////////////////////////////////////////////////////////////////
+void Mirror::set_show_lf_ro(bool bShowLfRo)
+{
+    _bShowLfRo = bShowLfRo;
+}
+bool Mirror::get_show_lf_ro() const
+{
+    return _bShowLfRo;
 }
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::set_display_mode(int iDisplayMode)    //0=compact 1=normal 2=details 3=full

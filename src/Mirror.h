@@ -72,6 +72,9 @@ public:
     void set_show_colors(bool bShowColors);
     bool get_show_colors() const;
 
+    void set_show_lf_ro(bool bShowLfRo);
+    bool get_show_lf_ro() const;
+
     //0=compact 1=normal 2=details 3=full
     void set_display_mode(int iDisplayMode);
     int get_display_mode() const;
@@ -99,6 +102,7 @@ private:
     bool _bSmoothCurves;
     bool _bShowBothSide;
     bool _bShowColors;
+    bool _bShowLfRo;
     int _iDisplayMode; //0=compact 1=normal 2=details 3=full
 };
 

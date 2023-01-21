@@ -84,6 +84,7 @@
     </property>
     <addaction name="actionShow_mirror_both_side"/>
     <addaction name="actionShow_Colors"/>
+    <addaction name="actionShow_TAf_ro"/>
     <addaction name="actionShow_smooth_curves"/>
     <addaction name="separator"/>
     <addaction name="actionDisplay_Compact"/>
@@ -225,6 +226,14 @@
    </property>
    <property name="text">
     <string>Show Colors</string>
+   </property>
+  </action>
+  <action name="actionShow_TAf_ro">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Show TAf/ro Graph</string>
    </property>
   </action>
   <action name="actionDisplay_Compact">

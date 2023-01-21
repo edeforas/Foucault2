@@ -58,6 +58,7 @@ private slots:
     void on_actionAbout_triggered();
     void on_actionQuit_triggered();
     void on_actionShow_mirror_both_side_triggered();
+    void on_actionShow_TAf_ro_triggered();
     void on_actionWork_triggered();
     void ensureVisibleSlot();
     void on_actionShow_Colors_triggered();
