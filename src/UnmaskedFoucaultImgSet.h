@@ -45,6 +45,8 @@ private:
 
   double x_lower_edge, y_lower_edge, x_upper_edge, y_upper_edge;
   double find_edge_y( int x, int x_diff, int y_diff );
+// the same goal but before we know there is the disk here:
+  double find_edge_y_zero( int x, int x_diff, int y_diff );
   
 public:
   FoucaultSnapshot();
