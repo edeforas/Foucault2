@@ -296,7 +296,6 @@ void DialogNewUnmaskedMeasure::on_pushButton_compute_clicked()
     }
   double total_edge_mask = ( total_diameter - _pMirror->diameter() )/2
     +_pMirror->edge_mask_width();
-  fprintf( stderr, " total_diameter %f - optical_diameter %f ", total_diameter, _pMirror->diameter() );
   if( _STATE == STATE_CROPPED )
     {
       _STATE = STATE_ANALYZING ;
@@ -387,7 +386,6 @@ void DialogNewUnmaskedMeasure::on_pushButton_generate_measure_clicked()
 		    {
 		      hx_hm hxhm; hxhm.set( Hx, HmZ1 );
 		      v_hx_hm.push_back( hxhm );
-		      fprintf(stderr, "image %d Hx= %f Hm=%f\n", i , Hx ,HmZ1 );
 		    }		
 		}		
 	      // Zone 2
@@ -399,7 +397,6 @@ void DialogNewUnmaskedMeasure::on_pushButton_generate_measure_clicked()
 		    {
 		      hx_hm hxhm; hxhm.set( Hx, HmZ2 );
 		      v_hx_hm.push_back( hxhm );
-		      fprintf(stderr, "image %d Hm= %f Hx=%f\n", i , Hx ,HmZ2 );
 		    }		
 		}		
 
@@ -427,7 +424,6 @@ void DialogNewUnmaskedMeasure::on_pushButton_generate_measure_clicked()
 	      Hm_old = it->hm ;
 	      vdHm.push_back( it->hm );
 	      vdHx.push_back( it->hx );
-	      fprintf(stderr, "zone Hx= %f Hm=%f\n", it->hx, it->hm );
 	    } else fprintf(stderr, "reject zone Hx= %f Hm=%f\n", it->hx, it->hm );
 	};
 
