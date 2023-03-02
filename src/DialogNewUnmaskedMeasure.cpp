@@ -249,7 +249,8 @@ void DialogNewUnmaskedMeasure::on_pushButton_crop_clicked()
   if(_STATE == STATE_IMAGES_DEFINED )
     {
       _STATE = STATE_CROPPING ;
-      
+
+      QImage flat_img = images_set.set_calibration_image( _sFileName_calibration, get_slit_angle() );
   //  CHARGEMENT IMAGES
       for(int i=0;i< get_number_of_images() ;i++)
 	{
@@ -260,7 +261,7 @@ void DialogNewUnmaskedMeasure::on_pushButton_crop_clicked()
 	      fprintf(stderr, "No file %s\n", i_image_name( i ).toStdString().c_str());
 	    };
 
-	  if( images_set.foucaultsnapshot( i )->find_center_3points( get_slit_angle() ))
+	  if( images_set.foucaultsnapshot( i )->find_center_3points( get_slit_angle(), flat_img) )
 	    {
 	      x_center = images_set.foucaultsnapshot( i )->center_x();
 	      y_center = images_set.foucaultsnapshot( i )->center_y();
@@ -471,7 +472,7 @@ void DialogNewUnmaskedMeasure::on_pushButton_cancel_clicked()
   if((_STATE == STATE_CROPPING )||(_STATE == STATE_ANALYZING ))
     { // wait
       return ;}
-    _sFileName_calibration = QFileDialog::getOpenFileName(this,tr("Open Foucault images"), ".", tr("Images Files (*.JPG)"));
+    _sFileName_calibration = QFileDialog::getOpenFileName(this,tr("Open Flat image"), ".", tr("Images Files (*.JPG *.jpg *.jpeg *.png *.PNG)"));
 
     if (!_sFileName_calibration.toStdString().empty())
     {
@@ -487,7 +488,7 @@ void DialogNewUnmaskedMeasure::on_buttonFirstImg_clicked()
     { // wait
       return ;}
   _STATE = STATE_INIT;
-  _sFileName_first_image = QFileDialog::getOpenFileName(this,tr("Open Foucault images"), ".", tr("Images Files (*.JPG)"));
+  _sFileName_first_image = QFileDialog::getOpenFileName(this,tr("Open Foucault images"), ".", tr("Images Files (*.JPG *.jpg *.jpeg *.png *.PNG)"));
   
   if (!_sFileName_first_image.toStdString().empty())
     {

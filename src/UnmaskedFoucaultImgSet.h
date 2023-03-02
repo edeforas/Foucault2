@@ -50,7 +50,7 @@ private:
   
 public:
   FoucaultSnapshot();
-  bool find_center_3points(double angle);
+  bool find_center_3points(double angle, QImage flat_img);
   //  bool find_center_edge( double *x, double *y, double *radius);
   bool diff_180();
   int find_zones( double obstruction , double edge); // return number of zones (0, 1 or 2). obstruction and edge as ratio.
@@ -65,6 +65,7 @@ public:
   double center_y(){ return c_y_circle; } // in the original image
   double radius(){ return r_circle ;}   // in the original image
   bool clear();
+  void apply_flat( QImage Flat_Img, double x0, double y0, double x_size, double y_size);
 };
 
 class UnmaskedFoucaultImgSet //: public QDialog
@@ -77,17 +78,19 @@ public:
   int get_RGB_channel(){ return RGB_channel ;}; 
   bool clear_image( int i );
   bool set_image( int i, QString name);
+  QImage set_calibration_image( QString name, double angle );
   bool cropped_images();
   bool use_center_by3points(){return true;};
   bool use_center_by3edges(){return false;};
   bool use_center_by_callibration_image(){return false;};
 
-  string& CalibrationImgName();
-
   FoucaultSnapshot *foucaultsnapshot( int i);
   void show_images();
   void set_DrawImg_State( int index );
   void set_DrawImg_Size( int index );
+private:
+  QImage calibration_image;
+  double calibration_maxpixel, calibration_minpixel;
 private:
   int DrawImgState;
   string _sComment;

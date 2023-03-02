@@ -148,7 +148,7 @@ for(int i=0;i<iNbZone;i++)
 
     // compute conique qui minimise le ptv
     find_minimum(a,b,dReso,&(calc_less_ptv));
-
+    
     double dMax=*max_element(_surf.begin(),_surf.end());
     if (dMax!=0.)
         _dLambda=YELLOW/2./dMax;

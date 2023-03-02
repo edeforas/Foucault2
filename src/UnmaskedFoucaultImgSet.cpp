@@ -206,6 +206,69 @@ void UnmaskedFoucaultImgSet::show_images()
   }
 }
 
+QImage UnmaskedFoucaultImgSet::set_calibration_image( QString name, double angle)
+  {
+    FILE *F; static QImage nullqimage;
+    calibration_image = nullqimage;
+    calibration_maxpixel = 0;  calibration_minpixel= 256;
+
+    F = fopen( name.toStdString().c_str() , "r" );
+    if( F != NULL )
+      {
+	QImage ImgIn;
+	fclose( F );
+	ImgIn.load( name );
+	QImage GrayImg( ImgIn.width(), ImgIn.height(), QImage::Format_Grayscale8);
+	for (int y = 0; y < ImgIn.height(); ++y) {
+	  for (int x = 0; x < ImgIn.width(); ++x) {
+	    int pixvalue = ChannelPixel( ImgIn.pixel(x, y));
+	    if( pixvalue < calibration_minpixel )
+	      calibration_minpixel = pixvalue ;
+	    if( pixvalue > calibration_maxpixel )
+	      calibration_maxpixel = pixvalue ;
+	  }
+	}
+
+	for (int y = 0; y < ImgIn.height(); ++y) {
+	  for (int x = 0; x < ImgIn.width(); ++x) {
+	    int pixvalue = ChannelPixel( ImgIn.pixel(x, y));
+	    pixvalue = ( pixvalue * 255 )/calibration_maxpixel;
+	    GrayImg.setPixel(x, y, QColor(pixvalue, pixvalue, pixvalue).rgb());
+	  }
+	}
+
+	// then rotate it as we use it after center detection and after crop in the rotated images.
+	QTransform tr;
+	tr.rotate( angle );
+	calibration_image = GrayImg.transformed(tr, Qt::SmoothTransformation );
+	return calibration_image;
+      }
+    return nullqimage;
+  }
+
+// Apply the flat on the cropped image
+  void FoucaultSnapshot::apply_flat( QImage Flat_Img, double x0, double y0, double x_size, double y_size)
+  {
+    if(( x0 + cropped.width() > Flat_Img.width() ) ||
+       ( y0 + cropped.height() > Flat_Img.height() ))
+      {
+	return ;
+      }
+    for (int y = 0; y < cropped.height(); ++y)
+      {
+	for (int x = 0; x < cropped.width(); ++x)
+	  {
+	    int pixvalue = qGray( cropped.pixel(x, y));
+	    int flat_pixvalue = qGray( Flat_Img.pixel(x + x0, y + y0));
+	    pixvalue = (( pixvalue * 256 )/ (flat_pixvalue +1));
+	    if( pixvalue > 255 ) pixvalue = 255;
+	    cropped.setPixel(x, y, QColor(pixvalue, pixvalue, pixvalue).rgb());	    
+	  }
+      }
+
+  }
+
+  
 bool UnmaskedFoucaultImgSet::set_image( int i, QString name)
   {
     FILE *F; static QImage nullqimage;   static QPixmap nullqpixmap;
@@ -329,7 +392,7 @@ public:
 bool comp_radius( Circle c1, Circle c2 ){ return c1.radius() < c2.radius() ;}
 bool comp_x( Circle c1, Circle c2 ){ return c1.x() < c2.x() ;}
 
-bool FoucaultSnapshot::find_center_3points(double angle)
+bool FoucaultSnapshot::find_center_3points(double angle, QImage flat_img)
 {
   QImage nullqimage; // used but never set!
   double Y_step, img_height;
@@ -413,7 +476,6 @@ bool FoucaultSnapshot::find_center_3points(double angle)
       // if one is top or buttom of the circle and the other one on the edge,
       // the magic formula is close enough to the radius!
 
-      //      r_circle = fabs( (y_upper_edge - y_lower_edge)/2. );
 
       ////////////////////////////////////////////////////////////////
       // Now,find ( (edge_low - hedge_ height)/step )/3 triple points on the circle
@@ -466,6 +528,7 @@ bool FoucaultSnapshot::find_center_3points(double angle)
       r_circle = r_circle / nb_filtered ;
       
       cropped = cropped.copy( c_x_circle - r_circle, c_y_circle - r_circle, 2*r_circle, 2*r_circle );
+      apply_flat( flat_img, c_x_circle - r_circle, c_y_circle - r_circle, 2*r_circle, 2*r_circle );
       cropped = cropped.convertToFormat( QImage::Format_Grayscale8 );
       draw_cropped( );
       {
@@ -577,7 +640,8 @@ bool FoucaultSnapshot::diff_180()
       int H = cropped.height(); int W = cropped.width();
       for (int y = 0; y < H; ++y) {
 	for (int x = 0; x < W; ++x) {
-	  double pixvalue = normalize * fabs( qGray( cropped.pixel(x, y) ) -
+	  //	  double pixvalue = normalize * fabs( qGray( cropped.pixel(x, y) ) -
+	  double pixvalue = fabs( qGray( cropped.pixel(x, y) ) -
 		 qGray( cropped.pixel( W-x-1, H-y-1) ) );
 	  GrayImg.setPixel(x, y, QColor(pixvalue, pixvalue, pixvalue).rgb());
 	}
