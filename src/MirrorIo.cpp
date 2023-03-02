@@ -14,6 +14,7 @@
 #include "MirrorComment.h"
 #include "MirrorWork.h"
 #include "MirrorCouderMeasure.h"
+#include "MirrorUnmaskedMeasure.h"
 
 #include <sstream>
 #include <cassert>
@@ -29,6 +30,8 @@ Mirror* MirrorIo::load(string sFile)
     pm->set_name(p.get("Name"));
     pm->set_diameter(p.get_double("Diameter"));
     pm->set_hole_diameter(p.get_double("HoleDiameter"));
+    pm->set_obstruction_size(p.get_double("ObstructionSize"));
+    pm->set_edge_mask_width(p.get_double("EdgeMaskWidth"));
     pm->set_focal(p.get_double("Focal"));
     pm->set_conical(p.get_double("Conical"));
 
@@ -97,14 +100,68 @@ Mirror* MirrorIo::load(string sFile)
             pm->add_item(mw);
         }
 
+	if( sType == "MirrorUnmaskedMeasure")
+	  {
+            MirrorUnmaskedMeasure* mum=new MirrorUnmaskedMeasure;
+            mum->set_when(p.get_unsigned_int(sIndex+".When"));
+            if(p.exist(sIndex+".TotalDiameter"))
+                mum->set_mirror_total_diameter
+		  ( p.get_double(sIndex+".TotalDiameter"));
+            if(p.exist(sIndex+".RGB_channel"))
+	      mum->set_RGB_channel
+		(p.get_unsigned_int(sIndex+".RGB_channel"));
+            if(p.exist(sIndex+".Slit_Angle"))
+                mum->set_slit_angle
+		  ( p.get_double(sIndex+".Slit_Angle"));
+
+            if(p.exist(sIndex+".Flat_Image"))
+                mum->set_flat_image_name
+		  ( p.get(sIndex+".Flat_Image"));
+            if(p.exist(sIndex+".First_Image"))
+                mum->set_first_image_name
+		  ( p.get(sIndex+".First_Image"));
+	    
+            if(p.exist(sIndex+".Number_Images"))
+	      mum->set_number_images
+		(p.get_unsigned_int(sIndex+".Number_Images"));
+            if(p.exist(sIndex+".Delta_Hx"))
+                mum->set_delta_hx
+		  ( p.get_double(sIndex+".Delta_Hx"));
+
+            if(p.exist(sIndex+".Img_Number_Part_Size"))
+	      mum->set_img_name_number_part_size
+		(p.get_unsigned_int(sIndex+".Img_Number_Part_Size"));
+            if(p.exist(sIndex+".Img_Suffix_Size"))
+	      mum->set_img_name_suffix_size
+		(p.get_unsigned_int(sIndex+".Img_Suffix_Size"));
+
+	    pm->add_item(mum);
+	  }
+
+	
         if(sType=="MirrorCouderMeasure")
         {
             MirrorCouderMeasure* mcm=new MirrorCouderMeasure(pm);
             vector<double> vd=p.get_vector_double(sIndex+".Measure");
-            string sAspect;
+            string sAspect; double dMeridian = 0;
             if(p.exist(sIndex+".Measure.Aspect"))
                 sAspect=p.get(sIndex+".Measure.Aspect");
-            mcm->set_measure(vd,sAspect);
+            if(p.exist(sIndex+".Measure.Meridian"))
+                dMeridian=p.get_double(sIndex+".Measure.Meridian");
+
+	    vector<double> vdHm;
+            if(p.exist(sIndex+".UnmaskedHM"))
+	      {
+		vdHm=p.get_vector_double(sIndex+".UnmaskedHM");
+	      }
+	    else {
+	      vdHm.resize(pm->nb_zones());
+	      vdHm[0]=(pm->hole_diameter() + pm->hx()[0])/2.;	    
+	      for(unsigned int i=1; i<pm->nb_zones(); i++)
+		vdHm[i]= (pm->hx()[i-1] + pm->hx()[i] )/2;
+	    }
+	    mcm->set_measure(vd, vdHm, sAspect);
+	    mcm->set_measure_meridian( dMeridian );
             mcm->set_when(p.get_unsigned_int(sIndex+".When"));
             pm->add_item(mcm);
         }
@@ -123,6 +180,8 @@ bool MirrorIo::save(Mirror* pm,string sFile)
     p.set("Name",pm->name());
     p.set("Diameter",pm->diameter());
     p.set("HoleDiameter",pm->hole_diameter());
+    p.set("ObstructionSize",pm->obstruction_size());
+    p.set("EdgeMaskWidth",pm->edge_mask_width());
     p.set("Focal",pm->focal());
     p.set("Conical",pm->conical());
     p.set("Hx",pm->hx());
@@ -159,11 +218,30 @@ bool MirrorIo::save(Mirror* pm,string sFile)
             p.set(sIndex+".WorkType",tc->work_type());
         }
 
+	if( sType == "MirrorUnmaskedMeasure")
+	  {
+            MirrorUnmaskedMeasure* mum = dynamic_cast<MirrorUnmaskedMeasure*>(mi);
+	    p.set(sIndex+".TotalDiameter", mum->get_mirror_total_diameter());
+	    p.set(sIndex+".RGB_channel", mum->get_RGB_channel());
+	    p.set(sIndex+".Slit_Angle", mum->get_slit_angle());
+
+	    p.set(sIndex+".Flat_Image", mum->get_flat_image_name());
+	    p.set(sIndex+".First_Image", mum->get_first_image_name());
+	    
+	    p.set(sIndex+".Number_Images", mum->get_number_images());
+	    p.set(sIndex+".Delta_Hx", mum->get_delta_hx());
+	    p.set(sIndex+".Img_Number_Part_Size", mum->get_img_name_number_part_size());
+	    p.set(sIndex+".Img_Suffix_Size", mum->get_img_name_suffix_size());
+	  }
+
         if(sType=="MirrorCouderMeasure")
-        {
+        {	  
             MirrorCouderMeasure* mcm=dynamic_cast<MirrorCouderMeasure*>(mi);
+	    if( mcm->measures().size() != pm->hx().size() )
+            p.set(sIndex+".UnmaskedHM",mcm->hmx());	      
             p.set(sIndex+".Measure",mcm->measures());
             p.set(sIndex+".Measure.Aspect",mcm->get_aspect());
+            p.set(sIndex+".Measure.Meridian",mcm->measure_meridian());
         }
     }
 
@@ -218,13 +296,20 @@ Mirror* MirrorIo::import(string sFile)
         // lit la mesure iIndex
         bFound=p.exist("Measure"+sIndex);
         if(!bFound) continue;
-
+	
         MirrorCouderMeasure* mcm=new MirrorCouderMeasure(pm);
         vector<double> vdmes=p.get_vector_double("Measure"+sIndex);
         string sAspect;
         if(p.exist("Aspect"+sIndex))
-            sAspect=p.get("Aspect"+sIndex);
-        mcm->set_measure(vdmes,sAspect);
+	  sAspect=p.get("Aspect"+sIndex);
+
+	vector<double> vdHm;
+	vdHm.resize(pm->nb_zones());
+	vdHm[0]=(pm->hole_diameter() + pm->hx()[0])/2.;	    
+	for(unsigned int i=1; i<pm->nb_zones(); i++)
+	  vdHm[i]= (pm->hx()[i-1] + pm->hx()[i] )/2;
+
+	mcm->set_measure(vdmes, vdHm, sAspect);
 
         pm->add_item(mcm);
 

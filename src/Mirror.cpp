@@ -9,12 +9,14 @@ Mirror::Mirror()
 {
     _dDiameter=0.;
     _dHoleDiameter=0.;
+    _dObstructionSize=0.;
+    _dEdgeMaskWidth=0.;
     _dFocal=0.;
     _dConical=-1.;
     _bIsSlitMoving=false;
     _dRoDif=0;
 
-    _bShowBothSide=true;
+    _bShowBothSide=false;
     _bSmoothCurves=false;
 
     _bShowColors=true;
@@ -82,10 +84,30 @@ double Mirror::hole_diameter() const
 {
     return _dHoleDiameter;
 }
-//////////////////////////////////////////////////////////////////////////////
+
 void Mirror::set_hole_diameter(double dHoleDiameter)
 {
     _dHoleDiameter=dHoleDiameter;
+}
+//////////////////////////////////////////////////////////////////////////////
+double Mirror::obstruction_size() const
+{
+    return _dObstructionSize;
+}
+
+void Mirror::set_obstruction_size(double dObstructionSize)
+{
+    _dObstructionSize=dObstructionSize;
+}
+//////////////////////////////////////////////////////////////////////////////
+double Mirror::edge_mask_width() const
+{
+    return _dEdgeMaskWidth;
+}
+
+void Mirror::set_edge_mask_width(double dEdgeMask)
+{
+    _dEdgeMaskWidth=dEdgeMask;
 }
 //////////////////////////////////////////////////////////////////////////////
 double Mirror::conical() const
@@ -110,38 +132,25 @@ double Mirror::ro_dif() const
 //////////////////////////////////////////////////////////////////////////////
 unsigned int Mirror::nb_zones() const
 {
-    return (int)(_vdHx.size());
+  return (int)(_vdHx.size());
 }
 //////////////////////////////////////////////////////////////////////////////
 const vector<double>& Mirror::hx() const
 {
     return _vdHx;
-}
-//////////////////////////////////////////////////////////////////////////////
-const vector<double>& Mirror::hz() const
-{
-    return _vdHz;
-}
-//////////////////////////////////////////////////////////////////////////////
-const vector<double>& Mirror::relative_surface() const
-{
-    return _vdRelativeSurface;
-}
-//////////////////////////////////////////////////////////////////////////////
-const vector<double>& Mirror::hm2r() const
-{
-    return _vdHm2R;
-}
-//////////////////////////////////////////////////////////////////////////////
-const vector<double>& Mirror::hm4f() const
-{
-    return _vdHm4F;
-}
+    } 
+
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::set_hx(vector<double> vdHx)
 {
     _vdHx=vdHx;
+    }
+/*
+const vector<double>& Mirror::hz() const
+{
+    return _vdHz;
 }
+*/
 //////////////////////////////////////////////////////////////////////////////
 bool Mirror::is_slit_moving() const
 {
@@ -155,23 +164,26 @@ void Mirror::set_is_slit_moving(bool bSlitMoving)
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::initialize()
 {
-    int iNbZone=(int)(hx().size());
+  //    int iNbZone=(int)(hx().size());
     double dRay=2.*_dFocal;
 
     double dYellow=560.*1.e-9;
     _dRoDif=1.22*dYellow*dRay/_dDiameter/2.; //unit? TODO
 
     //compute Hz (not saved)
-    _vdHz.resize(iNbZone+1);
-    _vdHz[0]=_dHoleDiameter/2.;
+    //    _vdHz.resize(iNbZone+1);
+    /*
+    _vdHmx.resize(iNbZone+1);
+    _vdHmz.resize(iNbZone+1);
+    _vdHmz[0]=_dHoleDiameter/2.;
     for(int i=0;i<iNbZone;i++)
-        _vdHz[i+1]=_vdHx[i];
+        _vdHmz[i+1]=_vdHmx[i];
 
     //compute Hm
     _vdHm.resize(iNbZone);
     for(int i=0;i<iNbZone;i++)
     {
-        _vdHm[i]=(_vdHz[i+1]+_vdHz[i])/2.;
+        _vdHm[i]= _vdHmx[i];
     }
 
     //compute Hm2R
@@ -191,16 +203,24 @@ void Mirror::initialize()
 
     //calcule les surfaces relatives
     _vdRelativeSurface.resize(iNbZone);
-    double dSum=0.;
-    for(int i=0;i<iNbZone;i++)
+    double dSum=0.; double current = _vdHmz[0]; // 0 or hole radius.
+    for(int i=0;i<(iNbZone-1);i++)
     {
-        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
-        dSum+=_vdRelativeSurface[i];
+      double next_c;
+      next_c = (_vdHmz[i+1]+_vdHmz[i+2])/2; 
+      _vdRelativeSurface[i]=sqr(next_c)-sqr(current);
+	//        _vdRelativeSurface[i]=sqr(_vdHz[i+1])-sqr(_vdHz[i]);
+      current = next_c;
+      dSum+=_vdRelativeSurface[i];
     }
-    for(int i=0;i<iNbZone;i++)
+_vdRelativeSurface[iNbZone -1]=sqr( _dDiameter/2 )-sqr(current);
+      dSum+=_vdRelativeSurface[iNbZone -1];
+
+for(int i=0;i<iNbZone;i++)
     {
-        _vdRelativeSurface[i]=_vdRelativeSurface[i]/dSum/**iNbZone*/;
+        _vdRelativeSurface[i]=_vdRelativeSurface[i]/dSum; // *iNbZone;
     }
+*/
 }
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::design_hx_nb_zone(double dDiameter,double dHole,double dFocal,int iNbZone, vector<double>& vdHx)
@@ -208,8 +228,8 @@ void Mirror::design_hx_nb_zone(double dDiameter,double dHole,double dFocal,int i
     double dRayCurv=2.*dFocal;
     double dRadius=dDiameter/2.;
 
-    if (iNbZone>10)
-        iNbZone=10;
+    if (iNbZone> MaxZones )
+      iNbZone= MaxZones ;
 
     if (iNbZone<3)
         iNbZone=3;
@@ -251,10 +271,20 @@ void Mirror::set_show_both_side(bool bShowBothSide)
 {
     _bShowBothSide=bShowBothSide;
 }
-//////////////////////////////////////////////////////////////////////////////
+
 bool Mirror::get_show_both_side() const
 {
     return _bShowBothSide;
+}
+//////////////////////////////////////////////////////////////////////////////
+void Mirror::set_show_lf_ro(bool bShowLfRo)
+{
+    _bShowLfRo = bShowLfRo;
+}
+
+bool Mirror::get_show_lf_ro() const
+{
+    return _bShowLfRo;
 }
 //////////////////////////////////////////////////////////////////////////////
 void Mirror::set_smooth_curves(bool bSmoothCurves)

@@ -38,7 +38,7 @@ string DialogNewWork::get_work()
 
 unsigned int DialogNewWork::get_when()
 {
-    return ui->dteWhen->dateTime().toTime_t();
+    return (unsigned int)ui->dteWhen->dateTime().toSecsSinceEpoch();
 }
 
 unsigned int DialogNewWork::get_duration()

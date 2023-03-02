@@ -88,5 +88,5 @@ string DialogNewMeasure::get_aspect()
 
 unsigned int DialogNewMeasure::get_when()
 {
-    return ui->dteWhen->dateTime().toTime_t();
+    return (unsigned int)ui->dteWhen->dateTime().toSecsSinceEpoch();
 }

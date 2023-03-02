@@ -24,6 +24,7 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(
     QGraphicsTextItem* ptiTitleTab=new QGraphicsTextItem(" ");
     ptiTitleTab->setPos(pos().x()+iBlockSize*61,iLine);
     add_item(ptiTitleTab);
+    ////////////////////////////////////
 
     QGraphicsTextItem* ptiDiameter=new QGraphicsTextItem(QObject::tr("Diameter: ")+QString::number(pM->diameter())+QString(" mm"));
     ptiDiameter->setPos(pos().x(),iLine);
@@ -32,24 +33,40 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(
     QGraphicsTextItem* ptiHoleDiameter=new QGraphicsTextItem(QObject::tr("Hole Diameter: ")+QString::number(pM->hole_diameter())+ QString(" mm"));
     ptiHoleDiameter->setPos(pos().x()+iBlockSize*16,iLine);
     add_item(ptiHoleDiameter);
+
+    QGraphicsTextItem* ptiLight=new QGraphicsTextItem(pM->is_slit_moving()?QObject::tr("LigthSlit: Moving"):QObject::tr("LightSlit: Still"));
+    ptiLight->setPos(pos().x()+iBlockSize*16*2,iLine);
+    add_item(ptiLight);
+
+    ////////////////////////////////////
     iLine+=iBlockSize;
 
     QGraphicsTextItem* ptiFocal=new QGraphicsTextItem(QObject::tr("Focal Length: ")+QString::number(pM->focal())+QString(" mm"));
     ptiFocal->setPos(pos().x(),iLine);
     add_item(ptiFocal);
 
-    QGraphicsTextItem* ptiConic=new QGraphicsTextItem(QObject::tr("Conical: ")+QString::number(pM->conical()));
-    ptiConic->setPos(pos().x()+iBlockSize*16,pos().y()+iLine);
-    add_item(ptiConic);
-    iLine+=iBlockSize;
+    QGraphicsTextItem* ptiObstructionSize=new QGraphicsTextItem(QObject::tr("ObstructionSize: ")+QString::number(pM->obstruction_size())+ QString(" mm"));
+    ptiObstructionSize->setPos(pos().x()+iBlockSize*16,iLine);
+    add_item(ptiObstructionSize);
 
     QGraphicsTextItem* ptinbz=new QGraphicsTextItem(QString("NbZones: ")+QString::number(pM->nb_zones()));
-    ptinbz->setPos(pos().x(),iLine);
+    ptinbz->setPos(pos().x() +iBlockSize*16*2,iLine);
     add_item(ptinbz);
 
-    QGraphicsTextItem* ptiLight=new QGraphicsTextItem(pM->is_slit_moving()?QObject::tr("LigthSlit: Moving"):QObject::tr("LightSlit: Still"));
-    ptiLight->setPos(pos().x()+iBlockSize*16,iLine);
-    add_item(ptiLight);
+    ////////////////////////////////////
+    iLine+=iBlockSize;
+
+    QGraphicsTextItem* ptiConic=new QGraphicsTextItem(QObject::tr("Conical: ")+QString::number(pM->conical()));
+    ptiConic->setPos(pos().x(),pos().y()+iLine);
+    add_item(ptiConic);
+
+    QGraphicsTextItem* ptiEdgeMaskDiameter=new QGraphicsTextItem(QObject::tr("Edge Mask Width: ")+QString::number(pM->edge_mask_width())+ QString(" mm"));
+    ptiEdgeMaskDiameter->setPos(pos().x()+iBlockSize*16,iLine);
+    add_item(ptiEdgeMaskDiameter);
+
+
+
+    ////////////////////////////////////
     iLine+=iBlockSize;
 
     if(iDisplayMode>=DISPLAY_MODE_DETAIL)
@@ -67,15 +84,5 @@ TaskItemNewMirror::TaskItemNewMirror(MirrorItem* pItem,int iBlockSize):TaskItem(
     add_line_tab("Hx:",pM->hx(),pos().x(),iLine,iBlockSize*50);
     iLine+=iBlockSize;
 
-    if(iDisplayMode>=DISPLAY_MODE_DETAIL)
-    {
-        add_line_tab("Hm²/R:",pM->hm2r(),pos().x(),iLine,iBlockSize*50);
-        iLine+=iBlockSize;
-
-        add_line_tab("Hm/4F:",pM->hm4f(),pos().x(),iLine,iBlockSize*50);
-        iLine+=iBlockSize;
-
-        add_line_tab("RelSurface:",pM->relative_surface(),pos().x(),iLine,iBlockSize*50);
-    }
 }
 ///////////////////////////////////////////////////////////////////////

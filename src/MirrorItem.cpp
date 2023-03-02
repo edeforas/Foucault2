@@ -44,7 +44,7 @@ string MirrorItem::when_as_text() const
     if(_lWhen!=0)
     {
         QDateTime qdt=QDateTime::fromSecsSinceEpoch(_lWhen);
-        QString qs=QObject::tr("When: ")+qdt.toString(Qt::SystemLocaleLongDate);
+        QString qs=QObject::tr("When: ")+qdt.toString();
         return qs.toStdString();
     }
     else
